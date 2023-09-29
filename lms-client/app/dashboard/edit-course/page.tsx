@@ -8,6 +8,7 @@ import NewCourseTitle from '@/components/global/NewCourseTitle'
 import { Button } from '@/components/ui/button'
 import { Upload } from 'lucide-react'
 import Masonry from 'react-masonry-css'
+import NewCoursePrice from '@/components/global/NewCoursePrice'
 
 type Props = {}
 
@@ -23,11 +24,12 @@ const page = (props: Props) => {
             <div className='grid grid-cols-2 gap-4'>
               <div className='flex flex-col gap-4'>
                   <NewCourseTitle/>
-                  <NewCourseImage/>
-              </div>
-              <div className='flex flex-col gap-4'>
                   <NewCourseDescription/>
                   <NewCourseSections/>
+              </div>
+              <div className='flex flex-col gap-4'>
+                  <NewCourseImage/>
+                  <NewCoursePrice/>
               </div>
             </div>
             

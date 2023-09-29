@@ -10,6 +10,10 @@ type Props = {}
 
 function NewCourseSections({}: Props) {
     const {course,updateCourse}=useCourseStore()
+    const [winReady,setWinReady]=React.useState(false)
+    React.useEffect(()=>{
+        setWinReady(true)
+    },[])
 
 
 
@@ -30,36 +34,40 @@ function NewCourseSections({}: Props) {
             <h4 className='text-xl font-semibold'> Course Sections </h4>
         </div>
         <div>
-            <Button variant={"outline"} className="flex gap-2">New <Plus size={20}/></Button>
+            <Button className="flex gap-2">New <Plus size={20}/></Button>
         </div>
+
     </div>
-    
+    {
+    winReady?
     <DragDropContext onDragEnd={handleOnDragEnd}>
           <Droppable droppableId="characters">
             {(provided) => (
-              <ul className="px-4 space-y-2" {...provided.droppableProps} ref={provided.innerRef}>
+              <div className="px-4 space-y-2" {...provided.droppableProps} ref={provided.innerRef}>
                 {course.sections.map(({id, title, description}, index) => {
                   return (
                     <Draggable key={id} draggableId={id} index={index}>
                       {(provided) => (
-                        <li ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
+                        <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
                             <div className='p-3 px-3 pl-5 bg-background border rounded-lg flex justify-between items-center'>
                                 <span className='text-lg'>{title}</span>
                                 <div className='flex gap-2 items-center'>
-                                    <div className='p-1 bg-primary text-sm text-white rounded-md px-4'>published</div>
+                                    {/* <div className='p-1 bg-primary text-sm text-white rounded-md px-4'>published</div> */}
                                     <Button variant={"outline"} size={"icon"}><Edit/></Button>
                                 </div>
                             </div>
-                        </li>
+                        </div>
                       )}
                     </Draggable>
                   );
                 })}
                 {provided.placeholder}
-              </ul>
+              </div>
             )}
           </Droppable>
         </DragDropContext>
+        :null
+    }
 
 
     {/* <div className='px-4 space-y-2'>
