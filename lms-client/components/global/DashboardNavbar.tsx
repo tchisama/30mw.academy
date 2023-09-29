@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/navigation-menu"
 import { PlusCircle } from "lucide-react"
 import { ModeToggle } from "./DarkModeButton"
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar"
 
 const components: { title: string; href: string; description: string }[] = [
   {
@@ -55,7 +56,7 @@ const components: { title: string; href: string; description: string }[] = [
   },
 ]
 
-export default function NavigationMenuDemo() {
+export default function DashboardNavBar() {
   return (
     <div className="py-8 flex justify-between">
     <NavigationMenu className="flex-1 flex justify-center">
@@ -123,8 +124,12 @@ export default function NavigationMenuDemo() {
         </NavigationMenuItem>
       </NavigationMenuList>
     </NavigationMenu>
-    <div className="">
+    <div className="flex gap-2">
         <ModeToggle/>
+        <Avatar>
+          <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+          <AvatarFallback>CN</AvatarFallback>
+        </Avatar>
     </div>
     </div>
   )
