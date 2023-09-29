@@ -37,7 +37,7 @@ export default function UserAuthForm({ className, ...props }: UserAuthFormProps)
       </Link>
 
       <Link href="/" className="absolute top-10 left-10">
-        <h1 className="text-white text-3xl font-bold">LMS</h1>
+        <h1 className="text-white text-3xl font-bold">30mw Acadimy</h1>
       </Link>
 
       <div className="w-[400px] mx-auto">

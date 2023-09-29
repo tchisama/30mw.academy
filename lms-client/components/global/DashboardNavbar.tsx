@@ -61,7 +61,7 @@ export default function DashboardNavBar() {
     <div className="py-8 flex justify-between">
     <NavigationMenu className="flex-1 flex justify-center">
         <div className="mr-8">
-            <h1 className=" text-2xl font-bold">LMS</h1>
+            <h1 className=" text-2xl font-bold">30mw Academy</h1>
         </div>
       <NavigationMenuList>
 
