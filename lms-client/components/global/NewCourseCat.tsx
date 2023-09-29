@@ -5,20 +5,30 @@ import { Input } from '../ui/input'
 import { Edit2, Save } from 'lucide-react'
 import useCourseStore from '@/hooks/course-store'
 
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+  } from "@/components/ui/select"
+
+
+
 type Props = {}
 
-function NewCourseTitle({}: Props) {
+function NewCourseCat({}: Props) {
     const [editMode, setEditMode] = React.useState(false)
     const {course,updateCourse}=useCourseStore()
   return (
     <Card className='w-full h-fit'>
     <div className='flex justify-between items-start p-6'>
         <div className='space-y-2'>
-            <h4 className='text-xl font-semibold'> Course Title </h4>
+            <h4 className='text-xl font-semibold'> Course Category </h4>
 
         {
             !editMode &&
-            <h3>{course.title}</h3>
+            <h3>{course.category}</h3>
         }
         </div>
         {
@@ -28,8 +38,18 @@ function NewCourseTitle({}: Props) {
     </div>
     {
         editMode && 
-        <CardFooter className='flex justify-end gap-2'>
-            <Input value={course.title} onInput={(e)=>updateCourse({...course,title:(e.target as HTMLInputElement ).value})}></Input>
+        <CardFooter className='flex justify-between gap-2'>
+            <Select value={course.category} onValueChange={(e)=>updateCourse({...course,category:e})}>
+            <SelectTrigger className="w-[180px]">
+                <SelectValue placeholder="category" />
+            </SelectTrigger>
+            <SelectContent>
+                <SelectItem value="montage">montage</SelectItem>
+                <SelectItem value="programming">programming</SelectItem>
+                <SelectItem value="3d modelling">3d modelling</SelectItem>
+            </SelectContent>
+            </Select>
+
             <Button onClick={() => setEditMode(false)} className="flex gap-2">Save<Save size={18} /></Button>
         </CardFooter>
     }
@@ -37,4 +57,4 @@ function NewCourseTitle({}: Props) {
   )
 }
 
-export default NewCourseTitle
+export default NewCourseCat

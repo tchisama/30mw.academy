@@ -20,7 +20,8 @@ interface Course {
     sections: CourseSection[];
     price: number; // Add the price property
     image:string;
-    id:string
+    id:string;
+    category:string;
 }
   
 
@@ -31,6 +32,7 @@ const course: Course = {
   price:30,
   image:"",
   id:"1",
+  category:"",
   sections: [
     {
       title: "Getting Started",

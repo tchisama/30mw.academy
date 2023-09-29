@@ -69,7 +69,7 @@ function NewCourseSections({}: Props) {
         :null
     }
 
-
+    <p className='py-2 px-6 text-muted-foreground'>Drag and drop to reorder sections</p>
     {/* <div className='px-4 space-y-2'>
         {
             course.sections.map((section,i)=>{

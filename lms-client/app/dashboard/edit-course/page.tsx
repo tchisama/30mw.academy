@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/button'
 import { Upload } from 'lucide-react'
 import Masonry from 'react-masonry-css'
 import NewCoursePrice from '@/components/global/NewCoursePrice'
+import NewCourseCat from '@/components/global/NewCourseCat'
 
 type Props = {}
 
@@ -25,6 +26,7 @@ const page = (props: Props) => {
               <div className='flex flex-col gap-4'>
                   <NewCourseTitle/>
                   <NewCourseDescription/>
+                  <NewCourseCat/>
                   <NewCourseSections/>
               </div>
               <div className='flex flex-col gap-4'>
