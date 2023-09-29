@@ -1,14 +1,15 @@
 import React from 'react'
 import { Card, CardFooter } from '../ui/card'
 import { Button } from '../ui/button'
-import { Input } from '../ui/input'
 import { Edit2, Save } from 'lucide-react'
 import { Textarea } from '../ui/textarea'
+import useCourseStore from '@/hooks/course-store'
 
 type Props = {}
 
 function NewCourseDescription({}: Props) {
   const [editMode, setEditMode] = React.useState(false)
+  const {course ,updateCourse}=useCourseStore()
   return (
     <Card className='w-full h-fit'>
     <div className='flex justify-between items-start p-6'>
@@ -23,13 +24,13 @@ function NewCourseDescription({}: Props) {
       {
         !editMode &&
         <div className='p-6 pt-0 text-forground'>
-            <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. In laudantium soluta ut necessitatibus commodi. Odit, ipsam dolorum iste eum molestias delectus aliquam, asperiores fuga accusamus consectetur omnis ad fugiat quos! </p>
+            <p>{course.description}</p>
         </div>
       }
     {
         editMode && 
         <CardFooter className='flex flex-col items-end gap-2'>
-            <Textarea></Textarea>
+            <Textarea value={course.description} onInput={(e)=>updateCourse({...course,description:(e.target as HTMLInputElement).value})}></Textarea>
             <Button onClick={() => setEditMode(false)} className="flex gap-2">Save<Save size={18} /></Button>
         </CardFooter>
     }

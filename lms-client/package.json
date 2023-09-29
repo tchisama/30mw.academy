@@ -21,6 +21,7 @@
     "next": "latest",
     "next-themes": "^0.2.1",
     "react": "latest",
+    "react-beautiful-dnd": "^13.0.0",
     "react-dom": "latest",
     "react-masonry-css": "^1.0.16",
     "tailwind-merge": "^1.14.0",
@@ -30,6 +31,7 @@
   "devDependencies": {
     "@types/node": "latest",
     "@types/react": "latest",
+    "@types/react-beautiful-dnd": "^13.1.5",
     "@types/react-dom": "latest",
     "autoprefixer": "latest",
     "eslint": "latest",

@@ -2,6 +2,8 @@
 import DashboardNavBar from '@/components/global/DashboardNavbar'
 
 import NewCourseDescription from '@/components/global/NewCourseDescription'
+import NewCourseSections from '@/components/global/NewCourseSections'
+import NewCourseImage from '@/components/global/NewCourseImage'
 import NewCourseTitle from '@/components/global/NewCourseTitle'
 import { Button } from '@/components/ui/button'
 import { Upload } from 'lucide-react'
@@ -18,14 +20,17 @@ const page = (props: Props) => {
               <h1 className='text-3xl'>Create a new course</h1>
               <Button className='flex gap-2'>Publish <Upload size={18}/></Button>
             </div>
-            <Masonry
-              breakpointCols={2}
-              className="my-masonry-grid"
-              columnClassName="my-masonry-grid_column">
+            <div className='grid grid-cols-2 gap-4'>
+              <div className='flex flex-col gap-4'>
                   <NewCourseTitle/>
+                  <NewCourseImage/>
+              </div>
+              <div className='flex flex-col gap-4'>
                   <NewCourseDescription/>
-                  <NewCourseDescription/>
-            </Masonry>
+                  <NewCourseSections/>
+              </div>
+            </div>
+            
         </div>
     </div>
   )
