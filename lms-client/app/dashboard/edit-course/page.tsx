@@ -25,8 +25,8 @@ const page = (props: Props) => {
             <div className='grid grid-cols-2 gap-4'>
               <div className='flex flex-col gap-4'>
                   <NewCourseTitle/>
-                  <NewCourseDescription/>
                   <NewCourseCat/>
+                  <NewCourseDescription/>
                   <NewCourseSections/>
               </div>
               <div className='flex flex-col gap-4'>

@@ -17,6 +17,7 @@ import {
 import { PlusCircle } from "lucide-react"
 import { ModeToggle } from "./DarkModeButton"
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar"
+import { UserButton } from "@clerk/nextjs"
 
 const components: { title: string; href: string; description: string }[] = [
   {
@@ -61,7 +62,7 @@ export default function DashboardNavBar() {
     <div className="py-8 flex justify-between">
     <NavigationMenu className="flex-1 flex justify-center">
         <div className="mr-8">
-            <h1 className=" text-2xl font-bold">30mw Academy</h1>
+          <h1 className=" text-2xl ">30mw<span className="text-lg">Academy</span></h1>
         </div>
       <NavigationMenuList>
 
@@ -124,12 +125,9 @@ export default function DashboardNavBar() {
         </NavigationMenuItem>
       </NavigationMenuList>
     </NavigationMenu>
-    <div className="flex gap-2">
+    <div className="flex gap-2 items-center">
         <ModeToggle/>
-        <Avatar>
-          <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-          <AvatarFallback>CN</AvatarFallback>
-        </Avatar>
+        <UserButton/>
     </div>
     </div>
   )

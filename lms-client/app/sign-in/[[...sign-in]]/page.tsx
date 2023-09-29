@@ -1,31 +1,15 @@
-"use client"
-
 import * as React from "react"
 
-import { cn } from "@/lib/utils"
-import { Loader } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Label } from "@/components/ui/label"
-import { Input } from "@/components/ui/input"
-import { Card, CardContent, CardDescription, CardTitle } from "@/components/ui/card"
 import illu from "@/public/login1.png"
+import { SignIn } from "@clerk/nextjs"
 import Image from "next/image"
 import Link from "next/link"
-import LoginComponent from "@/components/global/Login-component"
 
 interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 export default function UserAuthForm({ className, ...props }: UserAuthFormProps) {
-  const [isLoading, setIsLoading] = React.useState<boolean>(false)
 
-  async function onSubmit(event: React.SyntheticEvent) {
-    event.preventDefault()
-    setIsLoading(true)
-
-    setTimeout(() => {
-      setIsLoading(false)
-    }, 3000)
-  }
 
   return (
     <div className="grid grid-cols-2 min-h-screen justify-center items-center">
@@ -41,7 +25,7 @@ export default function UserAuthForm({ className, ...props }: UserAuthFormProps)
       </Link>
 
       <div className="w-[400px] mx-auto">
-        <LoginComponent />
+        <SignIn/>
       </div>
     </div>
   )
