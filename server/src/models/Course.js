@@ -11,7 +11,7 @@ const courseSectionSchema = new mongoose.Schema({
   title: String,
   description: String,
   videos: [videoSchema], // Define an array of Video subdocuments
-  id: String,
+  id_section: String,
 });
 
 const courseSchema = new mongoose.Schema({

@@ -11,7 +11,8 @@ interface CourseSection {
     title: string;
     description: string;
     videos: Video[];
-    id:string
+    id_section:string;
+    _id?:string;
 }
   
 interface Course {
@@ -20,9 +21,9 @@ interface Course {
     sections: CourseSection[];
     price: number; // Add the price property
     image:string;
-    _id:string;
+    _id?:string;
     owner:string;
-    __v:number;
+    __v?:number;
     category:string;
 }
   

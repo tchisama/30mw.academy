@@ -1,40 +1,24 @@
 "use client"
 import DashboardNavBar from '@/components/global/DashboardNavbar'
-import React, { useEffect } from 'react';
-
-import NewCourseDescription from '@/components/global/NewCourseDescription'
-import NewCourseSections from '@/components/global/NewCourseSections'
-import NewCourseImage from '@/components/global/NewCourseImage'
-import NewCourseTitle from '@/components/global/NewCourseTitle'
+import NewSectionDescription from '@/components/global/NewSectionDescription'
+import NewSectionTitle from '@/components/global/NewSectionTitle'
 import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Loader, Upload } from 'lucide-react'
-import Masonry from 'react-masonry-css'
-import NewCoursePrice from '@/components/global/NewCoursePrice'
-import NewCourseCat from '@/components/global/NewCourseCat'
+import useCourseStore from '@/hooks/course-store'
+import axios from "axios"
+import { ArrowLeft, Loader, Upload } from 'lucide-react'
+import Link from 'next/link'
+import React, { useEffect } from 'react'
 
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "@/components/ui/alert-dialog"
-
-import axios from 'axios';
-import { useSearchParams } from 'next/navigation'
-import useCourseStore from '@/hooks/course-store';
 type Props = {
-  params: {
-    course_id: string
-  }
+    params: {
+        course_id: string,
+        section_id: string,
+    }
 }
 
+
 const Page = ({params}: Props) => {
+
   const [loading,setLoading]=React.useState(true)
   const [publishing,setPublishing]=React.useState(false)
 
@@ -57,15 +41,16 @@ const Page = ({params}: Props) => {
     }
   },[params.course_id,updateCourse])
 
-  const publish = async ()=>{
+  const publish = ()=>{
     setPublishing(true)
     try {
-        const r= await  axios.post("http://localhost:8080/update-course/"+params.course_id,course)
+      axios.post("http://localhost:8080/update-course/"+params.course_id,course).then(r=>{
         console.log(r.data)
         setTimeout(() => {
           setPublishing(false)
         }, 1000);
-        
+      }
+      )
     }catch (error) {
       console.log(error)
       setPublishing(false)
@@ -77,14 +62,15 @@ const Page = ({params}: Props) => {
               </div>
   }
 
-
   return (
-    <>
     <div className=''>
         <div className='container min-h-screen  mx-auto'>
             <DashboardNavBar/>
             <div className='h-[120px] items-center flex justify-between'>
-              <h1 className='text-3xl'>Manage course</h1>
+              <div className='flex flex-col gap-4'>
+                <Link href={`/dashboard/edit-course/${params.course_id}`} className='text-lg flex gap-2 items-center '><ArrowLeft size={18}/>Back course</Link>
+                <h1 className='text-3xl'>Edit Section</h1>
+              </div>
               <Button onClick={publish} className='flex gap-2' disabled={publishing}>
                 {
                   publishing ?
@@ -99,24 +85,15 @@ const Page = ({params}: Props) => {
               </Button>
             </div>
             <div className='grid grid-cols-2 gap-4'>
-              <div className='flex flex-col gap-4'>
-                  <NewCourseTitle/>
-                  <NewCourseCat/>
-                  <NewCourseDescription/>
-                  <NewCourseSections/>
-              </div>
-              <div className='flex flex-col gap-4'>
-                  <NewCourseImage/>
-                  <NewCoursePrice/>
+              <div className='space-y-4'>
+                <NewSectionTitle section={params.section_id}/>
+                <NewSectionDescription section={params.section_id}/>
               </div>
             </div>
             
         </div>
     </div>
-    </>
   )
 }
-
-
 
 export default Page

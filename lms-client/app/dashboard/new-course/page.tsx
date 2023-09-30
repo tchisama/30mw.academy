@@ -3,7 +3,7 @@ import DashboardNavBar from '@/components/global/DashboardNavbar'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
-import { Stars } from 'lucide-react'
+import { Loader, Stars } from 'lucide-react'
 import Link from 'next/link'
 import React from 'react'
 import axios from 'axios'
@@ -15,8 +15,9 @@ type Props = {}
 const  Page = (props: Props) => {
     const navigate = useRouter()
     const [title,setTitle]=React.useState("")
-    const {updateCourse}=useCourseStore()
+    const [loading,setLoading]=React.useState(false)
     const createCourse =async ()=>{
+        setLoading(true)
         try {
             const response = await axios.post("http://localhost:8080/create-course",{
                 title,
@@ -24,6 +25,7 @@ const  Page = (props: Props) => {
             navigate.push(`/dashboard/edit-course/${response.data.id}`)
         } catch (error) {
             console.log(error)
+            setLoading(false)
         }
     }
   return (
@@ -40,7 +42,16 @@ const  Page = (props: Props) => {
                         <Input value={title} onChange={(e)=>setTitle(e.target.value)}></Input>
                     </CardContent>
                     <CardFooter className='flex justify-end'>
-                        <Button onClick={createCourse} className='flex gap-2'>Create<Stars/></Button>
+                        <Button disabled={loading} onClick={createCourse} className='flex gap-2'>
+                            {
+                                loading?
+                                <>Creating<Loader className='animate-spin'/></>
+                                :
+                                <>Create<Stars/></>
+
+                            }
+                            
+                        </Button>
                     </CardFooter>
                 </Card>
             </div>
