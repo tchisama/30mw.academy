@@ -20,7 +20,7 @@ interface Course {
     sections: CourseSection[];
     price: number; // Add the price property
     image:string;
-    id:string;
+    _id:string;
     category:string;
 }
   
@@ -31,7 +31,7 @@ const course: Course = {
   description: "Learn a test course name",
   price:30,
   image:"",
-  id:"1",
+  _id:"1",
   category:"",
   sections: [
     {
@@ -43,7 +43,7 @@ const course: Course = {
           title: "Setting up TypeScript",
           url: "https://example.com/ts-setup",
           duration: 10 * 60, // 10 minutes,
-          id:"1"
+          id:"1",
         },
         {
           title: "Types and Variables",
