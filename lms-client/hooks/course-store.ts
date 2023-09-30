@@ -3,7 +3,7 @@ import create from "zustand";
 interface Video {
     title: string;
     url: string;
-    duration: number; // in seconds
+    duration: number;// in seconds
     id:string
 }
   
@@ -15,7 +15,7 @@ interface CourseSection {
     _id?:string;
 }
   
-interface Course {
+export interface Course {
     title: string;
     description: string;
     sections: CourseSection[];

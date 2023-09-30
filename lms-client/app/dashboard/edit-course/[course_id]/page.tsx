@@ -8,7 +8,7 @@ import NewCourseImage from '@/components/global/NewCourseImage'
 import NewCourseTitle from '@/components/global/NewCourseTitle'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { Loader, Upload } from 'lucide-react'
+import { Frown, Loader, Upload } from 'lucide-react'
 import Masonry from 'react-masonry-css'
 import NewCoursePrice from '@/components/global/NewCoursePrice'
 import NewCourseCat from '@/components/global/NewCourseCat'
@@ -28,6 +28,7 @@ import {
 import axios from 'axios';
 import { useSearchParams } from 'next/navigation'
 import useCourseStore from '@/hooks/course-store';
+import usePublishCourse from '@/hooks/use-publish-course';
 type Props = {
   params: {
     course_id: string
@@ -36,9 +37,10 @@ type Props = {
 
 const Page = ({params}: Props) => {
   const [loading,setLoading]=React.useState(true)
-  const [publishing,setPublishing]=React.useState(false)
-
+  const [err,setErr]=React.useState(false)
   const {updateCourse,course}=useCourseStore()
+
+  const {publish,publishing}=usePublishCourse()
 
   // get the course by the param id using axios
   useEffect(()=>{
@@ -46,7 +48,13 @@ const Page = ({params}: Props) => {
       axios.get("http://localhost:8080/course/"+params.course_id)
       .then((res)=>{
         console.log(res.data)
-        updateCourse(res.data)
+        if(res.data!==null){
+          updateCourse(res.data)
+        }else{
+          setErr(
+            true
+          )
+        }
         setTimeout(() => {
           setLoading(false)
         }, 1200);
@@ -54,26 +62,21 @@ const Page = ({params}: Props) => {
     } catch (error) {
       console.log(error)
       setLoading(false)
+      setErr(true)
     }
+
   },[params.course_id,updateCourse])
 
-  const publish = async ()=>{
-    setPublishing(true)
-    try {
-        const r= await  axios.post("http://localhost:8080/update-course/"+params.course_id,course)
-        console.log(r.data)
-        setTimeout(() => {
-          setPublishing(false)
-        }, 1000);
-        
-    }catch (error) {
-      console.log(error)
-      setPublishing(false)
-    }
-  }
   if(loading){
       return <div className='h-screen flex justify-center items-center '>
                   <h1 className='flex gap-3'><Loader className='animate-spin'/>Loading...</h1>
+              </div>
+  }
+
+  if(err){
+      return <div className='h-screen flex gap-2 flex-col justify-center items-center '>
+                  <h1 className='flex gap-3 text-lg'><Frown className=''/>No Course Found</h1>
+                  <p className='text-'>it may be deleted</p>
               </div>
   }
 
