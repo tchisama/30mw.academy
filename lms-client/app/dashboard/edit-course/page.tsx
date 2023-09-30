@@ -1,20 +1,39 @@
 "use client"
 import DashboardNavBar from '@/components/global/DashboardNavbar'
+import React from 'react';
 
 import NewCourseDescription from '@/components/global/NewCourseDescription'
 import NewCourseSections from '@/components/global/NewCourseSections'
 import NewCourseImage from '@/components/global/NewCourseImage'
 import NewCourseTitle from '@/components/global/NewCourseTitle'
 import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
 import { Upload } from 'lucide-react'
 import Masonry from 'react-masonry-css'
 import NewCoursePrice from '@/components/global/NewCoursePrice'
 import NewCourseCat from '@/components/global/NewCourseCat'
 
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog"
+
+
 type Props = {}
 
-const page = (props: Props) => {
+const Page = (props: Props) => {
+  const [dialogOpen,setDialogOpen] = React.useState(true);
+
   return (
+    <>
+
     <div className=''>
         <div className='container min-h-screen  mx-auto'>
             <DashboardNavBar/>
@@ -37,9 +56,10 @@ const page = (props: Props) => {
             
         </div>
     </div>
+    </>
   )
 }
 
 
 
-export default page
+export default Page
