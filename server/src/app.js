@@ -8,6 +8,8 @@ const mongoose = require('mongoose');
 app.use(express.json());
 const {mongoURI}= require('./config/config');
 
+const cors = require('cors');
+app.use(cors());
 
 mongoose.connect(mongoURI)
 const conn = mongoose.connection

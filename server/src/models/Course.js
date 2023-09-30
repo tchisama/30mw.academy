@@ -15,14 +15,32 @@ const courseSectionSchema = new mongoose.Schema({
 });
 
 const courseSchema = new mongoose.Schema({
-  title: String,
-  description: String,
-  sections: [courseSectionSchema], // Define an array of CourseSection subdocuments
-  price: Number,
-  image: String,
-  category: String,
-  _id: String,
-});
+    title: {
+      type: String,
+      default: 'Default Course Title', // Default value for 'title'
+    },
+    description: {
+      type: String,
+      default: 'Default Course Description', // Default value for 'description'
+    },
+    sections: [courseSectionSchema],
+    price: {
+      type: Number,
+      default: 0, // Default value for 'price'
+    },
+    image: {
+      type: String,
+      default: '', // Default value for 'image'
+    },
+    category: {
+      type: String,
+      default: '', // Default value for 'category'
+    },
+    owner: {
+        type: mongoose.Schema.Types.ObjectId, // Use ObjectId to reference the owner
+        ref: 'User', // Reference the 'User' model (update 'User' to the actual user model name)
+    },
+  });
 
 const CourseModel = mongoose.model('Course', courseSchema);
 
