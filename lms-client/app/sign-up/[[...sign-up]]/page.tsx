@@ -28,6 +28,7 @@ export default function UserAuthForm({ className, ...props }: UserAuthFormProps)
 
         <div className="w-[400px] mx-auto">
           <SignUp/>
+          
         </div>
 
 

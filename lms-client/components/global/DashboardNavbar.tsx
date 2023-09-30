@@ -14,10 +14,11 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
-import { PlusCircle } from "lucide-react"
+import { Bell, PlusCircle } from "lucide-react"
 import { ModeToggle } from "./DarkModeButton"
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar"
 import { UserButton } from "@clerk/nextjs"
+import { Button } from "../ui/button"
 
 const components: { title: string; href: string; description: string }[] = [
   {
@@ -82,7 +83,7 @@ export default function DashboardNavBar() {
                 <NavigationMenuLink asChild>
                   <a
                     className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
-                    href="/"
+                    href="/dashboard/edit-course"
                   >
                     <PlusCircle className="h-6 w-6" />
                     <div className="mb-2 mt-4 text-lg font-medium">
@@ -126,8 +127,9 @@ export default function DashboardNavBar() {
       </NavigationMenuList>
     </NavigationMenu>
     <div className="flex gap-2 items-center">
+                <Button variant={"ghost"} size={"icon"}><Bell size={18}/></Button>
         <ModeToggle/>
-        <UserButton/>
+        <UserButton afterSignOutUrl="/sign-in"/>
     </div>
     </div>
   )
