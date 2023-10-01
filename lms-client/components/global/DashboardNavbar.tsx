@@ -88,7 +88,7 @@ export default function DashboardNavBar() {
               <ListItem href="/dashboard/courses" title="Courses">
                 Re-usable components built using Radix UI and Tailwind CSS.
               </ListItem>
-              <ListItem href="/docs/installation" title="My courses">
+              <ListItem href="/dashboard/my-courses" title="My courses">
                 How to install dependencies and structure your app.
               </ListItem>
               <ListItem href="/docs/installation" title="My analytics">

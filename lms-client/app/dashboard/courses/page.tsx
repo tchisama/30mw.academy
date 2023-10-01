@@ -8,7 +8,7 @@ import { Card, CardDescription, CardHeader, CardTitle } from '@/components/ui/ca
 import { Input } from '@/components/ui/input'
 import { Separator } from '@/components/ui/separator'
 import { Course } from '@/hooks/course-store'
-import { Edit, Eye } from 'lucide-react'
+import { Edit, Eye, Loader } from 'lucide-react'
 import { Cardo } from 'next/font/google'
 import Link from 'next/link'
 import React, { useEffect } from 'react'
@@ -17,11 +17,22 @@ import React, { useEffect } from 'react'
 function Page() {
     const [courses ,setCourses] = React.useState<Course[]>([])
     const [search, setSearch] = React.useState('')
+    const [loading,setLoading]=React.useState(true)
     useEffect(() => {
         fetch('http://localhost:8080/courses')
         .then(res => res.json())
-        .then(data => setCourses(data))
+        .then(data => 
+          {
+          setCourses(data)
+          setLoading(false)
+          }
+        )
     },[])
+    if(loading){
+        return <div className='h-screen flex justify-center items-center '>
+                    <h1 className='flex gap-3'><Loader className='animate-spin'/>Loading...</h1>
+                </div>
+    }
   return (
     <div className=''>
         <div className='container min-h-screen  mx-auto'>

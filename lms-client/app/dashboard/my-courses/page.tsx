@@ -10,7 +10,7 @@ import { Separator } from '@/components/ui/separator'
 import { Course } from '@/hooks/course-store'
 import useUserStore from '@/hooks/users-store'
 import { useClerk } from '@clerk/nextjs'
-import { Edit, Eye } from 'lucide-react'
+import { Edit, Eye, Loader } from 'lucide-react'
 import { Cardo } from 'next/font/google'
 import Link from 'next/link'
 import React, { use, useEffect } from 'react'
@@ -20,14 +20,23 @@ function Page() {
     const [courses ,setCourses] = React.useState<Course[]>([])
     const [search, setSearch] = React.useState('')
     const user=useClerk();
+    const [loading,setLoading]=React.useState(true)
 
     useEffect(() => {
       if(user.user?.id){
         fetch('http://localhost:8080/my-courses/'+user.user.id)
         .then(res => res.json())
-        .then(data => setCourses(data))
+        .then(data => {
+          setCourses(data)
+          setLoading(false)
+        })
       }
     },[user.user])
+    if(loading){
+        return <div className='h-screen flex justify-center items-center '>
+                    <h1 className='flex gap-3'><Loader className='animate-spin'/>Loading...</h1>
+                </div>
+    }
   return (
     <div className=''>
         <div className='container min-h-screen  mx-auto'>
