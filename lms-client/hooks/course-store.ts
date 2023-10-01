@@ -5,6 +5,7 @@ export interface Video {
     url: string;
     duration: number;// in seconds
     _id?:string;
+    free:boolean;
     id_video:string
 }
   

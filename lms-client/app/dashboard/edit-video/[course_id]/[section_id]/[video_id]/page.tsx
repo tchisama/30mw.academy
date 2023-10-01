@@ -4,8 +4,10 @@ import DashboardNavBar from '@/components/global/DashboardNavbar'
 import NewSectionDescription from '@/components/global/NewSectionDescription'
 import NewSectionTitle from '@/components/global/NewSectionTitle'
 import NewSectionVideos from '@/components/global/NewSectionVideos'
+import NewVideoFree from '@/components/global/NewVideoFree'
 import NewVideoTitle from '@/components/global/NewVideoTitle'
 import NewVideoUrl from '@/components/global/NewVideoUrl'
+import VideoPlayer from '@/components/global/Video'
 import { Button } from '@/components/ui/button'
 import useCourseStore from '@/hooks/course-store'
 import usePublishCourse from '@/hooks/use-publish-course'
@@ -79,9 +81,11 @@ const Page = ({params}: Props) => {
               <div className='space-y-4'>
                 <NewVideoTitle section={params.section_id} video_id={params.video_id}/>
                 <NewVideoUrl section={params.section_id} video_id={params.video_id}/>
+                <NewVideoFree section={params.section_id} video_id={params.video_id}/>
               </div>
               <div>
-              <iframe className='w-full' width="560" height="390" src={course.sections.find((s)=>s.id_section===params.section_id)?.videos.find((v)=>v.id_video===params.video_id)?.url} title="YouTube video player"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" ></iframe>
+              {/* <iframe className='w-full' width="560" height="390" src={course.sections.find((s)=>s.id_section===params.section_id)?.videos.find((v)=>v.id_video===params.video_id)?.url} title="YouTube video player"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" ></iframe> */}
+              <VideoPlayer/>
               </div>
             </div>
             

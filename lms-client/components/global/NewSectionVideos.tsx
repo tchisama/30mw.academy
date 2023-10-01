@@ -46,7 +46,14 @@ function NewSectionVideos({params:{course_id,section_id}}: Props) {
 
             if (sectionIndex !== -1) {
                 // Add the new video to the section's videos array
-                updatedCourse.sections[sectionIndex].videos.push({id_video:generateRandomString(6),title,url:"",duration:0});
+                updatedCourse.sections[sectionIndex].videos.push(
+                  {
+                    id_video:generateRandomString(6),
+                    title,
+                    url:"",
+                    free:false,
+                    duration:0
+                  });
                 // Trigger the state update with the modified course object
                 updateCourse(updatedCourse);
             }
