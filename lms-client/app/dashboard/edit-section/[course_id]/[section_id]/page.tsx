@@ -78,7 +78,7 @@ const Page = ({params}: Props) => {
                 <NewSectionDescription section={params.section_id}/>
               </div>
               <div>
-                <NewSectionVideos/>
+                <NewSectionVideos params={params}/>
               </div>
             </div>
             

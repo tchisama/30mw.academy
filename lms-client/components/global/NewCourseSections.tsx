@@ -1,5 +1,5 @@
 import useCourseStore from '@/hooks/course-store'
-import { Edit, Plus, Trash } from 'lucide-react'
+import { ArrowRight, Edit, Folder, Plus, Trash } from 'lucide-react'
 import React from 'react'
 import { Button } from '../ui/button'
 import { Card } from '../ui/card'
@@ -110,7 +110,7 @@ function NewCourseSections({}: Props) {
                       {(provided) => (
                         <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
                             <div className='p-3 px-3 pl-5 bg-background border rounded-lg flex justify-between items-center'>
-                                <span className='text-lg'>{ttl}</span>
+                                <span className='text-lg flex gap-4 items-center'><Folder/> {ttl}</span>
                                 <div className='flex gap-2 items-center'>
                                     {/* <div className='p-1 bg-primary text-sm text-white rounded-md px-4'>published</div> */}
                                         <AlertDialog>
@@ -129,7 +129,7 @@ function NewCourseSections({}: Props) {
                                             </AlertDialogFooter>
                                           </AlertDialogContent>
                                         </AlertDialog>
-                                          <Button onClick={()=>saveAndNavigate(`/dashboard/edit-section/${course._id}/${id_section}`)} variant={"outline"} size={"icon"}><Edit size={18}/></Button>
+                                          <Button onClick={()=>saveAndNavigate(`/dashboard/edit-section/${course._id}/${id_section}`)} variant={"outline"} size={"icon"}><ArrowRight size={18}/></Button>
                                 </div>
                             </div>
                         </div>

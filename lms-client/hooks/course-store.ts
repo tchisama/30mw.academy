@@ -1,10 +1,11 @@
 import create from "zustand";
 
-interface Video {
+export interface Video {
     title: string;
     url: string;
     duration: number;// in seconds
-    id:string
+    _id?:string;
+    id_video:string
 }
   
 interface CourseSection {
