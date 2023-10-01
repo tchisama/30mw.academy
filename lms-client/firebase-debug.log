@@ -1,0 +1,63 @@
+[debug] [2023-10-01T18:23:14.801Z] ----------------------------------------------------------------------
+[debug] [2023-10-01T18:23:14.806Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\tchisama\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2023-10-01T18:23:14.806Z] CLI Version:   12.6.1
+[debug] [2023-10-01T18:23:14.807Z] Platform:      win32
+[debug] [2023-10-01T18:23:14.807Z] Node Version:  v18.16.1
+[debug] [2023-10-01T18:23:14.809Z] Time:          Sun Oct 01 2023 11:23:14 GMT-0700 (Pacific Daylight Time)
+[debug] [2023-10-01T18:23:14.809Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-10-01T18:23:14.954Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-10-01T18:23:14.954Z] > authorizing via signed-in user (pro.tchisama@gmail.com)
+[debug] [2023-10-01T18:23:14.955Z] [iam] checking project mwacademy-edadb for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2023-10-01T18:23:14.958Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/mwacademy-edadb:testIamPermissions [none]
+[debug] [2023-10-01T18:23:14.958Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/mwacademy-edadb:testIamPermissions x-goog-quota-user=projects/mwacademy-edadb
+[debug] [2023-10-01T18:23:14.959Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/mwacademy-edadb:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2023-10-01T18:23:15.887Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/mwacademy-edadb:testIamPermissions 200
+[debug] [2023-10-01T18:23:15.887Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/mwacademy-edadb:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2023-10-01T18:23:15.889Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/mwacademy-edadb [none]
+[debug] [2023-10-01T18:23:16.307Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/mwacademy-edadb 200
+[debug] [2023-10-01T18:23:16.307Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/mwacademy-edadb {"projectId":"mwacademy-edadb","projectNumber":"971035475292","displayName":"30mwacademy","name":"projects/mwacademy-edadb","resources":{"hostingSite":"mwacademy-edadb"},"state":"ACTIVE","etag":"1_8e95650f-ce07-4428-b938-de51ec3c2520"}
+[debug] [2023-10-01T18:23:25.392Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/mwacademy-edadb/sites pageToken=&pageSize=10
+[debug] [2023-10-01T18:23:26.364Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/mwacademy-edadb/sites 200
+[debug] [2023-10-01T18:23:26.365Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/mwacademy-edadb/sites {"sites":[{"name":"projects/mwacademy-edadb/sites/mwacademy-edadb","defaultUrl":"https://mwacademy-edadb.web.app","appId":"1:971035475292:web:f7c6294bcdcf29c08a9599","type":"DEFAULT_SITE"}]}
+[debug] [2023-10-01T18:23:26.366Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/-/webApps/1:971035475292:web:f7c6294bcdcf29c08a9599/config [none]
+[debug] [2023-10-01T18:23:27.222Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/-/webApps/1:971035475292:web:f7c6294bcdcf29c08a9599/config 200
+[debug] [2023-10-01T18:23:27.222Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/-/webApps/1:971035475292:web:f7c6294bcdcf29c08a9599/config {"projectId":"mwacademy-edadb","appId":"1:971035475292:web:f7c6294bcdcf29c08a9599","storageBucket":"mwacademy-edadb.appspot.com","apiKey":"AIzaSyCi6Eb4QWwZyDB04jkCEPv_Q4cosBT0rF0","authDomain":"mwacademy-edadb.firebaseapp.com","messagingSenderId":"971035475292","measurementId":"G-49YS42JNYL"}
+[info] 
+   Thank you for trying our early preview of Next.js support on Firebase Hosting.
+   During the preview, support is best-effort and breaking changes can be expected. Proceed with caution.
+
+   Documentation: https://firebase.google.com/docs/hosting/frameworks/nextjs
+   File a bug: https://github.com/firebase/firebase-tools/issues/new?template=bug_report.md
+   Submit a feature request: https://github.com/firebase/firebase-tools/issues/new?template=feature_request.md
+
+   We'd love to learn from you. Express your interest in helping us shape the future of Firebase Hosting: https://goo.gle/41enW5X
+
+[info]    Creating an optimized production build ...
+
+[info]  ✓ Compiled successfully
+
+[info]    Linting and checking validity of types ...
+
+[info]  ⨯ ESLint: Failed to load config "next/babel" to extend from. Referenced from: C:\Users\tchisama\github\syntho-unity\lms-30mw-full-stack\lms-client\.eslintrc.json
+
+[info]    Collecting page data ...
+
+[info] 
+
+[info] > Build error occurred
+Error: Page "/api/edgestore/[...edgestore]" is missing "generateStaticParams()" so it cannot be used with "output: export" config.
+    at C:\Users\tchisama\github\syntho-unity\lms-30mw-full-stack\lms-client\node_modules\next\dist\build\index.js:964:59
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Span.traceAsyncFn (C:\Users\tchisama\github\syntho-unity\lms-30mw-full-stack\lms-client\node_modules\next\dist\trace\trace.js:105:20)
+    at async Promise.all (index 4)
+    at async C:\Users\tchisama\github\syntho-unity\lms-30mw-full-stack\lms-client\node_modules\next\dist\build\index.js:857:17
+    at async Span.traceAsyncFn (C:\Users\tchisama\github\syntho-unity\lms-30mw-full-stack\lms-client\node_modules\next\dist\trace\trace.js:105:20)
+    at async C:\Users\tchisama\github\syntho-unity\lms-30mw-full-stack\lms-client\node_modules\next\dist\build\index.js:796:124
+    at async Span.traceAsyncFn (C:\Users\tchisama\github\syntho-unity\lms-30mw-full-stack\lms-client\node_modules\next\dist\trace\trace.js:105:20)
+    at async build (C:\Users\tchisama\github\syntho-unity\lms-30mw-full-stack\lms-client\node_modules\next\dist\build\index.js:184:29)
+    at async main (C:\Users\tchisama\github\syntho-unity\lms-30mw-full-stack\lms-client\node_modules\next\dist\bin\next:156:5)
+
+[debug] [2023-10-01T18:24:19.792Z] Error: ENOENT: no such file or directory, open 'C:\Users\tchisama\github\syntho-unity\lms-30mw-full-stack\lms-client\.next\export-marker.json'
+[error] 
+[error] Error: An unexpected error has occurred.
