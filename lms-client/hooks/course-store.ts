@@ -24,7 +24,13 @@ export interface Course {
     price: number; // Add the price property
     image:string;
     _id?:string;
-    owner:string;
+    owner:{
+        fname: string;
+        lname: string;
+        email: string;
+        photo: string;
+        id_user:string
+    };
     __v?:number;
     category:string;
 }
@@ -32,7 +38,13 @@ export interface Course {
 
 
 const course: Course = {
-  owner:"",
+  owner:{
+    fname: "",
+    lname: "",
+    email: "",
+    photo: "",
+    id_user:""
+  },
   __v:0,
   title: "",
   description: "",

@@ -38,11 +38,15 @@ const courseSchema = new mongoose.Schema({
       default: '', // Default value for 'category'
     },
     owner: {
-      id: {
+      id_user: {
         type: String,
         default: '', // Default value for 'id'
       },
-      name: {
+      fname: {
+        type: String,
+        default: '', // Default value for 'name'
+      },
+      lname: {
         type: String,
         default: '', // Default value for 'name'
       },
