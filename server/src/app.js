@@ -2,11 +2,16 @@
 
 const express = require('express');
 const app = express();
-const mainRoute = require('./routes/mainRoute');
 require('dotenv').config();
 const mongoose = require('mongoose');
 app.use(express.json());
 const {mongoURI}= require('./config/config');
+
+
+const mainRoute = require('./routes/mainRoute');
+const userRoute = require('./routes/userRoute');
+
+
 
 const cors = require('cors');
 app.use(cors());
@@ -21,6 +26,7 @@ conn.once("open",()=>{
 
 // Set up your main route
 app.use('/', mainRoute);
+app.use('/auth', userRoute);
 
 // Start the server
 const PORT = process.env.PORT || 8080;

@@ -55,8 +55,8 @@ const Page = ({params}: Props) => {
         <div className='container min-h-screen  mx-auto'>
             <DashboardNavBar/>
             <div className='h-[120px] items-start mt-4  flex justify-between'>
-              <div className='flex flex-col gap-4'>
-                <Button variant={"outline"} onClick={()=>{publish();router.push(`/dashboard/edit-course/${params.course_id}`)}} className='text-lg flex gap-2 items-center '><ArrowLeft size={18}/>Back course</Button>
+              <div className='flex flex-col gap-4 items-start'>
+                <Button variant={"outline"} onClick={()=>{publish();router.push(`/dashboard/edit-course/${params.course_id}`)}} className='flex gap-2 items-center '><ArrowLeft size={18}/>Back course</Button>
                 <h1 className='text-3xl'>Edit Section</h1>
               </div>
               <Button onClick={publish} className='flex gap-2' disabled={publishing}>
