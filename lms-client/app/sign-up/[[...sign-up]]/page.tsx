@@ -6,9 +6,8 @@ import { SignUp } from "@clerk/nextjs"
 import Image from "next/image"
 import Link from "next/link"
 
-interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
-export default function page({ className, ...props }: UserAuthFormProps) {
+export default function page() {
 
   return (
     <div className="grid grid-cols-2 min-h-screen justify-center items-center">
