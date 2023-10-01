@@ -9,6 +9,8 @@ import React from 'react'
 import axios from 'axios'
 import { useRouter } from 'next/navigation'
 import useCourseStore from '@/hooks/course-store'
+import useUserStore from '@/hooks/users-store'
+import useFetchUser from '@/hooks/fetch-user'
 
 type Props = {}
 
@@ -16,11 +18,20 @@ const  Page = (props: Props) => {
     const navigate = useRouter()
     const [title,setTitle]=React.useState("")
     const [loading,setLoading]=React.useState(false)
+    const {user,updateUser}=useUserStore()
+    useFetchUser()
     const createCourse =async ()=>{
         setLoading(true)
         try {
             const response = await axios.post("http://localhost:8080/create-course",{
                 title,
+                owner:{
+                    fname:user?.fname,
+                    lname:user?.lname,
+                    email:user?.email,
+                    photo:user?.photo,
+                    id_user:user?.id_user,
+                }
             })
             navigate.push(`/dashboard/edit-course/${response.data.id}`)
         } catch (error) {

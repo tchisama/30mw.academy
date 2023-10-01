@@ -41,10 +41,15 @@ function NewCourseImage({}: Props) {
                     setChanged(true)
                 }}
             />:
+            (
+                course.image ?
             <img
-                className='w-full object-cover h-full aspect-video rounded-md'
+                className='w-full bg-secondary object-cover h-full aspect-video rounded-md'
                 src={course.image}
             ></img>
+            :
+            <div className='flex justify-center items-center bg-secondary rounded-lg w-full aspect-video '> upload image</div>
+            )
             }
         </div>
     </div>
@@ -53,7 +58,6 @@ function NewCourseImage({}: Props) {
         <CardFooter className='flex justify-end gap-2'>
             <Button onClick={
                 async () => {
-                    if(changed){
                         if (file) {
                         const res = await edgestore.publicFiles.upload({
                             file,
@@ -71,7 +75,6 @@ function NewCourseImage({}: Props) {
                         console.log(res);
                         }
                         setChanged(false)
-                    }
                     setEditMode(false);
                   }
             } className="flex gap-2">Save<Save size={18} /></Button>

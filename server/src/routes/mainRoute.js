@@ -48,6 +48,26 @@ router.post('/update-course/:courseId', async (req, res) => {
       res.status(404).json({ message: 'Course not found' });
     }
 })
+// get all courses
+router.get('/courses', async (req, res) => {
+  try {
+    const courses = await CourseModel.find();
+    res.status(200).json(courses);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Failed to get the courses' });
+  }
+})
+// get all courses
+router.get('/my-courses/:userId', async (req, res) => {
+  try {
+    const courses = await CourseModel.find();
+    res.status(200).json(courses.filter(course => course.owner.id_user === req.params.userId));
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Failed to get the courses' });
+  }
+})
 
 
 module.exports = router;
