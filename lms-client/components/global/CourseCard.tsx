@@ -7,6 +7,7 @@ import { Separator } from '@/components/ui/separator'
 import { Course } from '@/hooks/course-store'
 import { Edit, Eye } from 'lucide-react'
 import { Cardo } from 'next/font/google'
+import Image from 'next/image'
 import Link from 'next/link'
 import React, { useEffect } from 'react'
 
