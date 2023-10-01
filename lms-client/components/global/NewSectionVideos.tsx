@@ -172,7 +172,7 @@ function NewSectionVideos({params:{course_id,section_id}}: Props) {
                                             </AlertDialogFooter>
                                           </AlertDialogContent>
                                         </AlertDialog>
-                                          <Button onClick={()=>saveAndNavigate(`/dashboard/edit-video/${course._id}/${id_video}`)} variant={"outline"} size={"icon"}><ArrowRight size={18}/></Button>
+                                          <Button onClick={()=>saveAndNavigate(`/dashboard/edit-video/${course._id}/${section_id}/${id_video}`)} variant={"outline"} size={"icon"}><ArrowRight size={18}/></Button>
                                 </div>
                             </div>
                         </div>
@@ -188,7 +188,7 @@ function NewSectionVideos({params:{course_id,section_id}}: Props) {
         :null
     }
 
-    <p className='py-2 px-6 text-muted-foreground'>Drag and drop to reorder sections</p>
+    <p className='py-2 px-6 text-muted-foreground'>Drag and drop to reorder videos</p>
     {/* <div className='px-4 space-y-2'>
         {
             course.sections.map((section,i)=>{

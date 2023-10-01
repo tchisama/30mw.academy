@@ -5,6 +5,7 @@ const videoSchema = new mongoose.Schema({
   url: String,
   duration: Number,
   id_video: String,
+  free: Boolean,
 });
 
 const courseSectionSchema = new mongoose.Schema({
