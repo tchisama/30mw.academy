@@ -21,5 +21,15 @@ router.post('/create-user', async (req, res) => {
     }
 
 });
+// get all users from the database
+router.get('/users', async (req, res) => {
+  try {
+    const users = await UserModel.find();
+    res.status(200).json(users);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Failed to get the users' });
+  }
+})
 
 module.exports = router;

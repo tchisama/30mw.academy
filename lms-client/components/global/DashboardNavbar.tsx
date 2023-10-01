@@ -23,7 +23,7 @@ import { Button } from "../ui/button"
 const components: { title: string; href: string; description: string }[] = [
   {
     title: "Users",
-    href: "/docs/primitives/alert-dialog",
+    href: "/dashboard/users",
     description:
       "A modal dialog that interrupts the user with important content and expects a response.",
   },
