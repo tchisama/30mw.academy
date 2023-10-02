@@ -28,14 +28,8 @@ const components: { title: string; href: string; description: string }[] = [
       "A modal dialog that interrupts the user with important content and expects a response.",
   },
   {
-    title: "Teachers & admins",
-    href: "/docs/primitives/hover-card",
-    description:
-      "For sighted users to preview content available behind a link.",
-  },
-  {
     title: "Catigories",
-    href: "/docs/primitives/progress",
+    href: "/dashboard/catigories",
     description:
       "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.",
   },

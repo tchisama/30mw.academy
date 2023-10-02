@@ -27,6 +27,7 @@ function Page({}: Props) {
     const [users, setUsers] = React.useState<User[]>([])
     const [loading, setLoading] = React.useState(true)
     const [usersAnalitics, setUsersAnalytics] = React.useState<{user:number,Last7Days:number,today:number,admins:number}>()
+    const [search, setSearch] = React.useState('')
     const user = useClerk();
     // fetch usrs from the server
     const fetchUser = ()=>{
@@ -127,14 +128,14 @@ function Page({}: Props) {
             <div className='my-4'>
                 <div className='flex justify-between'>
                     <h1 className='text-3xl'>Users</h1>
-                    <Input className='max-w-[200px]' placeholder='search users'></Input>
+                    <Input type='text' value={search} onInput={(e) => setSearch((e.target as HTMLInputElement).value)} className='max-w-[400px]' placeholder='search users'></Input>
                 </div>
             </div>
             <div className='grid my-6 gap-2 grid-cols-1'>
                 {
-                    users.map((_user, index) => {
+                    users.filter(_user => (_user.email.toLowerCase()+" "+_user.fname.toLowerCase()+" "+_user.lname.toLowerCase()).includes(search.toLowerCase())).map((_user, index) => {
                         return(
-                        <Card key={index} className='max-w-[600px]'>
+                        <Card key={index} className='max-w-[800px]'>
                             <div className='p-4 flex gap-4 items-center'>
                                 <Avatar>
                                     <AvatarImage src={_user?.photo} alt="@shadcn" />
@@ -151,9 +152,9 @@ function Page({}: Props) {
                                 <DropdownMenuTrigger>
                                     {
                                         user.user?.id!==_user.id_user && (
-                                        <Button variant={"ghost"} className='flex gap-2' size={"icon"}>
-                                            <MoreHorizontal size={16}/>
-                                        </Button>
+                                            <Button variant={"ghost"} className='flex gap-2' size={"icon"}>
+                                                <MoreHorizontal size={16}/>
+                                            </Button>
                                         )
                                     }
                                 </DropdownMenuTrigger>
@@ -162,8 +163,8 @@ function Page({}: Props) {
                                     <DropdownMenuSeparator />
                                     {
                                         _user.rule=="admin"?
-                                        <DropdownMenuItem onClick={()=>setUserRule(_user.id_user)} className='flex gap-2 items-center'><ShieldCheck size={16}/> set user</DropdownMenuItem>
-                                        :<DropdownMenuItem onClick={()=>setAdmin(_user.id_user)} className='flex gap-2 items-center'><ShieldCheck size={16}/> set admin</DropdownMenuItem>
+                                        <DropdownMenuItem onClick={()=>setUserRule(_user.id_user)} className='flex gap-2 items-center'><ShieldCheck size={16}/> Set user</DropdownMenuItem>
+                                        :<DropdownMenuItem onClick={()=>setAdmin(_user.id_user)} className='flex gap-2 items-center'><ShieldCheck size={16}/> Set admin</DropdownMenuItem>
                                     }
                                     <DropdownMenuItem className='flex gap-2 items-center'><Ban size={16}/>Block user</DropdownMenuItem>
                                     <DropdownMenuItem className='flex gap-2 items-center dark:text-red-400 text-red-600'><Trash2 size={16}/>Delete user</DropdownMenuItem>
