@@ -4,8 +4,19 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { User } from '@/hooks/users-store'
-import { Loader, MoreHorizontal } from 'lucide-react'
+import { Ban, Loader, MoreHorizontal, ShieldCheck, Trash2 } from 'lucide-react'
 import React from 'react'
+
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+
+
 
 type Props = {}
 
@@ -50,9 +61,21 @@ function Page({}: Props) {
                                     <h1>{user.fname} {user.lname}</h1>
                                     <p className='text-sm text-muted-foreground'>{user.email}</p>
                                 </div>
-                                <Button variant={"ghost"} className='flex gap-2' size={"icon"}>
-                                    <MoreHorizontal size={16}/>
-                                </Button>
+                                <DropdownMenu>
+                                <DropdownMenuTrigger>
+                                    <Button variant={"ghost"} className='flex gap-2' size={"icon"}>
+                                        <MoreHorizontal size={16}/>
+                                    </Button>
+                                </DropdownMenuTrigger>
+                                <DropdownMenuContent>
+                                    <DropdownMenuLabel>User Actions</DropdownMenuLabel>
+                                    <DropdownMenuSeparator />
+                                    <DropdownMenuItem className='flex gap-2 items-center'><ShieldCheck size={16}/> Set as admin</DropdownMenuItem>
+                                    <DropdownMenuItem className='flex gap-2 items-center'><Ban size={16}/>block user</DropdownMenuItem>
+                                    <DropdownMenuItem className='flex gap-2 items-center'><Trash2 size={16}/> user</DropdownMenuItem>
+                                </DropdownMenuContent>
+                                </DropdownMenu>
+
                             </div>
                         </Card>
                         )

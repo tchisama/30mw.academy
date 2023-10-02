@@ -13,17 +13,8 @@ import Masonry from 'react-masonry-css'
 import NewCoursePrice from '@/components/global/NewCoursePrice'
 import NewCourseCat from '@/components/global/NewCourseCat'
 
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "@/components/ui/alert-dialog"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+
 
 import axios from 'axios';
 import { useSearchParams } from 'next/navigation'
@@ -101,6 +92,16 @@ const Page = ({params}: Props) => {
                 }
               </Button>
             </div>
+
+            <Tabs defaultValue="account" className="w-[400px]">
+              <TabsList>
+                <TabsTrigger value="account">General</TabsTrigger>
+                <TabsTrigger value="password">Security</TabsTrigger>
+              </TabsList>
+              <TabsContent value="account">Make changes to your account here.</TabsContent>
+              <TabsContent value="password">Change your password here.</TabsContent>
+            </Tabs>
+
             <div className='grid grid-cols-2 gap-4'>
               <div className='flex flex-col gap-4'>
                   <NewCourseTitle/>
