@@ -26,7 +26,7 @@ router.post('/create-user', async (req, res) => {
 router.get('/users', async (req, res) => {
   try {
     const users = await UserModel.find();
-    res.status(200).json([users]);
+    res.status(200).json(users);
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Failed to get the users' });

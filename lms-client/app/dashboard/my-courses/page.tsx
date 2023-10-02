@@ -10,7 +10,7 @@ import { Separator } from '@/components/ui/separator'
 import { Course } from '@/hooks/course-store'
 import useUserStore from '@/hooks/users-store'
 import { useClerk } from '@clerk/nextjs'
-import { Edit, Eye, Loader } from 'lucide-react'
+import { Edit, Eye, Loader, Stars } from 'lucide-react'
 import { Cardo } from 'next/font/google'
 import Link from 'next/link'
 import React, { use, useEffect } from 'react'
@@ -43,12 +43,17 @@ function Page() {
             <DashboardNavBar/>
             <div className='h-[120px] items-center flex justify-between'>
               <h1 className='text-3xl'>My Courses</h1>
+              <div className='flex gap-3'>
+                <Link href={"/dashboard/new-course"}>
+                  <Button className='flex gap-2'>New <Stars size={16}></Stars> </Button>
+                </Link>
               <Input 
                 value={search}
                 onInput={(e) => setSearch((e.target as HTMLInputElement).value)}
                 className='max-w-[300px]'
                 placeholder='Search'
               ></Input>
+              </div>
             </div>
             <div className='grid grid-cols-3 gap-4'>
                 {
