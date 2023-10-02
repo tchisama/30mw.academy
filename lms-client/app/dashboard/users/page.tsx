@@ -24,6 +24,7 @@ type Props = {}
 function Page({}: Props) {
     const [users, setUsers] = React.useState<User[]>([])
     const [loading, setLoading] = React.useState(true)
+    const [usersAnalitics, setUsersAnalytics] = React.useState<{user:number,Last7Days:number,today:number}>()
     // fetch usrs from the server
     React.useEffect(() => {
         fetch('http://localhost:8080/auth/users')
@@ -32,6 +33,15 @@ function Page({}: Props) {
             {
                 console.log(data)
                 setUsers(data)
+                setLoading(false)
+            })
+
+        fetch('http://localhost:8080/auth/users-analytics')
+        .then(res => res.json())
+        .then(data => 
+            {
+                console.log(data)
+                setUsersAnalytics(data)
                 setLoading(false)
             })
     },[])
@@ -54,7 +64,7 @@ function Page({}: Props) {
                     <CardHeader>
                         <h2>Total users</h2>
                         <CardTitle className='text-5xl'>
-                            10
+                            {usersAnalitics?.user}
                         </CardTitle>
                     </CardHeader>
                 </Card>
@@ -62,7 +72,7 @@ function Page({}: Props) {
                     <CardHeader>
                         <h2>Today users</h2>
                         <CardTitle className='text-5xl'>
-                            2
+                            {usersAnalitics?.today}
                         </CardTitle>
                     </CardHeader>
                 </Card>
@@ -70,7 +80,7 @@ function Page({}: Props) {
                     <CardHeader>
                         <h2>Last week users</h2>
                         <CardTitle className='text-5xl'>
-                            7
+                            {usersAnalitics?.Last7Days}
                         </CardTitle>
                     </CardHeader>
                 </Card>

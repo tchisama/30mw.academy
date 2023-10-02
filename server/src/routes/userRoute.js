@@ -42,4 +42,45 @@ router.get('/user/:id', async (req, res) => {
     res.status(500).json({ message: 'Failed to get the user' });
   }
 });
+// get user analytics
+router.get('/users-analytics', async (req, res) => {
+  try {
+    const user = await UserModel.count();
+
+    const Last7Days = await UserModel.aggregate([
+      {
+           $match: {
+               createdAt: {'$gte': new Date(new Date() - 7 * 60 * 60 * 24 * 1000)},
+           }
+       },
+       {
+           $group: {
+               _id: {$week: '$createdAt'},
+               count: {$sum: 1}
+           }
+       }
+   ])
+    const today = await UserModel.aggregate([
+      {
+           $match: {
+               createdAt: {'$gte': new Date(new Date() - 1 * 60 * 60 * 24 * 1000)},
+           }
+       },
+       {
+           $group: {
+               _id: {$week: '$createdAt'},
+               count: {$sum: 1}
+           }
+       }
+   ])
+
+    res.status(200).json({user,Last7Days:Last7Days[0]?.count,today:today[0]?.count});
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Failed to get the user' });
+  }
+});
+
+
+
 module.exports = router;

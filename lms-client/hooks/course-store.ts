@@ -33,6 +33,8 @@ export interface Course {
     };
     __v?:number;
     category:string;
+    createdAt:Date;
+    updatedAt:Date;
 }
   
 
@@ -45,6 +47,8 @@ const course: Course = {
     photo: "",
     id_user:""
   },
+    createdAt:new Date(),
+    updatedAt:new Date(),
   __v:0,
   title: "",
   description: "",

@@ -59,7 +59,9 @@ const courseSchema = new mongoose.Schema({
         default: '', // Default value for 'photo'
       }
     },
-  });
+  },{
+  timestamps: true
+});
 
 const CourseModel = mongoose.model('Course', courseSchema);
 

@@ -11,6 +11,8 @@ export interface User {
     __v?:number;
     courses_count:number;
     rule:"admin"|"teacher"|"user";
+    createdAt:Date;
+    updatedAt:Date;
 }
   
 
@@ -25,6 +27,8 @@ const user: User = {
   photo:"",
   id_user:"",
   courses_count:0,
+    createdAt: new Date(),
+    updatedAt: new Date(),
 };
 
 
