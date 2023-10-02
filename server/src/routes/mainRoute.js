@@ -61,8 +61,14 @@ router.get('/courses', async (req, res) => {
 // get all courses
 router.get('/my-courses/:userId', async (req, res) => {
   try {
-    const courses = await CourseModel.find();
-    res.status(200).json(courses.filter(course => course.owner.id_user === req.params.userId));
+    const courses = await CourseModel.aggregate([
+      {
+        $match: {
+          "owner.id_user": req.params.userId
+        }
+      }
+    ])
+    res.status(200).json(courses);
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Failed to get the courses' });
