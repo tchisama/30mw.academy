@@ -12,6 +12,7 @@ import {
     SelectTrigger,
     SelectValue,
   } from "@/components/ui/select"
+import useCategories from '@/hooks/categories'
 
 
 
@@ -20,6 +21,7 @@ type Props = {}
 function NewCourseCat({}: Props) {
     const [editMode, setEditMode] = React.useState(false)
     const {course,updateCourse}=useCourseStore()
+    const {categories,update}=useCategories()
   return (
     <Card className='w-full h-fit'>
     <div className='flex justify-between items-start p-6'>
@@ -28,7 +30,7 @@ function NewCourseCat({}: Props) {
 
         {
             !editMode &&
-            <h3>{course.category}</h3>
+            <h3>{categories.find(c=>c._id===course.category)?.name}</h3>
         }
         </div>
         {
@@ -44,9 +46,11 @@ function NewCourseCat({}: Props) {
                 <SelectValue placeholder="category" />
             </SelectTrigger>
             <SelectContent>
-                <SelectItem value="montage">montage</SelectItem>
-                <SelectItem value="programming">programming</SelectItem>
-                <SelectItem value="3d modelling">3d modelling</SelectItem>
+                {
+                    categories.map((cat)=>{
+                        return <SelectItem key={cat._id} value={cat._id}>{cat.name}</SelectItem>
+                    })
+                }
             </SelectContent>
             </Select>
 

@@ -10,6 +10,7 @@ const {mongoURI}= require('./config/config');
 
 const mainRoute = require('./routes/mainRoute');
 const userRoute = require('./routes/userRoute');
+const categoryRoute = require('./routes/CategoryRoute');
 
 
 
@@ -27,6 +28,7 @@ conn.once("open",()=>{
 // Set up your main route
 app.use('/', mainRoute);
 app.use('/auth', userRoute);
+app.use("/category",categoryRoute);
 
 // Start the server
 const PORT = process.env.PORT || 8080;

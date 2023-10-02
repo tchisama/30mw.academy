@@ -28,8 +28,8 @@ const components: { title: string; href: string; description: string }[] = [
       "A modal dialog that interrupts the user with important content and expects a response.",
   },
   {
-    title: "Catigories",
-    href: "/dashboard/catigories",
+    title: "Categories",
+    href: "/dashboard/categories",
     description:
       "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.",
   },

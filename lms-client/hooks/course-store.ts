@@ -55,7 +55,7 @@ const course: Course = {
   price:0,
   image:"",
   _id:"",
-  category:"",
+  category:"651b4566871ddee58545337c",
   sections: [],
 };
 

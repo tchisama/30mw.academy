@@ -34,8 +34,9 @@ const courseSchema = new mongoose.Schema({
       default: '', // Default value for 'image'
     },
     category: {
-      type: String,
-      default: '', // Default value for 'category'
+      type: mongoose.Schema.Types.ObjectId,
+      ref:"Category",
+      default:"651b4566871ddee58545337c"
     },
     owner: {
       id_user: {
