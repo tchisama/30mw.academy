@@ -9,6 +9,8 @@ export interface User {
     id_user: string;
     _id?:string;
     __v?:number;
+    courses_count:number;
+    rule:"admin"|"teacher"|"user";
 }
   
 
@@ -16,11 +18,13 @@ export interface User {
 const user: User = {
   fname:"",
   lname:"",
+  rule:"user",
   __v:0,
   _id:"",
   email:"",
   photo:"",
   id_user:"",
+  courses_count:0,
 };
 
 

@@ -1,7 +1,3 @@
-
-
-
-
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import useCourseStore, { Course } from './course-store';
@@ -12,7 +8,6 @@ import usePublishCourse from './use-publish-course';
 const useFetchUser = () => {
 
   const {user,updateUser} = useUserStore()
-  const {updateCourse,course} = useCourseStore()
   const userClerk = useClerk()
   
   useEffect(() => {

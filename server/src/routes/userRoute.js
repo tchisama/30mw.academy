@@ -2,6 +2,7 @@
 const express = require('express');
 const router = express.Router();
 const UserModel = require('../models/User'); // Import your User model
+const CourseModel = require('../models/Course');
 
 
 router.post('/create-user', async (req, res) => {
@@ -25,11 +26,20 @@ router.post('/create-user', async (req, res) => {
 router.get('/users', async (req, res) => {
   try {
     const users = await UserModel.find();
-    res.status(200).json(users);
+    res.status(200).json([users]);
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Failed to get the users' });
   }
 })
-
+// get user by id
+router.get('/user/:id', async (req, res) => {
+  try {
+    const user = await UserModel.findOne({id_user:req.params.id});
+    res.status(200).json(user);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Failed to get the user' });
+  }
+});
 module.exports = router;
