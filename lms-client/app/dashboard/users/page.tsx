@@ -4,7 +4,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { User } from '@/hooks/users-store'
-import {  Ban, Car, Loader, MoreHorizontal, ShieldCheck, Trash2 } from 'lucide-react'
+import {  Ban, Car, LineChart, Loader, MoreHorizontal, Shield, ShieldCheck, Sun, Trash2, Users } from 'lucide-react'
 import React from 'react'
 
 import {
@@ -16,6 +16,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Badge } from '@/components/ui/badge'
+import { Input } from '@/components/ui/input'
 
 
 
@@ -24,7 +25,7 @@ type Props = {}
 function Page({}: Props) {
     const [users, setUsers] = React.useState<User[]>([])
     const [loading, setLoading] = React.useState(true)
-    const [usersAnalitics, setUsersAnalytics] = React.useState<{user:number,Last7Days:number,today:number}>()
+    const [usersAnalitics, setUsersAnalytics] = React.useState<{user:number,Last7Days:number,today:number,admins:number}>()
     // fetch usrs from the server
     React.useEffect(() => {
         fetch('http://localhost:8080/auth/users')
@@ -56,34 +57,60 @@ function Page({}: Props) {
             <DashboardNavBar/>
             <div className='my-4'>
                 <div>
-                    <h1 className='text-3xl'>Users</h1>
+                    <h1 className='text-3xl'>Analytics</h1>
                 </div>
             </div>
-            <div className='grid grid-cols-3 gap-4'>
-                <Card className='flex-1'>
+            <div className='grid grid-cols-4 gap-4'>
+                <Card className='flex-1 bg-secondary'>
                     <CardHeader>
-                        <h2>Total users</h2>
+                        <div className='flex gap-4'>
+                            <Users size={28}/>
+                            <h2>Total users</h2>
+                        </div>
                         <CardTitle className='text-5xl'>
                             {usersAnalitics?.user}
                         </CardTitle>
                     </CardHeader>
                 </Card>
-                <Card className='flex-1'>
+                <Card className='flex-1 bg-secondary'>
                     <CardHeader>
-                        <h2>Today users</h2>
+                        <div className='flex gap-4'>
+                            <Sun size={28}/>
+                            <h2>Today</h2>
+                        </div>
                         <CardTitle className='text-5xl'>
                             {usersAnalitics?.today}
                         </CardTitle>
                     </CardHeader>
                 </Card>
-                <Card className='flex-1'>
+                <Card className='flex-1 bg-secondary'>
                     <CardHeader>
-                        <h2>Last week users</h2>
+                        <div className='flex gap-4'>
+                            <LineChart size={28}/>
+                            <h2>Last week</h2>
+                        </div>
                         <CardTitle className='text-5xl'>
                             {usersAnalitics?.Last7Days}
                         </CardTitle>
                     </CardHeader>
                 </Card>
+                <Card className='flex-1 bg-secondary'>
+                    <CardHeader>
+                        <div className='flex gap-4'>
+                            <ShieldCheck size={28}/>
+                            <h2>Admins</h2>
+                        </div>
+                        <CardTitle className='text-5xl'>
+                            {usersAnalitics?.admins}
+                        </CardTitle>
+                    </CardHeader>
+                </Card>
+            </div>
+            <div className='my-4'>
+                <div className='flex justify-between'>
+                    <h1 className='text-3xl'>Users</h1>
+                    <Input className='max-w-[200px]' placeholder='search users'></Input>
+                </div>
             </div>
             <div className='grid my-6 gap-2 grid-cols-1'>
                 {

@@ -73,8 +73,26 @@ router.get('/users-analytics', async (req, res) => {
            }
        }
    ])
+    const admins = await UserModel.aggregate([
+      {
+           $match: {
+               rule: 'admin',
+           }
+       },
+       {
+           $group: {
+               _id: {$week: '$createdAt'},
+               count: {$sum: 1}
+           }
+       }
+   ])
 
-    res.status(200).json({user,Last7Days:Last7Days[0]?.count,today:today[0]?.count});
+    res.status(200).json({
+        user,
+        Last7Days:Last7Days[0]?.count || 0,
+        today:today[0]?.count || 0 ,
+        admins:(admins[0]?.count)||0
+      });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Failed to get the user' });
