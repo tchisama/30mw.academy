@@ -42,6 +42,22 @@ router.get('/user/:id', async (req, res) => {
     res.status(500).json({ message: 'Failed to get the user' });
   }
 });
+
+// get user by id
+router.get('/change-rule/:id/:rule', async (req, res) => {
+  try {
+    const user = await UserModel.findOneAndUpdate({id_user:req.params.id},{
+      $set:{
+        rule:req.params.rule
+      }
+    });
+    res.status(200).json(user);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Failed to get the user' });
+  }
+});
+
 // get user analytics
 router.get('/users-analytics', async (req, res) => {
   try {

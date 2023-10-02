@@ -17,6 +17,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { Badge } from '@/components/ui/badge'
 import { Input } from '@/components/ui/input'
+import { useClerk } from '@clerk/nextjs'
 
 
 
@@ -26,8 +27,9 @@ function Page({}: Props) {
     const [users, setUsers] = React.useState<User[]>([])
     const [loading, setLoading] = React.useState(true)
     const [usersAnalitics, setUsersAnalytics] = React.useState<{user:number,Last7Days:number,today:number,admins:number}>()
+    const user = useClerk();
     // fetch usrs from the server
-    React.useEffect(() => {
+    const fetchUser = ()=>{
         fetch('http://localhost:8080/auth/users')
         .then(res => res.json())
         .then(data => 
@@ -45,11 +47,27 @@ function Page({}: Props) {
                 setUsersAnalytics(data)
                 setLoading(false)
             })
+    }
+    React.useEffect(() => {
+        fetchUser()
     },[])
     if(loading){
         return <div className='h-screen flex justify-center items-center '>
                     <h1 className='flex gap-3'><Loader className='animate-spin'/>Loading...</h1>
                 </div>
+    }
+    const setAdmin = (id:string)=>{
+        // make user admin
+        fetch('http://localhost:8080/auth/change-rule/'+id+'/admin').then(res => res.json()).then(data => {
+            fetchUser()
+        })
+    }
+
+    const setUserRule = (id:string)=>{
+        // make user admin
+        fetch('http://localhost:8080/auth/change-rule/'+id+'/user').then(res => res.json()).then(data => {
+            fetchUser()
+        })
     }
   return (
     <div className=''>
@@ -131,16 +149,24 @@ function Page({}: Props) {
                                 <Badge variant={_user?.rule=="user"?"secondary":"default"}>{_user?.rule}</Badge>
                                 <DropdownMenu>
                                 <DropdownMenuTrigger>
-                                    <Button variant={"ghost"} className='flex gap-2' size={"icon"}>
-                                        <MoreHorizontal size={16}/>
-                                    </Button>
+                                    {
+                                        user.user?.id!==_user.id_user && (
+                                        <Button variant={"ghost"} className='flex gap-2' size={"icon"}>
+                                            <MoreHorizontal size={16}/>
+                                        </Button>
+                                        )
+                                    }
                                 </DropdownMenuTrigger>
                                 <DropdownMenuContent>
                                     <DropdownMenuLabel>User Actions</DropdownMenuLabel>
                                     <DropdownMenuSeparator />
-                                    <DropdownMenuItem className='flex gap-2 items-center'><ShieldCheck size={16}/> Set as admin</DropdownMenuItem>
-                                    <DropdownMenuItem className='flex gap-2 items-center'><Ban size={16}/>block user</DropdownMenuItem>
-                                    <DropdownMenuItem className='flex gap-2 items-center'><Trash2 size={16}/> user</DropdownMenuItem>
+                                    {
+                                        _user.rule=="admin"?
+                                        <DropdownMenuItem onClick={()=>setUserRule(_user.id_user)} className='flex gap-2 items-center'><ShieldCheck size={16}/> set user</DropdownMenuItem>
+                                        :<DropdownMenuItem onClick={()=>setAdmin(_user.id_user)} className='flex gap-2 items-center'><ShieldCheck size={16}/> set admin</DropdownMenuItem>
+                                    }
+                                    <DropdownMenuItem className='flex gap-2 items-center'><Ban size={16}/>Block user</DropdownMenuItem>
+                                    <DropdownMenuItem className='flex gap-2 items-center dark:text-red-400 text-red-600'><Trash2 size={16}/>Delete user</DropdownMenuItem>
                                 </DropdownMenuContent>
                                 </DropdownMenu>
 
