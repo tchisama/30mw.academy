@@ -8,7 +8,7 @@ import NewCourseImage from '@/components/global/NewCourseImage'
 import NewCourseTitle from '@/components/global/NewCourseTitle'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { Frown, Loader, Upload } from 'lucide-react'
+import { Frown, Loader, Shield, ShieldCheck, Trash2, Upload } from 'lucide-react'
 import Masonry from 'react-masonry-css'
 import NewCoursePrice from '@/components/global/NewCoursePrice'
 import NewCourseCat from '@/components/global/NewCourseCat'
@@ -20,6 +20,10 @@ import axios from 'axios';
 import { useSearchParams } from 'next/navigation'
 import useCourseStore from '@/hooks/course-store';
 import usePublishCourse from '@/hooks/use-publish-course';
+import { Separator } from '@/components/ui/separator';
+import { Card, CardHeader, CardTitle } from '@/components/ui/card';
+import { Avatar } from '@/components/ui/avatar';
+import { AvatarImage } from '@radix-ui/react-avatar';
 type Props = {
   params: {
     course_id: string
@@ -93,27 +97,70 @@ const Page = ({params}: Props) => {
               </Button>
             </div>
 
-            <Tabs defaultValue="account" className="w-[400px]">
+            <Tabs defaultValue="general" className="w-full">
               <TabsList>
-                <TabsTrigger value="account">General</TabsTrigger>
-                <TabsTrigger value="password">Security</TabsTrigger>
+                <TabsTrigger value="general">General</TabsTrigger>
+                <TabsTrigger value="security">Security</TabsTrigger>
               </TabsList>
-              <TabsContent value="account">Make changes to your account here.</TabsContent>
-              <TabsContent value="password">Change your password here.</TabsContent>
+              <div className='my-6'>
+                <Separator/>
+              </div>
+              <TabsContent value="general" className='w-full'>
+                <div className='grid grid-cols-2 gap-4'>
+                  <div className='flex flex-col gap-4'>
+                      <NewCourseTitle/>
+                      <NewCourseCat/>
+                      <NewCourseDescription/>
+                      <NewCourseSections/>
+                  </div>
+                  <div className='flex flex-col gap-4'>
+                      <NewCourseImage/>
+                      <NewCoursePrice/>
+                  </div>
+                </div>
+              </TabsContent>
+              <TabsContent value="security" className=' flex gap-4 flex-col'>
+
+
+
+                <Card className='max-w-2xl'>
+                  <CardHeader>
+                    <div className='flex justify-between'>
+                      <CardTitle>Owners</CardTitle>
+                      <Button className='flex gap-2'><ShieldCheck size={18}/> Add Owner</Button>
+                    </div>
+                    <div className='pt-4'>
+                    <div className='p-2 px-4 flex gap-2 items-center border rounded-lg '>
+                          <Avatar>
+                              <AvatarImage src='https://avatars.githubusercontent.com/u/115560200?v=4'></AvatarImage>
+                          </Avatar>
+                          <div className='flex p-2 flex-col'>
+                            <h3>tchisama</h3>
+                            <p className='text-sm text-muted-foreground'>pro.tchisama@gmail.com</p>
+                          </div>
+                    </div>
+                    </div>
+                  </CardHeader>
+                </Card>
+                <Separator/>
+                <Card className='max-w-2xl'>
+                  <CardHeader>
+                    <div className='flex justify-between'>
+                      <div>
+                      <CardTitle>Delete Course</CardTitle>
+                      <p className='text-sm text-muted-foreground'>this will remove the course and all its content</p>
+                      </div>
+                      <Button variant={"destructive"} className='flex gap-2'><Trash2 size={18}/> Delete</Button>
+                    </div>
+                  </CardHeader>
+                </Card>
+
+
+
+
+              </TabsContent>
             </Tabs>
 
-            <div className='grid grid-cols-2 gap-4'>
-              <div className='flex flex-col gap-4'>
-                  <NewCourseTitle/>
-                  <NewCourseCat/>
-                  <NewCourseDescription/>
-                  <NewCourseSections/>
-              </div>
-              <div className='flex flex-col gap-4'>
-                  <NewCourseImage/>
-                  <NewCoursePrice/>
-              </div>
-            </div>
             
         </div>
     </div>
