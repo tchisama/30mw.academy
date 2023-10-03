@@ -33,7 +33,7 @@ const page = (props: Props) => {
     <div className="w-full   container mx-auto">
         <div className="py-4 flex min-h-screen flex-col">
             <Navbar/>
-            <div className='pt-24'>
+            <div className='pt-20'>
                 <h1 className='text-3xl font-medium'>Courses</h1>
             </div>
             <div className='my-8'>
@@ -45,7 +45,7 @@ const page = (props: Props) => {
                         <Card key={course._id} className='overflow-hidden'>
                             {
 
-                                course.image ? <img className='object-cover aspect-video' alt='' src={course.image}></img> 
+                                course.image ? <img className='object-cover w-full aspect-video' alt='' src={course.image}></img> 
                                 : <div className='aspect-video bg-secondary'></div>
                             }
 
@@ -57,7 +57,6 @@ const page = (props: Props) => {
                                     <h3 className='text-xl'>{course.price} Dh</h3>
                                 </div>
                                 <CardDescription>{course.description.slice(0, 70)}</CardDescription>
-                                {/* <Progress value={33} /> */}
                             </CardHeader>
                         </Card>
                     ))

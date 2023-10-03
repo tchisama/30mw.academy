@@ -46,7 +46,7 @@ function Page() {
                 placeholder='Search'
               ></Input>
             </div>
-            <div className='grid grid-cols-3 gap-4'>
+            <div className='grid grid-cols-2 gap-4'>
                 {
                     courses.filter(course => course.title.toLowerCase().includes(search.toLowerCase())).map((course, index) => {
                         return (

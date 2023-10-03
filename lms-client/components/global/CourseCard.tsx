@@ -17,10 +17,10 @@ function CourseCard({course}:{course:Course}) {
   const {categories}=useCategoriesStore()
   
   return (
-    <Card className="overflow-hidden group" key={course._id}>
-      <div className="relative overflow-hidden ">
+    <Card className="overflow-hidden max-w-[800px] group flex" key={course._id}>
+      <div className="relative aspect-video h-full overflow-hidden flex-1">
         <img
-          className="w-full aspect-video object-cover"
+          className="h-full w-full object-cover"
           src={course?.image}
           alt=""
         />
@@ -35,7 +35,7 @@ function CourseCard({course}:{course:Course}) {
           </Link>
         </div>
       </div>
-      <CardHeader>
+      <CardHeader className=' flex-1'>
         <CardDescription className="mb-2 flex gap-2">
           <Avatar>
             <AvatarImage src={course?.owner?.photo} alt="@shadcn" />
