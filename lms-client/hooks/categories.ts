@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import useCourseStore, { Course } from './course-store';
+import useCategoriesStore from './categories-store';
 
 const useCategories = () => {
-    const [categories, setCategories] = useState<{name:string,_id:string,__v:number}[]>([])
+    const {categories,updateCats} = useCategoriesStore()
     const [u,update]=useState(0)
     useEffect(() => {
         fetch('http://localhost:8080/category/categories')
@@ -11,11 +12,11 @@ const useCategories = () => {
         .then(data => 
             {
                 console.log(data)
-                setCategories(data)
+                updateCats(data)
             })
     },[u])
 
-  return { categories,update };
+  return { update };
 };
 
 export default useCategories;

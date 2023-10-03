@@ -20,10 +20,12 @@ import {
 import { Input } from '@/components/ui/input'
 import useCategories from '@/hooks/categories'
 import axios from 'axios'
+import useCategoriesStore from '@/hooks/categories-store'
 type Props = {}
 
 const page = (props: Props) => {
-  const {categories,update}=useCategories()
+  const {update}=useCategories()
+  const {categories}=useCategoriesStore()
   const [text,setText]=React.useState("")
   // create new category
   const createCategory =async()=>{

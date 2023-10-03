@@ -4,6 +4,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import { ClerkProvider } from '@clerk/nextjs'
 import { EdgeStoreProvider } from '@/lib/edgestore'
+import CatsProvider from '@/components/CatsProvider'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -34,7 +35,9 @@ export default function RootLayout({
                 disableTransitionOnChange
               >
                 <EdgeStoreProvider>
-          {children}
+                  <CatsProvider>
+                    {children}
+                  </CatsProvider>
                 </EdgeStoreProvider>
           </ThemeProvider>
         </body>

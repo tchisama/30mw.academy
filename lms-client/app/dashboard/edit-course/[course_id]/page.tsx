@@ -25,6 +25,7 @@ import { Card, CardHeader, CardTitle } from '@/components/ui/card';
 import { Avatar } from '@/components/ui/avatar';
 import { AvatarImage } from '@radix-ui/react-avatar';
 import useCategories from '@/hooks/categories';
+import useCategoriesStore from '@/hooks/categories-store';
 type Props = {
   params: {
     course_id: string
@@ -35,7 +36,8 @@ const Page = ({params}: Props) => {
   const [loading,setLoading]=React.useState(true)
   const [err,setErr]=React.useState(false)
   const {updateCourse,course}=useCourseStore()
-  const {categories,update}=useCategories()
+  const {update}=useCategories()
+  const {categories}=useCategoriesStore()
 
   const {publish,publishing}=usePublishCourse()
 

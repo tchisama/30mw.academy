@@ -13,6 +13,7 @@ import {
     SelectValue,
   } from "@/components/ui/select"
 import useCategories from '@/hooks/categories'
+import useCategoriesStore from '@/hooks/categories-store'
 
 
 
@@ -21,7 +22,8 @@ type Props = {}
 function NewCourseCat({}: Props) {
     const [editMode, setEditMode] = React.useState(false)
     const {course,updateCourse}=useCourseStore()
-    const {categories,update}=useCategories()
+    const {update}=useCategories()
+    const {categories}=useCategoriesStore()
   return (
     <Card className='w-full h-fit'>
     <div className='flex justify-between items-start p-6'>
@@ -48,7 +50,7 @@ function NewCourseCat({}: Props) {
             <SelectContent>
                 {
                     categories.map((cat)=>{
-                        return <SelectItem key={cat._id} value={cat._id}>{cat.name}</SelectItem>
+                        return <SelectItem key={cat._id} value={cat._id||""}>{cat.name}</SelectItem>
                     })
                 }
             </SelectContent>

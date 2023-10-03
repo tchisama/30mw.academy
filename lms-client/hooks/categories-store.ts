@@ -1,4 +1,5 @@
 import create from "zustand";
+import useCategories from "./categories";
 
   
 export interface Category {
@@ -11,14 +12,14 @@ export interface Category {
 
 const categories: Category[] =[];
 
-interface userStore {
+interface CategoriesStore {
     categories: Category[];
     updateCats: (updatedCats: Category[]) => void;
 }
 
-const useUserStore = create<userStore>((set) => ({
+const useCategoriesStore = create<CategoriesStore>((set) => ({
     categories:[],
     updateCats: (updatedCats) => set({ categories: updatedCats }),
 }));
   
-export default useUserStore;
+export default useCategoriesStore;

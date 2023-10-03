@@ -4,6 +4,8 @@ import { Button } from '@/components/ui/button'
 import { Card, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Separator } from '@/components/ui/separator'
+import useCategories from '@/hooks/categories'
+import useCategoriesStore from '@/hooks/categories-store'
 import { Course } from '@/hooks/course-store'
 import { Edit, Eye } from 'lucide-react'
 import { Cardo } from 'next/font/google'
@@ -12,6 +14,8 @@ import Link from 'next/link'
 import React, { useEffect } from 'react'
 
 function CourseCard({course}:{course:Course}) {
+  const {categories}=useCategoriesStore()
+  
   return (
     <Card className="overflow-hidden group" key={course._id}>
       <div className="relative overflow-hidden ">
@@ -47,7 +51,7 @@ function CourseCard({course}:{course:Course}) {
         <Separator className="my-2" />
         <CardTitle className="">{course.title}</CardTitle>
         <div className="flex justify-between items-end">
-          <Badge variant="outline">{course.category}</Badge>
+          <Badge variant="outline">{categories.find(c=>c._id===course.category)?.name}</Badge>
           <CardTitle className="text-lg font-medium">
             {course.price} Dh
           </CardTitle>
