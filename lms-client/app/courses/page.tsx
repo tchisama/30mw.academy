@@ -7,6 +7,7 @@ import { Separator } from '@/components/ui/separator'
 import useCategories from '@/hooks/categories'
 import useCategoriesStore from '@/hooks/categories-store'
 import Image from 'next/image'
+import { useRouter } from 'next/navigation'
 import React, { useEffect } from 'react'
 
 type Props = {}
@@ -23,6 +24,7 @@ const page = (props: Props) => {
     const[courses, setCourses] = React.useState<CourseClient[]>([])
     const {categories}=useCategoriesStore()
     const {update}=useCategories()
+    const router = useRouter()
     useEffect(() => {
         fetch("http://localhost:8080/courses-client/test").then(res => res.json()).then(data => {
             setCourses(data)
@@ -42,13 +44,15 @@ const page = (props: Props) => {
             <div className='grid grid-cols-3 gap-4'>
                 {
                     courses.map(course => (
-                        <Card key={course._id} className='overflow-hidden'>
+                        
+                        <Card onClick={() => router.push(`/course/${course._id}`)} key={course._id} className='overflow-hidden group cursor-pointer'>
+                            <div className='relative aspect-video w-full overflow-hidden'>
                             {
 
-                                course.image ? <img className='object-cover w-full aspect-video' alt='' src={course.image}></img> 
+                                course.image ? <img className='object-cover group-hover:scale-105 duration-300 w-full aspect-video' alt='' src={course.image}></img> 
                                 : <div className='aspect-video bg-secondary'></div>
                             }
-
+                            </div>
                             <CardHeader>
                                 <CardTitle>{course.title}</CardTitle>
                                 <div className='flex items-center justify-between'>

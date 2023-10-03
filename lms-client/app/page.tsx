@@ -8,6 +8,7 @@ import useFetchUser from "@/hooks/fetch-user"
 import { use, useEffect } from "react"
 import { useClerk } from "@clerk/nextjs"
 import TypeWriter from "@/components/global/TypingWriter"
+import Link from "next/link"
 
 
 
@@ -29,10 +30,11 @@ export default function Home() {
               <TypeWriter data={["Design 🎨", "Video Editing 🎥", "3d Modelling 🏡"]}></TypeWriter>
             </h2>
             <div className="p-8">
-              <button className="px-8 hover:scale-105 items-center duration-150 py-4 text-lg bg-primary text-white uppercase rounded-full flex gap-2 ">get started <ArrowRight/></button>
+              <Link href="/courses" className="px-8 hover:scale-105 items-center duration-150 py-4 text-lg bg-primary text-white uppercase rounded-full flex gap-2 ">get started <ArrowRight/></Link>
             </div>
           </div>
 
+          <p className="text-center opacity-60">Powered By</p>
           <div className="flex dark:invert filter gap-8 opacity-70 justify-center items-center">
             <Image
               src={_30mw}
