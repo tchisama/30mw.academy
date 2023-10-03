@@ -18,6 +18,7 @@ import {
 import { Badge } from '@/components/ui/badge'
 import { Input } from '@/components/ui/input'
 import { useClerk } from '@clerk/nextjs'
+import { Separator } from '@/components/ui/separator'
 
 
 
@@ -124,6 +125,9 @@ function Page({}: Props) {
                         </CardTitle>
                     </CardHeader>
                 </Card>
+            </div>
+            <div className='my-8'>
+                <Separator/>
             </div>
             <div className='my-4'>
                 <div className='flex justify-between'>
