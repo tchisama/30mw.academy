@@ -75,5 +75,16 @@ router.get('/my-courses/:userId', async (req, res) => {
   }
 })
 
+// get all courses for client side
+router.get('/courses-client/:userId', async (req, res) => {
+  try {
+    const courses = await CourseModel.find({},'title description price image category')
+    res.status(200).json(courses);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Failed to get the courses' });
+  }
+})
+
 
 module.exports = router;
