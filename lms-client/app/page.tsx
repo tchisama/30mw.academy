@@ -30,7 +30,7 @@ export default function Home() {
               <TypeWriter data={["Design 🎨", "Video Editing 🎥", "3d Modelling 🏡"]}></TypeWriter>
             </h2>
             <div className="p-8">
-              <Link href="/courses" className="px-8 hover:scale-105 items-center duration-150 py-4 text-lg bg-primary text-white uppercase rounded-full flex gap-2 ">get started <ArrowRight/></Link>
+              <Link href="/courses" className="px-8 shadow-2xl hover:scale-105 items-center duration-150 py-4 text-lg bg-primary text-white uppercase rounded-full flex gap-2 ">get started <ArrowRight/></Link>
             </div>
           </div>
 
