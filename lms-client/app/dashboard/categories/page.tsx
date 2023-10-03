@@ -27,6 +27,9 @@ const page = (props: Props) => {
   const {update}=useCategories()
   const {categories}=useCategoriesStore()
   const [text,setText]=React.useState("")
+  const [text2,setText2]=React.useState("")
+  const [open,setOpen]=React.useState(false)
+  const [selctedCategory,setSelectedCategory]=React.useState("")
   // create new category
   const createCategory =async()=>{
     try {
@@ -34,13 +37,51 @@ const page = (props: Props) => {
             name:text
         })
         update(p=>p+1)
+        setText("")
         console.log(response)
     } catch (error) {
         console.log(error)
     }
   }
+  const updateCategory =async()=>{
+    try {
+        const response = await axios.put("http://localhost:8080/category/category/"+selctedCategory,{
+            name:text2
+        })
+        update(p=>p+1)
+        setText2("")
+        console.log(response)
+    } catch (error) {
+        console.log(error)
+    }
+  }
+  const deleteCategory =async(id:string)=>{
+    try {
+        const response = await axios.delete("http://localhost:8080/category/category/"+id)
+        update(p=>p+1)
+        console.log(response)
+    } catch (error) {
+        console.log(error)
+    }
+  }
+
+
   return (
     <div className=''>
+              <AlertDialog open={open} onOpenChange={()=>setOpen(false)}>
+                    <AlertDialogTrigger asChild>
+                    </AlertDialogTrigger>
+                <AlertDialogContent>
+                    <AlertDialogHeader>
+                    <AlertDialogTitle>Rename the category</AlertDialogTitle>
+                    <Input value={text2} onInput={(e)=>setText2((e.target as HTMLInputElement).value)} className='w-full my-2' placeholder='Enter category name'></Input>
+                    </AlertDialogHeader>
+                    <AlertDialogFooter>
+                    <AlertDialogCancel>Cancel</AlertDialogCancel>
+                    <AlertDialogAction className='' onClick={updateCategory}>Continue</AlertDialogAction>
+                    </AlertDialogFooter>
+                </AlertDialogContent>
+                </AlertDialog>
         <div className='container min-h-screen  mx-auto'>
             <DashboardNavBar/>
             <div className='h-[120px] items-center flex justify-between'>
@@ -81,8 +122,8 @@ const page = (props: Props) => {
                                     <DropdownMenuContent>
                                         <DropdownMenuLabel>Category Actions</DropdownMenuLabel>
                                         <DropdownMenuSeparator />
-                                            <DropdownMenuItem className='flex gap-2 items-center'><Edit size={16}/> Edit category</DropdownMenuItem>
-                                        <DropdownMenuItem className='flex gap-2 items-center dark:text-red-400 text-red-600'><Trash size={16}/>Delete category</DropdownMenuItem>
+                                        <DropdownMenuItem onClick={() => {setOpen(true); setSelectedCategory(category._id||"");setText2(category.name)}} className='flex gap-2 items-center'><Edit size={16}/> Edit category</DropdownMenuItem>
+                                        <DropdownMenuItem onClick={()=>{deleteCategory(category._id||"")}} className='flex gap-2 items-center dark:text-red-400 text-red-600'><Trash size={16}/>Delete category</DropdownMenuItem>
                                     </DropdownMenuContent>
                                     </DropdownMenu>
                                 </CardHeader>
