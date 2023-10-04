@@ -5,6 +5,7 @@ const router = express.Router();
 const CourseModel = require('../models/Course'); // Import your Course model
 const mongoose = require('mongoose');
 const AccessModel = require('../models/Access');
+const ConfigModel = require('../models/Config');
 
 
 
@@ -166,6 +167,39 @@ const getVideoByCourseIdAndVideoId = async (courseId, videoId) => {
   }
 }
 
+// i want to add a config if there is no config with id_config="defult"
+router.post('/add-config', async (req, res) => {
+  try {
+    const newConfig = new ConfigModel(req?.body);
+    const savedConfig = await newConfig.save();
+    res.status(201).json({id:savedConfig._id});
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Failed to create the config' });
+  }
+})
 
+// update config
+router.post('/update-config', async (req, res) => {
+
+  try {
+    const result = await ConfigModel.findByIdAndUpdate("651d86e9e67ec3d536ed4908",req.body);
+      res.status(200).json(result);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Failed to update the config' });
+  }
+})
+
+// get config 
+router.get('/config', async (req, res) => {
+  try {
+    const config = await ConfigModel.findOne();
+    res.status(200).json(config);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Failed to get the config' });
+  }
+})
 
 module.exports = router;

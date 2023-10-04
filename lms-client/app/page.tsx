@@ -5,7 +5,7 @@ import _30mw from "@/public/30mw.png"
 import _s3d from "@/public/s3d.png"
 import Image from "next/image"
 import useFetchUser from "@/hooks/fetch-user"
-import { use, useEffect } from "react"
+import { use, useEffect, useState } from "react"
 import { useClerk } from "@clerk/nextjs"
 import TypeWriter from "@/components/global/TypingWriter"
 import Link from "next/link"
@@ -14,6 +14,9 @@ import Link from "next/link"
 
 export default function Home() {
   const user = useClerk()
+  const [config, setConfig] = useState({})
+  
+
   return (
       <div className="w-full   container mx-auto">
         <div className="py-4 flex min-h-screen flex-col">

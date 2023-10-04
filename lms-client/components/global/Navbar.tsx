@@ -36,26 +36,46 @@ const u = useClerk()
         <NavigationMenu>
             <NavigationMenuList>
                 <NavigationMenuItem>
+                    <Link href="/" legacyBehavior passHref>
+                        <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                            Home
+                        </NavigationMenuLink>
+                    </Link>
+                </NavigationMenuItem>
+                
+                <NavigationMenuItem>
                     <Link href="/courses" legacyBehavior passHref>
                         <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                        Courses
+                            Courses
                         </NavigationMenuLink>
                     </Link>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
                     <Link href="/About" legacyBehavior passHref>
                         <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                        About
+                            About
                         </NavigationMenuLink>
                     </Link>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
                     <Link href="/Contact" legacyBehavior passHref>
                         <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                        Contact
+                            Contact
                         </NavigationMenuLink>
                     </Link>
                 </NavigationMenuItem>
+
+                {
+                user?.rule==='admin'&&<>
+                <NavigationMenuItem>
+                    <Link href="/dashboard" legacyBehavior passHref>
+                        <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                            Dashboard
+                        </NavigationMenuLink>
+                    </Link>
+                </NavigationMenuItem>
+                </>
+                }
             </NavigationMenuList>
         </NavigationMenu>
         </div>
@@ -64,13 +84,6 @@ const u = useClerk()
             {
                 u.user?.id?
                 <div className='flex gap-3 items-center'>
-                {
-                user?.rule==='admin'&&<>
-                <Link href={"/dashboard"}>
-                    <Button variant={"outline"}>Dashboard</Button>
-                </Link>
-                </>
-                }
                 <UserButton afterSignOutUrl='/'/>
                 </div>
 

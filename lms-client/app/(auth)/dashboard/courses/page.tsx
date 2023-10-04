@@ -34,9 +34,11 @@ function Page() {
                 </div>
     }
   return (
-    <div className=''>
-        <div className='container min-h-screen  mx-auto'>
+    <div className='px-6'>
+        <div className='max-w-[1500px] min-h-screen  mx-auto'>
+            <div className='container'>
             <DashboardNavBar/>
+            </div>
             <div className='h-[120px] items-center flex justify-between'>
               <h1 className='text-3xl'>Courses</h1>
               <Input 

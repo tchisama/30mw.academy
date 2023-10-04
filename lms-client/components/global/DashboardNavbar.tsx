@@ -35,7 +35,7 @@ const components: { title: string; href: string; description: string }[] = [
   },
   {
     title: "landing page",
-    href: "/docs/primitives/progress",
+    href: "/dashboard/landing-page",
     description:
       "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.",
   },
