@@ -5,14 +5,31 @@ import { Card, CardHeader, CardTitle } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
 import useProtuctDashboard from '@/hooks/protuctDashboard'
 import { useClerk } from '@clerk/nextjs'
-import { CircleDollarSign, Loader, ShoppingCart, Users } from 'lucide-react'
+import { Book, CircleDollarSign, Eye, EyeIcon, Loader, ShoppingCart, Users } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import React, { useEffect } from 'react'
 
 type Props = {}
+interface MyData {
+  courses: number;
+  users: number;
+  views: number;
+  access: number;
+  lastWeekUsersCount: number;
+  lastWeekSalesCount: number;
+  lastWeekProfits: number;
+}
 
 function page({}: Props) {
   const user = useClerk()
+  const [data, setData] = React.useState<MyData>()
+  const [loading, setLoading] = React.useState(true)
+  useEffect(() => {
+    fetch('http://localhost:8080/total')
+      .then((res) => res.json())
+      .then((data) => setData(data))
+      .then(() => setLoading(false))
+  },[])
   return (
     <div className=''>
         <div className='container min-h-screen  mx-auto'>
@@ -32,7 +49,7 @@ function page({}: Props) {
                             <Users size={30}/>
                             <h2> users</h2>
                         </div>
-                  <h1 className='text-6xl'>+5</h1>
+                  <h1 className='text-6xl'>+{data?.lastWeekUsersCount}</h1>
                 </CardHeader>
               </Card>
               <Card>
@@ -41,7 +58,7 @@ function page({}: Props) {
                         <ShoppingCart size={30}/>
                         <h2> Sales</h2>
                     </div>
-                  <h1 className='text-6xl'>+2</h1>
+                  <h1 className='text-6xl'>+{data?.lastWeekSalesCount}</h1>
                 </CardHeader>
               </Card>
               <Card>
@@ -50,7 +67,7 @@ function page({}: Props) {
                         <CircleDollarSign size={30}/>
                         <h2> Profits</h2>
                     </div>
-                  <h1 className='text-5xl'>+1400 Dh</h1>
+                  <h1 className='text-5xl'>+{data?.lastWeekProfits} Dh</h1>
                 </CardHeader>
               </Card>
             </div>
@@ -65,14 +82,38 @@ function page({}: Props) {
             <div className='grid my-4 grid-cols-4 gap-4 justify-between'>
               <Card>
                 <CardHeader className='flex flex-col h-full'>
-                  <h2 className='text-lg'>Total Users</h2>
-                  <h1 className='text-6xl'>15</h1>
+                    <div className='flex gap-4'>
+                        <Users size={30}/>
+                        <h2> Total users</h2>
+                    </div>
+                  <h1 className='text-4xl'>{data?.users}</h1>
                 </CardHeader>
               </Card>
               <Card>
                 <CardHeader className='flex h-full flex-col justify-between'>
-                  <h2 className='text-lg'>Total Sales</h2>
-                  <h1 className='text-6xl'>22</h1>
+                    <div className='flex gap-4'>
+                        <ShoppingCart size={30}/>
+                        <h2>Total Sales</h2>
+                    </div>
+                  <h1 className='text-4xl'>{data?.access}</h1>
+                </CardHeader>
+              </Card>
+              <Card>
+                <CardHeader className='flex h-full flex-col justify-between'>
+                    <div className='flex gap-4'>
+                        <Book size={30}/>
+                        <h2>Courses</h2>
+                    </div>
+                  <h1 className='text-4xl'>{data?.courses}</h1>
+                </CardHeader>
+              </Card>
+              <Card>
+                <CardHeader className='flex h-full flex-col justify-between'>
+                    <div className='flex gap-4'>
+                        <EyeIcon size={30}/>
+                        <h2>Views</h2>
+                    </div>
+                  <h1 className='text-4xl'>{data?.views}</h1>
                 </CardHeader>
               </Card>
             </div>

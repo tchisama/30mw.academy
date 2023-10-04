@@ -7,7 +7,8 @@ const mongoose = require('mongoose');
 const AccessModel = require('../models/Access');
 const ConfigModel = require('../models/Config');
 
-
+const UserModel = require('../models/User');
+const ViewModel = require('../models/View');
 
 
 
@@ -199,6 +200,90 @@ router.get('/config', async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Failed to get the config' });
+  }
+})
+
+
+// get total users and totall access totall courses and totall views
+
+// Get the total number of users
+const totalUsers = async () => {
+  try {
+    const count = await UserModel.countDocuments();
+    return count;
+  } catch (error) {
+    console.error(error);
+    return 0;
+  }
+};
+
+// Get the total number of access
+const totalAccess = async () => {
+  try {
+    const count = await AccessModel.countDocuments();
+    return count;
+  } catch (error) {
+    console.error(error);
+    return 0;
+  }
+};
+
+// Get the total number of courses
+const totalCourses = async () => {
+  try {
+    const count = await CourseModel.countDocuments();
+    return count;
+  } catch (error) {
+    console.error(error);
+    return 0;
+  }
+};
+
+// Get the total number of views
+const Total = async () => {
+  try {
+    const countCourses = await CourseModel.countDocuments();
+    const countUsers = await UserModel.countDocuments();
+    const countViews = await ViewModel.countDocuments();
+    const countAccess = await AccessModel.countDocuments();
+
+    const lastWeekUsersCount = await UserModel.aggregate([
+      {
+           $match: {
+               createdAt: {'$gte': new Date(new Date() - 7 * 60 * 60 * 24 * 1000)},
+           }
+      }
+    ])
+    const lastWeekAccessCount = await AccessModel.aggregate([
+      {
+           $match: {
+               createdAt: {'$gte': new Date(new Date() - 7 * 60 * 60 * 24 * 1000)},
+           }
+      }
+    ])
+    return {
+      courses: countCourses,
+      users: countUsers,
+      views: countViews,
+      access: countAccess,
+
+      lastWeekUsersCount: lastWeekUsersCount.length,
+      lastWeekSalesCount: lastWeekAccessCount.length,
+      lastWeekProfits: lastWeekAccessCount.reduce((a, b) => a + b.price_access, 0)
+    };
+  } catch (error) {
+    console.error(error);
+    return 0;
+  }
+
+}
+router.get('/total', async (req, res) => {
+  try {
+    const total = await Total();
+    res.status(200).json(total);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Failed to get the total' });
   }
 })
 
