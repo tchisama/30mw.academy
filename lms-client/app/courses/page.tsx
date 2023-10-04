@@ -68,7 +68,7 @@ const page = (props: Props) => {
                                 <div className='flex items-center justify-between'>
                                     <Badge>{categories
                                     .find(c=>c._id===course.category)?.name}</Badge>
-                                    <h3 className='text-xl'>{course.price} Dh</h3>
+                                    <h3 className='text-xl'>{course.price==0?"Free":course.price+" Dh"} </h3>
                                 </div>
                                 <CardDescription>{course.description.slice(0, 70)}</CardDescription>
                             </CardHeader>

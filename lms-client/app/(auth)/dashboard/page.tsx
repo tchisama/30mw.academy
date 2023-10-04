@@ -8,6 +8,8 @@ import { useClerk } from '@clerk/nextjs'
 import { Book, CircleDollarSign, Eye, EyeIcon, Loader, ShoppingCart, Users } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import React, { useEffect } from 'react'
+import CountUp from 'react-countup';
+
 
 type Props = {}
 interface MyData {
@@ -49,7 +51,7 @@ function page({}: Props) {
                             <Users size={30}/>
                             <h2> users</h2>
                         </div>
-                  <h1 className='text-6xl'>+{data?.lastWeekUsersCount}</h1>
+                  <h1 className='text-6xl'>+ <CountUp duration={3} end={data?.lastWeekUsersCount as number} /></h1>
                 </CardHeader>
               </Card>
               <Card>
@@ -58,7 +60,7 @@ function page({}: Props) {
                         <ShoppingCart size={30}/>
                         <h2> Sales</h2>
                     </div>
-                  <h1 className='text-6xl'>+{data?.lastWeekSalesCount}</h1>
+                  <h1 className='text-6xl'>+ <CountUp duration={3} end={data?.lastWeekSalesCount as number} /></h1>
                 </CardHeader>
               </Card>
               <Card>
@@ -67,7 +69,7 @@ function page({}: Props) {
                         <CircleDollarSign size={30}/>
                         <h2> Profits</h2>
                     </div>
-                  <h1 className='text-5xl'>+{data?.lastWeekProfits} Dh</h1>
+                  <h1 className='text-5xl'>+<CountUp duration={3} end={data?.lastWeekProfits as number} /> Dh</h1>
                 </CardHeader>
               </Card>
             </div>

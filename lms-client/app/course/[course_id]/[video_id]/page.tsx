@@ -252,7 +252,7 @@ if(loading){
 
                                         <>
                                         <Lock size={40}/>
-                                        you dont have access to this video
+                                        Hello! To enjoy this video, consider purchasing the course. Thanks!🤗
                                         <Button onClick={buyNow} className='flex gap-2'><Unlock size={18}/>Unlock course</Button>
                                         </>
                                             )
@@ -275,11 +275,14 @@ if(loading){
                                     <AvatarImage src={course?.owner.photo} />
                                     <AvatarFallback>{course?.owner.fname[0]}{course?.owner.lname[0]}</AvatarFallback>
                                 </Avatar>
-                                <p className='text-muted-forground flex-1'>{course?.owner.fname} {course?.owner.lname}</p>
+                                <p className='text-muted-forground flex-1'>{course?.owner.fname}</p>
                                 {
                                     course &&
                                     (course?.price==0||(!access)) && (
-                                        <Button onClick={buyNow} className='flex gap-2'>Buy now <Stars/></Button>
+                                        <>
+                                        <strong>{course?.price} Dh</strong>
+                                        <Button onClick={buyNow} className='flex gap-2'>Buy now <Unlock size={18}/></Button>
+                                        </>
                                     )
                                 }
                             </div>
