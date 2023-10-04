@@ -130,7 +130,18 @@ const page = ({params}: Props) => {
         }
     }
 
-
+    const buyNow = () => {
+        if(!access){
+            axios.post("http://localhost:8080/auth/make-access",
+            {
+                id_user:user?.user?.id,
+                id_course:params.course_id,
+                price_access:course?.price,
+            }).then(()=>{
+                window.location.reload();
+            })
+        }
+    }
 
   return (
     <div className="w-full  px-8 ">
@@ -170,7 +181,7 @@ const page = ({params}: Props) => {
                                         <>
                                         <Lock size={40}/>
                                         you dont have access to this video
-                                        <Button className='flex gap-2'><Unlock size={18}/>Unlock course</Button>
+                                        <Button onClick={buyNow} className='flex gap-2'><Unlock size={18}/>Unlock course</Button>
                                         </>
                                             )
                                         }
@@ -194,8 +205,9 @@ const page = ({params}: Props) => {
                                 </Avatar>
                                 <p className='text-muted-forground flex-1'>{course?.owner.fname} {course?.owner.lname}</p>
                                 {
-                                    (course?.price || 0) > 0 && (
-                                        <Button className='flex gap-2'>Buy now <Stars/></Button>
+                                    course &&
+                                    (course?.price==0||(!access)) && (
+                                        <Button onClick={buyNow} className='flex gap-2'>Buy now <Stars/></Button>
                                     )
                                 }
                             </div>
