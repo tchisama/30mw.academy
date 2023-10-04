@@ -298,6 +298,10 @@ const Sections = ({course,views,video_id,access}:{views:string[]|undefined,cours
     return(
     <>
         <h1 className='text-3xl font-medium'>Sections</h1>
+        <div className='py-4'>
+            <Separator/>
+        </div>
+        <ScrollArea scrollHideDelay={100} className='h-[calc(100vh-332px)] pr-4'>
 
         {
             course?.sections.map(section => (
@@ -308,8 +312,8 @@ const Sections = ({course,views,video_id,access}:{views:string[]|undefined,cours
                 <div className=' my-3 space-y-2 flex-1'>
                     {
                         section.videos.map(video => (
-                                <div key={video.id_video} className='flex gap-4 my-1 items-center'>
-                                    <div className="p-1 bg-secondary z-10 rounded-md shadow-md">
+                                <div key={video.id_video} className='flex gap-4 my-1 relative items-center'>
+                                    <div className="p-1 bg-background border z-10 rounded-md shadow-md">
                                             {
                                                 views?.includes(video.id_video) ? (
                                                     <CheckCircle size={28} className=' text-primary p-1'/>
@@ -318,7 +322,8 @@ const Sections = ({course,views,video_id,access}:{views:string[]|undefined,cours
                                                 )
                                             }
                                     </div>
-                                    <Card onClick={()=>router.push(`/course/${course?._id}/${video.id_video}`)}  className={'flex-1 p-3 cursor-pointer flex gap-2 items-center '+(video.id_video===video_id?' bg-secondary ':'')}>
+                                    <div className='h-1 w-12 absolute top-[50%] left-[10px] z-0 bg-foreground opacity-10  '></div>
+                                    <Card onClick={()=>router.push(`/course/${course?._id}/${video.id_video}`)}  className={'flex-1 p-3 z-10 relative cursor-pointer flex gap-2 items-center '+(video.id_video===video_id?' bg-secondary ':'')}>
                                         <div className='w-8 h-8 flex text-primary justify-center items-center bg-secondary rounded-sm'>
                                             {
                                                 (video.free || access) ? (
@@ -328,7 +333,7 @@ const Sections = ({course,views,video_id,access}:{views:string[]|undefined,cours
                                                 )
                                             }
                                         </div>
-                                        <div className='text-sm'>{video.title}</div>
+                                        <div className='text-sm'>{video.title.slice(0, 40)}</div>
                                     </Card>
                                 </div>
                         ))
@@ -362,6 +367,8 @@ const Sections = ({course,views,video_id,access}:{views:string[]|undefined,cours
                 </div>
             ))
         }
+
+        </ScrollArea>
     </>
 )
 }
