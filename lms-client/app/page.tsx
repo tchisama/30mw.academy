@@ -39,9 +39,11 @@ export default function Home() {
             </div>
   }
   return (
-      <div className="w-full   container mx-auto">
-        <div className="py-4 flex min-h-screen flex-col">
+      <div className="w-full  px-6  mx-auto">
+        <div className="py-4 flex max-w-[1800px] min-h-screen flex-col">
+          <div className="container">
             <Navbar/>
+          </div>
           <div className="my-8 pt-24 flex-1 flex flex-col gap-2 justify-center items-center">
             <h1 className="text-7xl text-center font-bold ">
               {config?.landing_page?.Header}
@@ -59,12 +61,13 @@ export default function Home() {
           </div>
 
           <p className="text-center opacity-60">Powered By</p>
-          <div className="flex dark:invert filter gap-8 opacity-70 justify-center items-center">
+          <div className="flex dark:invert filter gap-8 opacity-70 drop-shadow-2xl justify-center items-center">
             <Image
               src={_30mw}
               width={150}
               height={150}
               alt="Picture of the author"
+              className=""
             />
             <Image
               src={_s3d}

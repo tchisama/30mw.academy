@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button } from '../ui/button'
-import { Loader, LogIn } from 'lucide-react'
+import { Loader, Lock, LogIn } from 'lucide-react'
 import Link from 'next/link'
 import useFetchUser from '@/hooks/fetch-user'
 import useUserStore from '@/hooks/users-store'
@@ -70,7 +70,7 @@ const u = useClerk()
                 <NavigationMenuItem>
                     <Link href="/dashboard" legacyBehavior passHref>
                         <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                            Dashboard
+                            Dashboard {" "}<Lock className='ml-2' size={18}/>
                         </NavigationMenuLink>
                     </Link>
                 </NavigationMenuItem>

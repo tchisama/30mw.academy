@@ -47,7 +47,7 @@ function page() {
                 <TypeWriter data={tolearn}></TypeWriter>
                 </h2>
                 <div className="p-8">
-                <button contentEditable className="px-8 shadow-2xl hover:scale-105 items-center duration-150 py-4 text-lg bg-primary text-white uppercase rounded-full flex gap-2 ">get started <ArrowRight/></button>
+                <button className="px-8 shadow-2xl hover:scale-105 items-center duration-150 py-4 text-lg bg-primary text-white uppercase rounded-full flex gap-2 ">get started <ArrowRight/></button>
                 </div>
             </div>
         </div>

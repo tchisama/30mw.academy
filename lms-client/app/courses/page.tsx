@@ -46,7 +46,7 @@ const page = (props: Props) => {
         <div className="py-4 flex min-h-screen flex-col">
             <Navbar/>
             <div className='pt-20'>
-                <h1 className='text-3xl font-medium'>Courses</h1>
+                <h1 className='text-3xl font-medium'>Courses 📚</h1>
             </div>
             <div className='my-8'>
                 <Separator/>
