@@ -3,7 +3,7 @@ import Navbar from '@/components/global/Navbar'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
-import { ArrowLeft, ArrowRight, CheckCircle, Circle, HeartCrack, Loader, Lock, Stars, Unlock, Video } from 'lucide-react'
+import { ArrowLeft, ArrowRight, CheckCircle, Circle, HeartCrack, Loader, Lock, Stars, Unlock, Video, XCircle } from 'lucide-react'
 import React, { useEffect, useState } from 'react'
 
 import {
@@ -84,6 +84,7 @@ const page = ({params}: Props) => {
   const [video, setVideo] = React.useState<VideoClient|null>()
   const [views, setViews] = useState<string[]>()
   const user = useClerk()
+  const router = useRouter()
   useEffect(() => {
     setLoading(true)
     if (user.user?.id) {
@@ -111,11 +112,6 @@ const page = ({params}: Props) => {
         })
     }
   },[user.user?.id])
-    if(loading){
-        return <div className='h-screen flex justify-center items-center '>
-                    <h1 className='flex gap-3'><Loader className='animate-spin'/>Loading...</h1>
-                </div>
-    }
 
     const getViews = () => {
         if(!views?.includes(params.video_id)){
@@ -126,6 +122,19 @@ const page = ({params}: Props) => {
                 id_video:params.video_id
             }).then(data => {
                 setViews(p=>[...p as string[],params?.video_id])
+            })
+        }
+    }
+
+    const removeView = () => {
+        if(views?.includes(params.video_id)){
+            axios.post("http://localhost:8080/auth/remove-marked-view",
+            {
+                id_user:user?.user?.id,
+                id_course:params.course_id,
+                id_video:params.video_id
+            }).then(data => {
+                setViews(p=>p?.filter(v=>v!==params?.video_id))
             })
         }
     }
@@ -143,6 +152,63 @@ const page = ({params}: Props) => {
         }
     }
 
+
+    const [videos_ids, setVideos_ids] = useState<string[]>([]);
+
+    useEffect(() => {
+        if (course) {
+            const list = getAllVideoIds(course)
+            setVideos_ids(list);
+            if (params.video_id=="start") {
+                router.push("/course/"+params.course_id+"/"+list[0]);
+            }
+        }
+    }, [course]);
+    
+    function getAllVideoIds(course: Course | undefined) {
+        if (course) {
+            const videoIds: string[] = [];
+            
+            course.sections.forEach((section) => {
+                section.videos.forEach((video) => {
+                    videoIds.push(video.id_video);
+                });
+            });
+    
+            return videoIds;
+        }
+    
+        // If course is undefined, return an empty array
+        return [];
+    }
+    
+
+
+
+    async function goNext() {
+        await getViews()
+        const currentIndex = videos_ids.indexOf(params.video_id);
+        if (currentIndex !== -1 && currentIndex < videos_ids.length - 1) {
+            router.push("/course/"+params.course_id+"/"+videos_ids[currentIndex + 1])
+        }
+        return "End of the array";
+    }
+    function goPrev() {
+        const currentIndex = videos_ids.indexOf(params.video_id);
+        if (currentIndex !== -1 && currentIndex > 0) {
+            router.push("/course/"+params.course_id+"/"+videos_ids[currentIndex - 1])
+        }
+        return "End of the array";
+    }
+
+
+
+
+if(loading){
+    return <div className='h-screen flex justify-center items-center '>
+                <h1 className='flex gap-3'><Loader className='animate-spin'/>Loading...</h1>
+            </div>
+}
   return (
     <div className="w-full  px-8 ">
         <div className="py-0 container mx-auto flex flex-col">
@@ -160,10 +226,13 @@ const page = ({params}: Props) => {
                                     <iframe className='w-full max-h-[70vh] aspect-video rounded-xl' height="100%" src={video?.url} title="YouTube video player" allowFullScreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; "></iframe>
                                     <div className='py-4 flex justify-between'>
                                         <div className='flex gap-2'>
-                                            <Button variant={"secondary"}><ArrowLeft/></Button>
-                                            <Button variant={"secondary"}><ArrowRight/></Button>
+                                            <Button onClick={goPrev} variant={"secondary"}><ArrowLeft/></Button>
+                                            <Button onClick={goNext} variant={"secondary"}><ArrowRight/></Button>
                                         </div>
-                                        <Button onClick={getViews} className='flex gap-2'>Mark completed <CheckCircle size={18}/></Button>
+                                        {views?.includes(params.video_id)?
+                                            <Button onClick={removeView} variant={"secondary"} className='flex gap-2'>Mark not completed <XCircle size={18}/></Button>:
+                                            <Button onClick={getViews} className='flex gap-2'>Mark completed <CheckCircle size={18}/></Button>
+                                        }
                                     </div>
                                     </>
                                 ):(
@@ -237,7 +306,7 @@ const Sections = ({course,views,video_id,access}:{views:string[]|undefined,cours
                     {
                         section.videos.map(video => (
                                 <div key={video.id_video} className='flex gap-4 my-1 items-center'>
-                                    <div className="p-1 bg-secondary z-10 rounded-md">
+                                    <div className="p-1 bg-secondary z-10 rounded-md shadow-md">
                                             {
                                                 views?.includes(video.id_video) ? (
                                                     <CheckCircle size={28} className=' text-primary p-1'/>

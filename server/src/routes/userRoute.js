@@ -150,6 +150,21 @@ router.post('/add-marked-view', async (req, res) => {
     res.status(500).json({ message: 'Failed to make view' });
  }
 })
+// remove marked view 
+router.post('/remove-marked-view', async (req, res) => {
+ try {
+    const newView = await ViewModel.findOneAndDelete(
+      {
+        id_user:req.body.id_user,
+        id_course:req.body.id_course,
+        id_video:req.body.id_video
+      });
+    res.status(200).json(newView);
+ } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Failed to make view' });
+ }
+})
 
 // get view by id_user  and id_course 
 router.get('/get-views/:id_user/:id_course', async (req, res) => {

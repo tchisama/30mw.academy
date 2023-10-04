@@ -122,7 +122,7 @@ router.post('/get-video', async (req, res) => {
   try {
     const access = await AccessModel.findOne({id_user:req.body.id_user,id_course:req.body.id_course});
     const video = await getVideoByCourseIdAndVideoId(req.body.id_course, req.body.id_video);
-    if(access|| video.free){
+    if(access|| video?.free){
       res.status(200).json(video);
     }else{
       res.status(200).json(null);
