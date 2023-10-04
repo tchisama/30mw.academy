@@ -98,9 +98,11 @@ router.post('/get-course', async (req, res) => {
       _id: true,
       sections:{
         title: true,
+        id_section: true,
         videos:{
           title: true,
           free: true,
+          id_video: true
         }
       }
     });
