@@ -3,7 +3,7 @@ import Navbar from '@/components/global/Navbar'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
-import { ArrowLeft, ArrowRight, CheckCircle, Circle, HeartCrack, Loader, Lock, Stars, Unlock, Video, XCircle } from 'lucide-react'
+import { ArrowLeft, ArrowRight, CheckCircle, Circle, HeartCrack, Loader, Lock, Stars, StickyNote, Unlock, Video, XCircle } from 'lucide-react'
 import React, { useEffect, useState } from 'react'
 
 import {
@@ -17,6 +17,7 @@ import { ScrollArea } from '@/components/ui/scroll-area'
 import axios from "axios"
 import { useRouter } from 'next/navigation'
 import { useClerk } from '@clerk/nextjs'
+import Notes from '@/components/global/Notes'
 
 type Props = {
     params:{
@@ -211,6 +212,7 @@ if(loading){
 }
   return (
     <div className="w-full  px-8 ">
+        {/* <Notes/> */}
         <div className="py-0 container mx-auto flex flex-col">
             <Navbar/>
         </div>
@@ -234,6 +236,7 @@ if(loading){
                                             <Button onClick={getViews} className='flex gap-2'>Mark completed <CheckCircle size={18}/></Button>
                                         }
                                     </div>
+                                    <h1 className='text-3xl py-2 font-medium'>{video.title}</h1>
                                     </>
                                 ):(
                                     <div className='w-full max-h-[70vh] aspect-video rounded-xl bg-secondary flex justify-center items-center flex-col gap-4'>

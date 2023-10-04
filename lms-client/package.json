@@ -40,6 +40,7 @@
     "react-dom": "latest",
     "react-dropzone": "^14.2.3",
     "react-masonry-css": "^1.0.16",
+    "react-quill": "^2.0.0",
     "react-typing-effect": "^2.0.5",
     "tailwind-merge": "^1.14.0",
     "tailwindcss-animate": "^1.0.7",
