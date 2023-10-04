@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
     Sheet,
     SheetContent,
@@ -8,13 +8,13 @@ import {
     SheetTrigger,
   } from "@/components/ui/sheet"
 import { Button } from '../ui/button'
-import { Edit, GripHorizontal, PlusCircle, StickyNote, Trash } from 'lucide-react'
+import { Edit, GripHorizontal, Loader, PlusCircle, StickyNote, Trash, Upload } from 'lucide-react'
 import { Separator } from '../ui/separator'
 import { Label } from '../ui/label'
 import { Textarea } from '../ui/textarea'
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
 import { Input } from '../ui/input'
-
+import axios from 'axios'
 type Props = {
     Text:string,
     Heading:string,
@@ -26,6 +26,29 @@ type Props = {
 }
 
 function LandingPageEdit({Text,Heading,setHeading,setText,tolearn,handleOnDragEnd,setToLearn}: Props) {
+    const [publishing,setPublishing]=React.useState(false)
+    useEffect(()=>{
+        fetch("http://localhost:8080/config").then((res)=>{
+            return res.json()
+        }).then(data=>{
+                setHeading(data.landing_page.Header)
+                setText(data.landing_page.Text)
+                setToLearn(data.landing_page.learn)
+        })
+    },[])
+    const publish =()=>{
+        setPublishing(true)
+        axios.post("http://localhost:8080/update-config",{
+            landing_page:{
+                Text:Text,
+                Header:Heading,
+                learn:tolearn,
+                button:"Get started"
+            }
+        }).then(()=>{
+            setPublishing(false)
+        })
+    }
   return (
 <Sheet >
   <SheetTrigger asChild>
@@ -52,7 +75,7 @@ function LandingPageEdit({Text,Heading,setHeading,setText,tolearn,handleOnDragEn
 
     <div className='flex justify-between items-center w-full '>
       <Label>Learn</Label>
-      <Button onClick={()=>setToLearn(p=>['',...p])} className='flex gap-2'>Add<PlusCircle size={18}/></Button>
+      <Button variant={"outline"} onClick={()=>setToLearn(p=>['',...p])} className='flex gap-2'>Add<PlusCircle size={18}/></Button>
     </div>
 
 <DragDropContext onDragEnd={handleOnDragEnd}>
@@ -85,6 +108,18 @@ function LandingPageEdit({Text,Heading,setHeading,setText,tolearn,handleOnDragEn
 
 
     </SheetHeader>
+        <div className='flex justify-end'>
+            <Button disabled={publishing} onClick={publish} className='flex gap-2'>
+                {
+                    publishing?
+                    <>Publishing...
+                        <Loader className='animate-spin' size={18}/>
+                    </>:
+                    <>Pubish<Upload size={18}/></>
+                
+                }
+            </Button>
+        </div>
   </SheetContent>
 </Sheet>
 

@@ -11,7 +11,7 @@ interface TypeWriterState {
 class TypeWriter extends PureComponent<TypeWriterProps, TypeWriterState> {
   private unmounted: boolean = false;
   private loopNum: number = 0;
-  private period: number = 2000;
+  private period: number = 1000;
   private isDeleting: boolean = false;
 
   constructor(props: TypeWriterProps) {
