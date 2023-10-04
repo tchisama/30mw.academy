@@ -46,11 +46,11 @@ const  Page = (props: Props) => {
             <div className='min-h-[60vh] flex justify-center items-center'>
                 <Card className='min-w-[500px]'>
                     <CardHeader>
-                        <CardTitle>Let&apos;s start creating</CardTitle>
+                        <CardTitle>Let&apos;s start creating 😀</CardTitle>
                         <CardDescription>you can aloways change the name later :)</CardDescription>
                     </CardHeader>
                     <CardContent>
-                        <Input value={title} onChange={(e)=>setTitle(e.target.value)}></Input>
+                        <Input placeholder='Title of the course' value={title} onChange={(e)=>setTitle(e.target.value)}></Input>
                     </CardContent>
                     <CardFooter className='flex justify-end'>
                         <Button disabled={loading} onClick={createCourse} className='flex gap-2'>

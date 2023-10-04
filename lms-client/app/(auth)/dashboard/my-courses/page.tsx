@@ -38,9 +38,11 @@ function Page() {
                 </div>
     }
   return (
-    <div className=''>
-        <div className='container min-h-screen  mx-auto'>
+    <div className='px-6'>
+        <div className='max-w-[1500px] min-h-screen  mx-auto'>
+            <div className='container'>
             <DashboardNavBar/>
+            </div>
             <div className='h-[120px] items-center flex justify-between'>
               <h1 className='text-3xl'>My Courses</h1>
               <div className='flex gap-3'>
@@ -55,7 +57,7 @@ function Page() {
               ></Input>
               </div>
             </div>
-            <div className='grid grid-cols-3 gap-4'>
+            <div className='grid grid-cols-2 gap-4'>
                 {
                     courses.filter(course => course.title.toLowerCase().includes(search.toLowerCase())).map((course, index) => {
                         return (
