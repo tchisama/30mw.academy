@@ -4,6 +4,8 @@ const express = require('express');
 const router = express.Router();
 const CourseModel = require('../models/Course'); // Import your Course model
 const mongoose = require('mongoose');
+const AccessModel = require('../models/Access');
+
 
 
 
@@ -113,6 +115,57 @@ router.post('/get-course', async (req, res) => {
     res.status(500).json({ message: 'Internal server error' });
   }
 })
+// get video by course id and video id
+
+// post get video by course id and video id
+router.post('/get-video', async (req, res) => {
+  try {
+    const access = await AccessModel.findOne({id_user:req.body.id_user,id_course:req.body.id_course});
+    const video = await getVideoByCourseIdAndVideoId(req.body.id_course, req.body.id_video);
+    if(access|| video.free){
+      res.status(200).json(video);
+    }else{
+      res.status(200).json(null);
+    }
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+})
+
+
+
+// Function to get a video by course ID and video ID
+
+const getVideoByCourseIdAndVideoId = async (courseId, videoId) => {
+  try {
+    // Find the course by ID and filter the videos array to find the desired video
+    const course = await CourseModel.findOne(
+      { _id: courseId },
+      {
+        sections: {
+          $elemMatch: {
+            videos: {
+              $elemMatch: { id_video: videoId }
+            }
+          }
+        }
+      }
+    );
+
+    // Check if the course and video exist
+    if (course && course.sections.length > 0 && course.sections[0].videos.length > 0) {
+      const video = course.sections[0].videos.find(video => video.id_video === videoId);
+      return video;
+    } else {
+      return null; // Video not found
+    }
+  } catch (error) {
+    console.error('Error:', error)
+    return null;
+  }
+}
+
 
 
 module.exports = router;

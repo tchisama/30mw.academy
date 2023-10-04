@@ -6,6 +6,7 @@ import { Progress } from '@/components/ui/progress'
 import { Separator } from '@/components/ui/separator'
 import useCategories from '@/hooks/categories'
 import useCategoriesStore from '@/hooks/categories-store'
+import { Loader } from 'lucide-react'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import React, { useEffect } from 'react'
@@ -25,12 +26,21 @@ const page = (props: Props) => {
     const {categories}=useCategoriesStore()
     const {update}=useCategories()
     const router = useRouter()
+    const [loading, setLoading] = React.useState(true)
     useEffect(() => {
         fetch("http://localhost:8080/courses-client/test").then(res => res.json()).then(data => {
             setCourses(data)
             update(p=>p+1)
+            setLoading(false)
         })
-    })
+    },[])
+    if (loading) {
+        return(
+            <div className='h-screen flex justify-center items-center '>
+                <h1 className='flex gap-3'><Loader className='animate-spin'/>Loading...</h1>
+            </div>
+        )
+    }
   return (
     <div className="w-full   container mx-auto">
         <div className="py-4 flex min-h-screen flex-col">
@@ -45,7 +55,7 @@ const page = (props: Props) => {
                 {
                     courses.map(course => (
                         
-                        <Card onClick={() => router.push(`/course/${course._id}`)} key={course._id} className='overflow-hidden group cursor-pointer'>
+                        <Card onClick={() => router.push(`/course/${course._id}/start`)} key={course._id} className='overflow-hidden group cursor-pointer'>
                             <div className='relative aspect-video w-full overflow-hidden'>
                             {
 
