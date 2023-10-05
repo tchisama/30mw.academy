@@ -41,8 +41,8 @@ export default function Home() {
   }
   return (
       <div className="w-full  px-6  mx-auto">
-        <div className="py-4 flex max-w-[1800px] min-h-screen flex-col">
-          <div className="container">
+        <div className="py-4 flex max-w-[1800px] mx-auto min-h-screen flex-col">
+          <div className="container mx-auto">
             <Navbar/>
           </div>
           <div className="my-8 pt-24 flex-1 flex flex-col gap-2 justify-center items-center">

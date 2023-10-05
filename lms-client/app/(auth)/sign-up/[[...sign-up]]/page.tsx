@@ -22,7 +22,7 @@ export default function page() {
       </Link>
 
       <Link href="/" className="absolute top-10 left-10">
-        <h1 className="text-white text-3xl font-bold">30mw Acadimy</h1>
+        <h1 className="text-white text-3xl font-bold">30mw Academy</h1>
       </Link>
 
         <div className="w-[400px] mx-auto">
