@@ -17,6 +17,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '../ui/card'
   AvatarFallback,
   AvatarImage,
 } from "@/components/ui/avatar"
+import axios from 'axios'
 type User = {
   _id: string;
   fname: string;
@@ -24,12 +25,13 @@ type User = {
   email: string;
   photo: string;
   rule: string;
+  id_user: string;
   createdAt: string;
   updatedAt: string;
   __v: number;
   check:boolean
 }
-function AddAccessUsers() {
+function AddAccessUsers({usersHaveAccess,params}:{usersHaveAccess:any,params:{course_id:string}}) {
     const [users,setUsers]=React.useState<User[]>([])
     useEffect(()=>{
         fetch(server+'auth/users')
@@ -37,15 +39,34 @@ function AddAccessUsers() {
         .then(data => 
             {
                 console.log(data)
-                setUsers(data.map((user:User)=>{
+                var lvl1 =data.map((user:User)=>{
                     return {
                         ...user,
                         check:false
                     }
-                }))
+                }) 
+                usersHaveAccess.forEach((user:any) => {
+                    lvl1=lvl1.filter((u:User)=>user.user[0]._id!==u._id)
+                });
+                setUsers(lvl1)
             })
     },[])
-
+    const giveAccess = ()=>{
+      users.forEach(
+        (user)=>{
+          if(user.check){
+            axios.post(server+"auth/make-access",{
+              id_course:params.course_id,
+              id_user:user.id_user,
+              price_access:0
+            }).then(()=>{
+              //reload the window
+              window.location.reload()
+            })
+          }
+        }
+      )
+    }
   return (
 <Sheet>
     <SheetTrigger>
@@ -62,7 +83,7 @@ function AddAccessUsers() {
           <div className='my-4'>
             {
               users.some((user)=>user.check) &&
-              <Button>Give Access</Button>
+              <Button onClick={giveAccess}>Give Access</Button>
             }
           </div>
           <div className='flex flex-col gap-2 '>

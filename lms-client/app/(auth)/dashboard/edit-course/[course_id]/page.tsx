@@ -212,7 +212,7 @@ const Page = ({params}: Props) => {
                   <CardHeader>
                     <div className='flex justify-between'>
                       <CardTitle>Access</CardTitle>
-                      <AddAccessUsers/>
+                      <AddAccessUsers usersHaveAccess={accesses} params={params}/>
                     </div>
                     <div className='pt-4'>
 

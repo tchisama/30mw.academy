@@ -206,39 +206,6 @@ router.get('/config', async (req, res) => {
 
 // get total users and totall access totall courses and totall views
 
-// Get the total number of users
-const totalUsers = async () => {
-  try {
-    const count = await UserModel.countDocuments();
-    return count;
-  } catch (error) {
-    console.error(error);
-    return 0;
-  }
-};
-
-// Get the total number of access
-const totalAccess = async () => {
-  try {
-    const count = await AccessModel.countDocuments();
-    return count;
-  } catch (error) {
-    console.error(error);
-    return 0;
-  }
-};
-
-// Get the total number of courses
-const totalCourses = async () => {
-  try {
-    const count = await CourseModel.countDocuments();
-    return count;
-  } catch (error) {
-    console.error(error);
-    return 0;
-  }
-};
-
 // Get the total number of views
 const Total = async () => {
   try {
