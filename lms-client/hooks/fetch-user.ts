@@ -24,6 +24,7 @@ const useFetchUser = () => {
         updateUser(res.data)
       }).catch((err)=>{
         console.log(err)
+        alert("didnt register")
       })
     }
   },[updateUser,userClerk.user?.id])
