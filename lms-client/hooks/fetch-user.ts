@@ -22,6 +22,8 @@ const useFetchUser = () => {
       })
       .then((res)=> {
         updateUser(res.data)
+      }).catch((err)=>{
+        console.log(err)
       })
     }
   },[updateUser,userClerk.user?.id])
