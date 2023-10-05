@@ -18,6 +18,7 @@ import axios from "axios"
 import { useRouter } from 'next/navigation'
 import { useClerk } from '@clerk/nextjs'
 import Notes from '@/components/global/Notes'
+import { server } from '@/server'
 
 type Props = {
     params:{
@@ -89,14 +90,14 @@ const page = ({params}: Props) => {
   useEffect(() => {
     setLoading(true)
     if (user.user?.id) {
-        axios.post("http://localhost:8080/get-course",{id:params.course_id}).then(data => {
+        axios.post(server+"get-course",{id:params.course_id}).then(data => {
         setCourse(data.data)
         }).then(() => {
-            axios.post("http://localhost:8080/auth/get-access",{id_user:user?.user?.id,id_course:params.course_id}).then(data => {
+            axios.post(server+"auth/get-access",{id_user:user?.user?.id,id_course:params.course_id}).then(data => {
                 setAccess(data.data)
             })
         }).then(() => {
-            axios.post("http://localhost:8080/get-video",
+            axios.post(server+"get-video",
                 {
                     id_course:params.course_id,
                     id_video:params.video_id,
@@ -105,7 +106,7 @@ const page = ({params}: Props) => {
             ).then(data => {
                 setVideo(data.data)
             }).then(() => {
-                axios.get("http://localhost:8080/auth/get-views/"+user.user?.id+"/"+params.course_id).then(data => {
+                axios.get(server+"auth/get-views/"+user.user?.id+"/"+params.course_id).then(data => {
                     setViews(data.data)
                     setLoading(false)
                 })
@@ -116,7 +117,7 @@ const page = ({params}: Props) => {
 
     const getViews = () => {
         if(!views?.includes(params.video_id)){
-            axios.post("http://localhost:8080/auth/add-marked-view",
+            axios.post(server+"auth/add-marked-view",
             {
                 id_user:user?.user?.id,
                 id_course:params.course_id,
@@ -129,7 +130,7 @@ const page = ({params}: Props) => {
 
     const removeView = () => {
         if(views?.includes(params.video_id)){
-            axios.post("http://localhost:8080/auth/remove-marked-view",
+            axios.post(server+"auth/remove-marked-view",
             {
                 id_user:user?.user?.id,
                 id_course:params.course_id,
@@ -142,7 +143,7 @@ const page = ({params}: Props) => {
 
     const buyNow = () => {
         if(!access){
-            axios.post("http://localhost:8080/auth/make-access",
+            axios.post(server+"auth/make-access",
             {
                 id_user:user?.user?.id,
                 id_course:params.course_id,

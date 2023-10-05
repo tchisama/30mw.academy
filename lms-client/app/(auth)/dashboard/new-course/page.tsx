@@ -11,6 +11,7 @@ import { useRouter } from 'next/navigation'
 import useCourseStore from '@/hooks/course-store'
 import useUserStore from '@/hooks/users-store'
 import useFetchUser from '@/hooks/fetch-user'
+import { server } from '@/server'
 
 type Props = {}
 
@@ -23,7 +24,7 @@ const  Page = (props: Props) => {
     const createCourse =async ()=>{
         setLoading(true)
         try {
-            const response = await axios.post("http://localhost:8080/create-course",{
+            const response = await axios.post(server+"create-course",{
                 title,
                 owner:{
                     fname:user?.fname,

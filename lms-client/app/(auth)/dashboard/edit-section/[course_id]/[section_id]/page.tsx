@@ -6,6 +6,7 @@ import NewSectionVideos from '@/components/global/NewSectionVideos'
 import { Button } from '@/components/ui/button'
 import useCourseStore from '@/hooks/course-store'
 import usePublishCourse from '@/hooks/use-publish-course'
+import { server } from '@/server'
 import axios from "axios"
 import { ArrowLeft, Loader, Upload } from 'lucide-react'
 import Link from 'next/link'
@@ -30,7 +31,7 @@ const Page = ({params}: Props) => {
   // get the course by the param id using axios
   useEffect(()=>{
     try {
-      axios.get("http://localhost:8080/course/"+params.course_id)
+      axios.get(server+"course/"+params.course_id)
       .then((res)=>{
         console.log(res.data)
         updateCourse(res.data)

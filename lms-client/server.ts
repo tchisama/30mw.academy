@@ -1,0 +1,1 @@
+export const server = "https://wild-puce-hatchling-tam.cyclic.app/"

@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardHeader, CardTitle } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
 import useProtuctDashboard from '@/hooks/protuctDashboard'
+import { server } from '@/server'
 import { useClerk } from '@clerk/nextjs'
 import { Book, CircleDollarSign, Eye, EyeIcon, Loader, ShoppingCart, Users } from 'lucide-react'
 import { useRouter } from 'next/navigation'
@@ -27,7 +28,7 @@ function page({}: Props) {
   const [data, setData] = React.useState<MyData>()
   const [loading, setLoading] = React.useState(true)
   useEffect(() => {
-    fetch('http://localhost:8080/total')
+    fetch(server+'total')
       .then((res) => res.json())
       .then((data) => setData(data))
       .then(() => setLoading(false))

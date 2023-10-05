@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import useCourseStore, { Course } from './course-store';
+import { server } from '@/server';
 
 const usePublishCourse = () => {
   const [publishing, setPublishing] = useState(false);
@@ -9,7 +10,7 @@ const usePublishCourse = () => {
   const publish = async () => {
     setPublishing(true);
     try {
-      const response = await axios.post(`http://localhost:8080/update-course/${course._id}`, course);
+      const response = await axios.post(`${server}update-course/${course._id}`, course);
       console.log(response.data);
       setTimeout(() => {
         setPublishing(false);

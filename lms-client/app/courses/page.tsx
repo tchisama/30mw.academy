@@ -6,6 +6,7 @@ import { Progress } from '@/components/ui/progress'
 import { Separator } from '@/components/ui/separator'
 import useCategories from '@/hooks/categories'
 import useCategoriesStore from '@/hooks/categories-store'
+import { server } from '@/server'
 import { Loader } from 'lucide-react'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
@@ -28,7 +29,7 @@ const page = (props: Props) => {
     const router = useRouter()
     const [loading, setLoading] = React.useState(true)
     useEffect(() => {
-        fetch("http://localhost:8080/courses-client/test").then(res => res.json()).then(data => {
+        fetch(server+"courses-client/test").then(res => res.json()).then(data => {
             setCourses(data)
             update(p=>p+1)
             setLoading(false)

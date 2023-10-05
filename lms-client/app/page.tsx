@@ -9,6 +9,7 @@ import { use, useEffect, useState } from "react"
 import { useClerk } from "@clerk/nextjs"
 import TypeWriter from "@/components/global/TypingWriter"
 import Link from "next/link"
+import { server } from "@/server"
 
 interface LandingPage {
   landing_page: {
@@ -26,7 +27,7 @@ export default function Home() {
   const [config, setConfig] = useState<LandingPage>()
   const [loading, setLoading] = useState(true)
   useEffect(() => {
-    fetch('http://localhost:8080/config')
+    fetch(server+'config')
       .then(res => res.json())
       .then(data =>{
           setConfig(data)

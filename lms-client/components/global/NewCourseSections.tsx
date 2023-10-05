@@ -20,6 +20,7 @@ import { Input } from '../ui/input'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import axios from "axios"
+import { server } from '@/server'
 type Props = {}
 
 
@@ -67,7 +68,7 @@ function NewCourseSections({}: Props) {
 
 
     async function saveAndNavigate(link:string) {
-      await  axios.post("http://localhost:8080/update-course/"+course._id,course)
+      await  axios.post(server+"update-course/"+course._id,course)
       router.push(link)
     }
 

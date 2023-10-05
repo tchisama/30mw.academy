@@ -21,6 +21,7 @@ import { Input } from '@/components/ui/input'
 import useCategories from '@/hooks/categories'
 import axios from 'axios'
 import useCategoriesStore from '@/hooks/categories-store'
+import { server } from '@/server'
 type Props = {}
 
 const page = (props: Props) => {
@@ -33,7 +34,7 @@ const page = (props: Props) => {
   // create new category
   const createCategory =async()=>{
     try {
-        const response = await axios.post("http://localhost:8080/category/create-category",{
+        const response = await axios.post(server+"category/create-category",{
             name:text
         })
         update(p=>p+1)
@@ -45,7 +46,7 @@ const page = (props: Props) => {
   }
   const updateCategory =async()=>{
     try {
-        const response = await axios.put("http://localhost:8080/category/category/"+selctedCategory,{
+        const response = await axios.put(server+"category/category/"+selctedCategory,{
             name:text2
         })
         update(p=>p+1)
@@ -57,7 +58,7 @@ const page = (props: Props) => {
   }
   const deleteCategory =async(id:string)=>{
     try {
-        const response = await axios.delete("http://localhost:8080/category/category/"+id)
+        const response = await axios.delete(server+"category/category/"+id)
         update(p=>p+1)
         console.log(response)
     } catch (error) {

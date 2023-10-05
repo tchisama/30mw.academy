@@ -4,6 +4,7 @@ import useCourseStore, { Course } from './course-store';
 import { useClerk } from '@clerk/nextjs';
 import useUserStore from './users-store';
 import usePublishCourse from './use-publish-course';
+import { server } from '@/server';
 
 const useFetchUser = () => {
 
@@ -12,7 +13,7 @@ const useFetchUser = () => {
   
   useEffect(() => {
     if(userClerk.user){
-      axios.post("http://localhost:8080/auth/create-user",{
+      axios.post(server+"auth/create-user",{
           fname: userClerk.user?.firstName,
           lname: userClerk.user?.lastName,
           email: userClerk.user?.emailAddresses[0].emailAddress,

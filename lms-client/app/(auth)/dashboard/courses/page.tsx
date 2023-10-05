@@ -8,6 +8,7 @@ import { Card, CardDescription, CardHeader, CardTitle } from '@/components/ui/ca
 import { Input } from '@/components/ui/input'
 import { Separator } from '@/components/ui/separator'
 import { Course } from '@/hooks/course-store'
+import { server } from '@/server'
 import { Edit, Eye, Loader } from 'lucide-react'
 import { Cardo } from 'next/font/google'
 import Link from 'next/link'
@@ -20,7 +21,7 @@ function Page() {
     const [search, setSearch] = React.useState('')
     const [loading,setLoading]=React.useState(true)
     useEffect(() => {
-        fetch('http://localhost:8080/courses')
+        fetch(server+'courses')
         .then(res => res.json())
         .then(data => 
           {

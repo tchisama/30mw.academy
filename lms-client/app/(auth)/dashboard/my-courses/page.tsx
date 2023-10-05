@@ -9,6 +9,7 @@ import { Input } from '@/components/ui/input'
 import { Separator } from '@/components/ui/separator'
 import { Course } from '@/hooks/course-store'
 import useUserStore from '@/hooks/users-store'
+import { server } from '@/server'
 import { useClerk } from '@clerk/nextjs'
 import { Edit, Eye, Loader, Stars } from 'lucide-react'
 import { Cardo } from 'next/font/google'
@@ -24,7 +25,7 @@ function Page() {
 
     useEffect(() => {
       if(user.user?.id){
-        fetch('http://localhost:8080/my-courses/'+user.user.id)
+        fetch(server+'my-courses/'+user.user.id)
         .then(res => res.json())
         .then(data => {
           setCourses(data)

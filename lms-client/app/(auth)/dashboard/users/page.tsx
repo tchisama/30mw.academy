@@ -19,6 +19,7 @@ import { Badge } from '@/components/ui/badge'
 import { Input } from '@/components/ui/input'
 import { useClerk } from '@clerk/nextjs'
 import { Separator } from '@/components/ui/separator'
+import { server } from '@/server'
 
 
 
@@ -32,7 +33,7 @@ function Page({}: Props) {
     const user = useClerk();
     // fetch usrs from the server
     const fetchUser = ()=>{
-        fetch('http://localhost:8080/auth/users')
+        fetch(server+'auth/users')
         .then(res => res.json())
         .then(data => 
             {
@@ -41,7 +42,7 @@ function Page({}: Props) {
                 setLoading(false)
             })
 
-        fetch('http://localhost:8080/auth/users-analytics')
+        fetch(server+'auth/users-analytics')
         .then(res => res.json())
         .then(data => 
             {
@@ -60,14 +61,14 @@ function Page({}: Props) {
     }
     const setAdmin = (id:string)=>{
         // make user admin
-        fetch('http://localhost:8080/auth/change-rule/'+id+'/admin').then(res => res.json()).then(data => {
+        fetch(server+'auth/change-rule/'+id+'/admin').then(res => res.json()).then(data => {
             fetchUser()
         })
     }
 
     const setUserRule = (id:string)=>{
         // make user admin
-        fetch('http://localhost:8080/auth/change-rule/'+id+'/user').then(res => res.json()).then(data => {
+        fetch(server+'auth/change-rule/'+id+'/user').then(res => res.json()).then(data => {
             fetchUser()
         })
     }

@@ -26,6 +26,7 @@ import { Avatar } from '@/components/ui/avatar';
 import { AvatarImage } from '@radix-ui/react-avatar';
 import useCategories from '@/hooks/categories';
 import useCategoriesStore from '@/hooks/categories-store';
+import { server } from '@/server';
 type Props = {
   params: {
     course_id: string
@@ -44,7 +45,7 @@ const Page = ({params}: Props) => {
   // get the course by the param id using axios
   useEffect(()=>{
     try {
-      axios.get("http://localhost:8080/course/"+params.course_id)
+      axios.get(server+"course/"+params.course_id)
       .then((res)=>{
         console.log(res.data)
         if(res.data!==null){

@@ -1,3 +1,4 @@
+import { server } from '@/server';
 import { useClerk } from '@clerk/nextjs';
 import { Loader } from 'lucide-react';
 import { useRouter } from 'next/navigation';
@@ -8,7 +9,7 @@ const useProtuctDashboard = () => {
   const route = useRouter()
   React.useEffect(() => {
     if(user.user?.id){
-      fetch(`http://localhost:8080/auth/user/${user.user?.id}`).then(res => res.json()).then(data => {
+      fetch(`${server}auth/user/${user.user?.id}`).then(res => res.json()).then(data => {
         console.log(data)
         if(data.rule=="admin"||data.rule=="teacher"){
           setLoading(false)

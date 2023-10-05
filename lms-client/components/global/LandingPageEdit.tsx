@@ -28,7 +28,7 @@ type Props = {
 function LandingPageEdit({Text,Heading,setHeading,setText,tolearn,handleOnDragEnd,setToLearn}: Props) {
     const [publishing,setPublishing]=React.useState(false)
     useEffect(()=>{
-        fetch("http://localhost:8080/config").then((res)=>{
+        fetch(server+"config").then((res)=>{
             return res.json()
         }).then(data=>{
                 setHeading(data.landing_page.Header)
@@ -38,7 +38,7 @@ function LandingPageEdit({Text,Heading,setHeading,setText,tolearn,handleOnDragEn
     },[])
     const publish =()=>{
         setPublishing(true)
-        axios.post("http://localhost:8080/update-config",{
+        axios.post(server+"update-config",{
             landing_page:{
                 Text:Text,
                 Header:Heading,
