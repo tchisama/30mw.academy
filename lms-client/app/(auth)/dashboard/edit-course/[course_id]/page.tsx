@@ -8,7 +8,7 @@ import NewCourseImage from '@/components/global/NewCourseImage'
 import NewCourseTitle from '@/components/global/NewCourseTitle'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { Frown, Loader, Shield, ShieldCheck, Trash2, Upload } from 'lucide-react'
+import { Frown, Loader, PlusCircle, Shield, ShieldCheck, Trash2, Upload } from 'lucide-react'
 import Masonry from 'react-masonry-css'
 import NewCoursePrice from '@/components/global/NewCoursePrice'
 import NewCourseCat from '@/components/global/NewCourseCat'
@@ -68,13 +68,13 @@ const Page = ({params}: Props) => {
   },[params.course_id,updateCourse])
 
   if(loading){
-      return <div className='h-screen flex justify-center items-center '>
+      return  <div className='h-screen flex justify-center items-center '>
                   <h1 className='flex gap-3'><Loader className='animate-spin'/>Loading...</h1>
               </div>
   }
 
   if(err){
-      return <div className='h-screen flex gap-2 flex-col justify-center items-center '>
+      return  <div className='h-screen flex gap-2 flex-col justify-center items-center '>
                   <h1 className='flex gap-3 text-lg'><Frown className=''/>No Course Found</h1>
                   <p className='text-'>it may be deleted</p>
               </div>
@@ -127,7 +127,9 @@ const Page = ({params}: Props) => {
               <TabsContent value="security" className=' flex gap-4 flex-col'>
 
 
+                <div className='grid grid-cols-2 gap-4'>
 
+                <div className='flex flex-col gap-4'>
                 <Card className='max-w-2xl'>
                   <CardHeader>
                     <div className='flex justify-between'>
@@ -148,6 +150,7 @@ const Page = ({params}: Props) => {
                   </CardHeader>
                 </Card>
                 <Separator/>
+
                 <Card className='max-w-2xl'>
                   <CardHeader>
                     <div className='flex justify-between'>
@@ -160,7 +163,31 @@ const Page = ({params}: Props) => {
                   </CardHeader>
                 </Card>
 
+                <Separator/>
+                </div>
 
+                <Card className='max-w-2xl'>
+                  <CardHeader>
+                    <div className='flex justify-between'>
+                      <CardTitle>Access</CardTitle>
+                      <Button className='flex gap-2'><PlusCircle size={18}/> Add User</Button>
+                    </div>
+                    <div className='pt-4'>
+                    <div className='p-1 px-3 flex gap-2 items-center border rounded-lg '>
+                          <Avatar>
+                              <AvatarImage src='https://avatars.githubusercontent.com/u/115560200?v=4'></AvatarImage>
+                          </Avatar>
+                          <div className='flex p-2 flex-col'>
+                            <h3>tchisama</h3>
+                            <p className='text-sm text-muted-foreground'>pro.tchisama@gmail.com</p>
+                          </div>
+                    </div>
+                    </div>
+                  </CardHeader>
+                </Card>
+
+
+                </div>
 
 
               </TabsContent>
