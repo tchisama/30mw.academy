@@ -27,10 +27,34 @@ import { AvatarImage } from '@radix-ui/react-avatar';
 import useCategories from '@/hooks/categories';
 import useCategoriesStore from '@/hooks/categories-store';
 import { server } from '@/server';
+import AddAccessUsers from '@/components/global/AddAccessUsers';
 type Props = {
   params: {
     course_id: string
   }
+}
+interface CourseAccess {
+  _id: string;
+  id_user: string;
+  id_course: string;
+  price_access: number;
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
+  user: User[];
+}
+
+interface User {
+  _id: string;
+  lname: string;
+  fname: string;
+  email: string;
+  id_user: string;
+  photo: string;
+  rule: string;
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
 }
 
 const Page = ({params}: Props) => {
@@ -39,9 +63,27 @@ const Page = ({params}: Props) => {
   const {updateCourse,course}=useCourseStore()
   const {update}=useCategories()
   const {categories}=useCategoriesStore()
-
+  const [accesses,setAccesses]=React.useState<CourseAccess[]>([])
   const {publish,publishing}=usePublishCourse()
 
+  useEffect(()=>{
+    try {
+      axios.get(server+"accesses/"+params.course_id)
+      .then((res)=>{
+        console.log(res.data)
+        if(res.data!==null){
+          setAccesses(res.data)
+        }else{
+          setErr(
+            true
+          )
+        }
+      })
+    } catch (error) {
+      console.log(error)
+      setErr(true)
+    }
+  },[])
   // get the course by the param id using axios
   useEffect(()=>{
     try {
@@ -166,22 +208,27 @@ const Page = ({params}: Props) => {
                 <Separator/>
                 </div>
 
-                <Card className='max-w-2xl'>
+                <Card className='max-w-2xl  h-fit'>
                   <CardHeader>
                     <div className='flex justify-between'>
                       <CardTitle>Access</CardTitle>
-                      <Button className='flex gap-2'><PlusCircle size={18}/> Add User</Button>
+                      <AddAccessUsers/>
                     </div>
                     <div className='pt-4'>
-                    <div className='p-1 px-3 flex gap-2 items-center border rounded-lg '>
-                          <Avatar>
-                              <AvatarImage src='https://avatars.githubusercontent.com/u/115560200?v=4'></AvatarImage>
-                          </Avatar>
-                          <div className='flex p-2 flex-col'>
-                            <h3>tchisama</h3>
-                            <p className='text-sm text-muted-foreground'>pro.tchisama@gmail.com</p>
+
+                      {
+                        accesses.map((access)=>(
+                          <div className='p-1 px-3 flex gap-2 items-center border-b'>
+                                <Avatar>
+                                    <AvatarImage src={access.user[0].photo}></AvatarImage>
+                                </Avatar>
+                                <div className='flex p-2 flex-col'>
+                                  <h3>{access.user[0].fname} {access.user[0].lname}</h3>
+                                  <p className='text-sm text-muted-foreground'>{access.user[0].email}</p>
+                                </div>
                           </div>
-                    </div>
+                        ))
+                      }
                     </div>
                   </CardHeader>
                 </Card>

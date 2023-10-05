@@ -286,5 +286,27 @@ router.get('/total', async (req, res) => {
     res.status(500).json({ message: 'Failed to get the total' });
   }
 })
+// get accesses by id_course
+router.get('/accesses/:id_course', async (req, res) => {
+  try {
+    const accesses = await AccessModel.aggregate([
+      {
+        $match: { id_course: req.params.id_course }
+      },
+      {
+        $lookup: {
+          from: 'users', // The name of the "users" collection
+          localField: 'id_user', // Field in "course_access" collection
+          foreignField: 'id_user', // Field in "users" collection
+          as: 'user',
+        },
+      },
+    ]);
+    res.status(200).json(accesses);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Failed to get the accesses' });
+  }
+})
 
 module.exports = router;
