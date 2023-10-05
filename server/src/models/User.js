@@ -5,25 +5,25 @@ const mongoose = require('mongoose');
 const userSchema = new mongoose.Schema({
   lname: {
     type: String,
-    required: true,
+    default: '',
   },
   fname: {
     type: String,
-    required: true,
+    default: '',
   },
   email: {
     type: String,
-    required: true,
+    default: '',
     unique: true
   },
   id_user:{
     type: String,
-    required: true,
+    default: '',
     unique: true
   },
   photo:{
     type: String,
-    required: false
+    default: '',
   },
   rule: {
     type: String,

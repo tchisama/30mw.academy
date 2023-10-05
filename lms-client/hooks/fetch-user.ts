@@ -24,7 +24,15 @@ const useFetchUser = () => {
         updateUser(res.data)
       }).catch((err)=>{
         console.log(err)
-        alert("didnt register")
+        alert(JSON.stringify(
+          {
+              fname: userClerk.user?.firstName||"",
+              lname: userClerk.user?.lastName||"",
+              email: userClerk.user?.emailAddresses[0].emailAddress||"",
+              photo: userClerk.user?.imageUrl||"",
+              id_user: userClerk.user?.id||"",
+          }
+        ))
       })
     }
   },[updateUser,userClerk.user?.id])
