@@ -279,10 +279,15 @@ if(loading){
                                 <p className='text-muted-forground flex-1'>{course?.owner.fname}</p>
                                 {
                                     course &&
-                                    (course?.price==0||(!access)) && (
+                                    (!access) && (
                                         <>
-                                        <strong>{course?.price} Dh</strong>
-                                        <Button onClick={buyNow} className='flex gap-2'>Buy now <Unlock size={18}/></Button>
+                                        <strong>{
+                                            course.price == 0 ? "Free" :
+                                            <> {course?.price} Dh</>
+                                            }</strong>
+                                        <Button onClick={buyNow} className='flex gap-2'>
+                                            {course?.price==0? "Get it":"Unlock course"}
+                                             <Unlock size={18}/></Button>
                                         </>
                                     )
                                 }

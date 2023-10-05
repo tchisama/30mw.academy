@@ -26,6 +26,7 @@ export default function Home() {
   const user = useClerk()
   const [config, setConfig] = useState<LandingPage>()
   const [loading, setLoading] = useState(true)
+  useFetchUser()
   useEffect(() => {
     fetch(server+'config')
       .then(res => res.json())
