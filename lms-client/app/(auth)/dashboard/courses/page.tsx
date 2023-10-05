@@ -15,6 +15,7 @@ import React, { useEffect } from 'react'
 
 
 function Page() {
+
     const [courses ,setCourses] = React.useState<Course[]>([])
     const [search, setSearch] = React.useState('')
     const [loading,setLoading]=React.useState(true)
