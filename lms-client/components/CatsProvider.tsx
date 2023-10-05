@@ -1,5 +1,6 @@
 "use client"
 import useCategories from '@/hooks/categories'
+import useFetchUser from '@/hooks/fetch-user'
 import React, { useEffect } from 'react'
 
 
@@ -9,6 +10,7 @@ type Props = {
 
 const CatsProvider = ({children}: Props) => {
     const {update} = useCategories()
+    useFetchUser()
     useEffect(() => {
         update(p => p + 1)
     },[])
