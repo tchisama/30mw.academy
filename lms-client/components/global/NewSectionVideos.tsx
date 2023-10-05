@@ -20,6 +20,7 @@ import { Input } from '../ui/input'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import axios from "axios"
+import { server } from '@/server'
 type Props = {
   params:{
     course_id:string,

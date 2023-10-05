@@ -15,6 +15,7 @@ import { Textarea } from '../ui/textarea'
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
 import { Input } from '../ui/input'
 import axios from 'axios'
+import { server } from '@/server'
 type Props = {
     Text:string,
     Heading:string,
