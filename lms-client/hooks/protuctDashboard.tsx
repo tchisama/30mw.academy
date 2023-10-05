@@ -10,7 +10,6 @@ const useProtuctDashboard = () => {
   React.useEffect(() => {
     if(user.user?.id){
       fetch(`${server}auth/user/${user.user?.id}`).then(res => res.json()).then(data => {
-        console.log(data)
         if(data.rule=="admin"||data.rule=="teacher"){
           setLoading(false)
         }else{

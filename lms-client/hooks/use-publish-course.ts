@@ -11,7 +11,6 @@ const usePublishCourse = () => {
     setPublishing(true);
     try {
       const response = await axios.post(`${server}update-course/${course._id}`, course);
-      console.log(response.data);
       setTimeout(() => {
         setPublishing(false);
       }, 800);

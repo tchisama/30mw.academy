@@ -63,7 +63,6 @@ function NewCourseImage({}: Props) {
                             file,
                             onProgressChange: (progress) => {
                             // you can use this to show a progress bar
-                            console.log(progress);
                             },
                         });
                         // you can run some server action or api here
@@ -72,7 +71,6 @@ function NewCourseImage({}: Props) {
                             ...course,
                             image: res.url
                         })
-                        console.log(res);
                         }
                         setChanged(false)
                     setEditMode(false);

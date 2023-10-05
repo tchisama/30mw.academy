@@ -39,9 +39,7 @@ const page = (props: Props) => {
         })
         update(p=>p+1)
         setText("")
-        console.log(response)
     } catch (error) {
-        console.log(error)
     }
   }
   const updateCategory =async()=>{
@@ -51,7 +49,6 @@ const page = (props: Props) => {
         })
         update(p=>p+1)
         setText2("")
-        console.log(response)
     } catch (error) {
         console.log(error)
     }
@@ -60,7 +57,6 @@ const page = (props: Props) => {
     try {
         const response = await axios.delete(server+"category/category/"+id)
         update(p=>p+1)
-        console.log(response)
     } catch (error) {
         console.log(error)
     }

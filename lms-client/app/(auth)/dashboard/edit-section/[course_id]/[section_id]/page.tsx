@@ -33,7 +33,6 @@ const Page = ({params}: Props) => {
     try {
       axios.get(server+"course/"+params.course_id)
       .then((res)=>{
-        console.log(res.data)
         updateCourse(res.data)
         setTimeout(() => {
           setLoading(false)

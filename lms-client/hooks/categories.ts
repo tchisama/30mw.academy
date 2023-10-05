@@ -12,7 +12,6 @@ const useCategories = () => {
         .then(res => res.json())
         .then(data => 
             {
-                console.log(data)
                 updateCats(data)
             })
     },[u])

@@ -10,6 +10,12 @@ import { useClerk } from "@clerk/nextjs"
 import TypeWriter from "@/components/global/TypingWriter"
 import Link from "next/link"
 import { server } from "@/server"
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
 
 interface LandingPage {
   landing_page: {
@@ -64,19 +70,39 @@ export default function Home() {
 
           <p className="text-center opacity-60">Powered By</p>
           <div className="flex dark:invert filter gap-8 opacity-70 drop-shadow-2xl justify-center items-center">
-            <Image
-              src={_30mw}
-              width={150}
-              height={150}
-              alt="Picture of the author"
-              className=""
-            />
-            <Image
-              src={_s3d}
-              width={150}
-              height={150}
-              alt="Picture of the author"
-            />
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger>
+                  <Image
+                    src={_30mw}
+                    width={150}
+                    height={150}
+                    alt="Picture of the author"
+                    className=""
+                  />
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>30 min website</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger>
+                    <Image
+                      src={_s3d}
+                      width={150}
+                      height={150}
+                      alt="Picture of the author"
+                    />
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>stodio 3d</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+
           </div>
         </div>
       </div>

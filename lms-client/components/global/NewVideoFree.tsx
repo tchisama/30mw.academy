@@ -30,7 +30,6 @@ function NewVideoFree({section,video_id}: Props) {
                 ) // Convert the boolean to a string
             }
             onCheckedChange={(e) =>{
-                console.log(course)
                 updateCourse({
                 ...course,
                 sections: course.sections.map((s) =>

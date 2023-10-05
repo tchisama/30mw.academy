@@ -37,7 +37,6 @@ function Page({}: Props) {
         .then(res => res.json())
         .then(data => 
             {
-                console.log(data)
                 setUsers(data)
                 setLoading(false)
             })
@@ -46,7 +45,6 @@ function Page({}: Props) {
         .then(res => res.json())
         .then(data => 
             {
-                console.log(data)
                 setUsersAnalytics(data)
                 setLoading(false)
             })

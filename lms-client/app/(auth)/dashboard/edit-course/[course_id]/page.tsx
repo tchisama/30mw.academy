@@ -70,7 +70,6 @@ const Page = ({params}: Props) => {
     try {
       axios.get(server+"accesses/"+params.course_id)
       .then((res)=>{
-        console.log(res.data)
         if(res.data!==null){
           setAccesses(res.data)
         }else{
@@ -89,7 +88,6 @@ const Page = ({params}: Props) => {
     try {
       axios.get(server+"course/"+params.course_id)
       .then((res)=>{
-        console.log(res.data)
         if(res.data!==null){
           updateCourse(res.data)
         }else{
@@ -217,14 +215,15 @@ const Page = ({params}: Props) => {
                     <div className='pt-4'>
 
                       {
+                        accesses &&
                         accesses.map((access)=>(
                           <div className='p-1 px-3 flex gap-2 items-center border-b'>
                                 <Avatar>
-                                    <AvatarImage src={access.user[0].photo}></AvatarImage>
+                                    <AvatarImage src={access?.user[0]?.photo}></AvatarImage>
                                 </Avatar>
                                 <div className='flex p-2 flex-col'>
-                                  <h3>{access.user[0].fname} {access.user[0].lname}</h3>
-                                  <p className='text-sm text-muted-foreground'>{access.user[0].email}</p>
+                                  <h3>{access?.user[0]?.fname} {access?.user[0]?.lname}</h3>
+                                  <p className='text-sm text-muted-foreground'>{access.user[0]?.email}</p>
                                 </div>
                           </div>
                         ))

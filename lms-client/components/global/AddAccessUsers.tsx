@@ -38,7 +38,6 @@ function AddAccessUsers({usersHaveAccess,params}:{usersHaveAccess:any,params:{co
         .then(res => res.json())
         .then(data => 
             {
-                console.log(data)
                 var lvl1 =data.map((user:User)=>{
                     return {
                         ...user,
@@ -46,7 +45,7 @@ function AddAccessUsers({usersHaveAccess,params}:{usersHaveAccess:any,params:{co
                     }
                 }) 
                 usersHaveAccess.forEach((user:any) => {
-                    lvl1=lvl1.filter((u:User)=>user.user[0]._id!==u._id)
+                    lvl1=lvl1.filter((u:User)=>user.user[0]?._id!==u._id)
                 });
                 setUsers(lvl1)
             })
