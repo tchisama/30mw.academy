@@ -12,19 +12,19 @@ const useFetchUser = () => {
   const userClerk = useClerk()
   
   useEffect(() => {
-    if(userClerk.user){
+    if(userClerk.user?.id){
       axios.post(server+"auth/create-user",{
-          fname: userClerk.user?.firstName,
-          lname: userClerk.user?.lastName,
-          email: userClerk.user?.emailAddresses[0].emailAddress,
-          photo: userClerk.user?.imageUrl,
-          id_user: userClerk.user?.id,
+          fname: userClerk.user?.firstName||"",
+          lname: userClerk.user?.lastName||"",
+          email: userClerk.user?.emailAddresses[0].emailAddress||"",
+          photo: userClerk.user?.imageUrl||"",
+          id_user: userClerk.user?.id||"",
       })
       .then((res)=> {
         updateUser(res.data)
       })
     }
-  },[updateUser,userClerk.user])
+  },[updateUser,userClerk.user?.id])
 
 };
 
