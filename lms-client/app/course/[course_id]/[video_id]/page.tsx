@@ -306,11 +306,10 @@ const Sections = ({course,views,video_id,access}:{views:string[]|undefined,cours
     const router= useRouter()
     return(
     <>
-        <h1 className='text-3xl font-medium'>Sections</h1>
         <div className='py-4'>
             <Separator/>
         </div>
-        <ScrollArea scrollHideDelay={100} className='h-[calc(100vh-332px)] pr-4'>
+        <div className=' pr-4'>
 
         {
             course?.sections.map(section => (
@@ -377,7 +376,7 @@ const Sections = ({course,views,video_id,access}:{views:string[]|undefined,cours
             ))
         }
 
-        </ScrollArea>
+        </div>
     </>
 )
 }
