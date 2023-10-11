@@ -16,6 +16,8 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip"
+import Courses from "@/components/global/Courses"
+import { Separator } from "@/components/ui/separator"
 
 interface LandingPage {
   landing_page: {
@@ -104,6 +106,12 @@ export default function Home() {
           </TooltipProvider>
 
           </div>
+        </div>
+        <div className="container mx-auto my-8">
+          <div className="my-8">
+            <Separator/>
+          </div>
+          <Courses/>
         </div>
       </div>
   )
