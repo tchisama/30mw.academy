@@ -6,7 +6,7 @@ import useFetchUser from '@/hooks/fetch-user'
 import useUserStore from '@/hooks/users-store'
 import { ClerkProvider, UserButton, useClerk } from '@clerk/nextjs'
 import { ModeToggle } from './DarkModeButton'
-
+import logo from "@/public/30mw.png"
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -28,8 +28,9 @@ const u = useClerk()
   return (
     <div className='w-full py-8 flex items-center justify-between'>
         <div className='flex-1'>
-            <Link href={"/"}>
-            <h1 className='text-3xl font-bold'>30MW</h1>
+            <Link href={"/"} className='flex drop-shadow-md items-center '>
+                <img className='h-14' src={logo.src} alt=""/>
+                <h1 className='text-xl font-medium'>Academy</h1>
             </Link>
         </div>
         <div className='flex-1 flex items-center justify-center'>
