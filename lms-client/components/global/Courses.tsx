@@ -45,7 +45,7 @@ function Courses({}: Props) {
       {
           courses.map(course => (
               
-              <Card onClick={() => router.push(`/course/${course._id}/start`)} key={course._id} className='overflow-hidden group cursor-pointer'>
+              <Card dir='rtl' onClick={() => router.push(`/course/${course._id}/start`)} key={course._id} className='overflow-hidden group cursor-pointer'>
                   <div className='relative aspect-video w-full overflow-hidden'>
                   {
 

@@ -274,7 +274,7 @@ if(loading){
                                     </Avatar>
                                     <div className='flex-1'>
                                             <p className='text-muted-forground '>{course?.owner.fname}</p>
-                                            <p className='text-muted-forground text-xs '>a designer and developer </p>
+                                            <p className='text-muted-forground text-xs '>مؤطر ذو خبرة اكثر من 10 سنين في العمل على الانترنيت</p>
                                     </div>
                                 </div>
                                 <div className='flex gap-4 items-center justify-between'>
@@ -283,9 +283,9 @@ if(loading){
                                     (!access) && (
                                         <>
                                             <GetCourseAlert course={course} />
-                                            <strong className='text-2xl'>{
+                                            <strong className='text-2xl text-right'>{
                                                 course.price == 0 ? "Free" :
-                                                <> {course?.price} Dh</>
+                                                <>  {course?.price} درهم </>
                                             }</strong>
                                         </>
                                     )

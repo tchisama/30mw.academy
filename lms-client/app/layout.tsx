@@ -1,14 +1,14 @@
 import { ThemeProvider } from '@/components/theme-provider'
 import './globals.css'
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Rubik } from 'next/font/google'
 import { ClerkProvider } from '@clerk/nextjs'
 import { EdgeStoreProvider } from '@/lib/edgestore'
 import CatsProvider from '@/components/CatsProvider'
 import { dev } from '@/server'
 import { Code } from 'lucide-react'
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Rubik({ subsets: ['arabic'] })
 
 export const metadata: Metadata = {
   title: '30MW Academy',

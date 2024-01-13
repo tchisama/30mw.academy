@@ -16,6 +16,7 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
+import Image from 'next/image'
 
 
 type Props = {}
@@ -26,20 +27,20 @@ const {user} = useUserStore()
 const u = useClerk()
 
   return (
-    <div className='w-full py-8 flex items-center justify-between'>
+    <div dir='rtl' className='w-full py-8 flex items-center justify-between'>
         <div className='flex-1'>
             <Link href={"/"} className='flex drop-shadow-md items-center '>
-                <img className='h-14' src={logo.src} alt=""/>
+                <Image className='h-14 w-14 dark:invert filter' height={50} width={50} src={logo} alt=""/>
                 <h1 className='text-xl font-medium'>Academy</h1>
             </Link>
         </div>
-        <div className='flex-1 flex items-center justify-center'>
+        <div className='flex-1 flex  items-center justify-center'>
         <NavigationMenu>
-            <NavigationMenuList>
+            <NavigationMenuList dir='rtl'>
                 <NavigationMenuItem>
                     <Link href="/" legacyBehavior passHref>
                         <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                            Home
+                        الصفحة الرئيسية
                         </NavigationMenuLink>
                     </Link>
                 </NavigationMenuItem>
@@ -47,7 +48,7 @@ const u = useClerk()
                 <NavigationMenuItem>
                     <Link href="/courses" legacyBehavior passHref>
                         <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                            Courses
+                        الدورات
                         </NavigationMenuLink>
                     </Link>
                 </NavigationMenuItem>
@@ -61,7 +62,7 @@ const u = useClerk()
                 <NavigationMenuItem>
                     <Link href="/Contact" legacyBehavior passHref>
                         <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                            Contact
+                        تواصل معنا
                         </NavigationMenuLink>
                     </Link>
                 </NavigationMenuItem>

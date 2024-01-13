@@ -36,7 +36,7 @@ function CourseCard({course}:{course:Course}) {
         </div>
       </div>
       <CardHeader className=' flex-1'>
-        <CardDescription className="mb-2 flex gap-2">
+        <CardDescription  className="mb-2 flex gap-2">
           <Avatar>
             <AvatarImage src={course?.owner?.photo} alt="@shadcn" />
             <AvatarFallback>CN</AvatarFallback>

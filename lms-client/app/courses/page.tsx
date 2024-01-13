@@ -8,11 +8,11 @@ type Props = {}
 
 const page = (props: Props) => {
   return (
-    <div className="w-full   container mx-auto">
+    <div className="w-full   container mx-auto" dir='rtl'>
         <div className="py-4 flex min-h-screen flex-col">
                 <Navbar/>
                 <div className='pt-20'>
-                    <h1 className='text-3xl font-medium'>Courses 📚</h1>
+                    <h1 className='text-5xl font-bold'>دوراتنا 📚</h1>
                 </div>
                 <div className='my-8'>
                     <Separator/>
