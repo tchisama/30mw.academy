@@ -19,6 +19,7 @@ import { useRouter } from 'next/navigation'
 import { useClerk } from '@clerk/nextjs'
 import Notes from '@/components/global/Notes'
 import { server } from '@/server'
+import GetCourseAlert from '@/components/GetCourseAlert'
 
 type Props = {
     params:{
@@ -141,18 +142,7 @@ const page = ({params}: Props) => {
         }
     }
 
-    const buyNow = () => {
-        if(!access){
-            axios.post(server+"auth/make-access",
-            {
-                id_user:user?.user?.id,
-                id_course:params.course_id,
-                price_access:course?.price,
-            }).then(()=>{
-                window.location.reload();
-            })
-        }
-    }
+
 
 
     const [videos_ids, setVideos_ids] = useState<string[]>([]);
@@ -226,7 +216,12 @@ if(loading){
                                 (video)?
                                 (
                                     <>
-                                    <iframe className='w-full max-h-[70vh] aspect-video rounded-xl' height="100%" src={video?.url} title="YouTube video player" allowFullScreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; "></iframe>
+                                    {/* <iframe className='w-full max-h-[70vh] aspect-video rounded-xl' height="100%" src={video?.url} title="YouTube video player" allowFullScreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; "></iframe> */}
+                                    <video 
+                                        className='w-full max-h-[70vh] aspect-video rounded-xl'
+                                        src={video?.url}
+                                        controls
+                                    ></video>
                                     <div className='py-4 flex justify-between'>
                                         <div className='flex gap-2'>
                                             <Button onClick={goPrev} variant={"secondary"}><ArrowLeft/></Button>
@@ -237,7 +232,7 @@ if(loading){
                                             <Button onClick={getViews} className='flex gap-2'>Mark completed <CheckCircle size={18}/></Button>
                                         }
                                     </div>
-                                    <h1 className='text-3xl py-2 font-medium'>{video.title}</h1>
+                                    <h1 className='text-3xl text-right py-2 font-medium'>{video.title}</h1>
                                     </>
                                 ):(
                                     <div className='w-full max-h-[70vh] aspect-video rounded-xl bg-secondary flex justify-center items-center flex-col gap-4'>
@@ -254,7 +249,7 @@ if(loading){
                                         <>
                                         <Lock size={40}/>
                                         Hello! To enjoy this video, consider purchasing the course. Thanks!🤗
-                                        <Button onClick={buyNow} className='flex gap-2'><Unlock size={18}/>Unlock course</Button>
+                                        <GetCourseAlert course={course}/>
                                         </>
                                             )
                                         }
@@ -268,29 +263,34 @@ if(loading){
                     </div>
 
 
-                    <div className=' relative w-[500px] p-4 px-6'>
+                    <div className=' relative w-[500px] p-4 px-6 ' dir='rtl'>
                         <div className=''>
                             <h1 className='text-3xl  font-medium'>{course?.title}</h1>
-                            <div className='flex items-center my-4 gap-4'>
-                                <Avatar>
-                                    <AvatarImage src={course?.owner.photo} />
-                                    <AvatarFallback>{course?.owner.fname[0]}{course?.owner.lname[0]}</AvatarFallback>
-                                </Avatar>
-                                <p className='text-muted-forground flex-1'>{course?.owner.fname}</p>
+                            <div className='flex flex-col justify-center my-4 gap-4'>
+                                <div className='flex gap-4 '>
+                                    <Avatar>
+                                        <AvatarImage src={course?.owner.photo} />
+                                        <AvatarFallback>{course?.owner.fname[0]}{course?.owner.lname[0]}</AvatarFallback>
+                                    </Avatar>
+                                    <div className='flex-1'>
+                                            <p className='text-muted-forground '>{course?.owner.fname}</p>
+                                            <p className='text-muted-forground text-xs '>a designer and developer </p>
+                                    </div>
+                                </div>
+                                <div className='flex gap-4 items-center justify-between'>
                                 {
                                     course &&
                                     (!access) && (
                                         <>
-                                        <strong>{
-                                            course.price == 0 ? "Free" :
-                                            <> {course?.price} Dh</>
+                                            <GetCourseAlert course={course} />
+                                            <strong className='text-2xl'>{
+                                                course.price == 0 ? "Free" :
+                                                <> {course?.price} Dh</>
                                             }</strong>
-                                        <Button onClick={buyNow} className='flex gap-2'>
-                                            {course?.price==0? "Get it":"Unlock course"}
-                                             <Unlock size={18}/></Button>
                                         </>
                                     )
                                 }
+                                </div>
                             </div>
                             <Sections views={views} access={access} video_id={params.video_id} course={course}/>
                         </div>
@@ -330,7 +330,7 @@ const Sections = ({course,views,video_id,access}:{views:string[]|undefined,cours
                                                 )
                                             }
                                     </div>
-                                    <div className='h-1 w-12 absolute top-[50%] left-[10px] z-0 bg-foreground opacity-10  '></div>
+                                    <div className='h-1 w-12 absolute top-[50%] right-[10px] z-0 bg-foreground opacity-10  '></div>
                                     <Card onClick={()=>router.push(`/course/${course?._id}/${video.id_video}`)}  className={'flex-1 p-3 z-10 relative cursor-pointer flex gap-2 items-center '+(video.id_video===video_id?' bg-secondary ':'')}>
                                         <div className='w-8 h-8 flex text-primary justify-center items-center bg-secondary rounded-sm'>
                                             {
@@ -341,7 +341,7 @@ const Sections = ({course,views,video_id,access}:{views:string[]|undefined,cours
                                                 )
                                             }
                                         </div>
-                                        <div className='text-sm'>{video.title.slice(0, 40)}</div>
+                                        <div className='text-sm h-5 overflow-hidden'>{video.title}</div>
                                     </Card>
                                 </div>
                         ))

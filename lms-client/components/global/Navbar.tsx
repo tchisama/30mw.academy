@@ -51,13 +51,13 @@ const u = useClerk()
                         </NavigationMenuLink>
                     </Link>
                 </NavigationMenuItem>
-                <NavigationMenuItem>
+                {/* <NavigationMenuItem>
                     <Link href="/About" legacyBehavior passHref>
                         <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                             About
                         </NavigationMenuLink>
                     </Link>
-                </NavigationMenuItem>
+                </NavigationMenuItem> */}
                 <NavigationMenuItem>
                     <Link href="/Contact" legacyBehavior passHref>
                         <NavigationMenuLink className={navigationMenuTriggerStyle()}>
