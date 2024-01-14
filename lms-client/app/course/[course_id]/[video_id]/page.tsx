@@ -20,6 +20,7 @@ import { useClerk } from '@clerk/nextjs'
 import Notes from '@/components/global/Notes'
 import { server } from '@/server'
 import GetCourseAlert from '@/components/GetCourseAlert'
+import GetCourseForm from '@/components/global/GetCourseForm'
 
 type Props = {
     params:{
@@ -215,6 +216,9 @@ if(loading){
                                     <>
                                     {/* <iframe className='w-full max-h-[70vh] aspect-video rounded-xl' height="100%" src={video?.url} title="YouTube video player" allowFullScreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; "></iframe> */}
                                     <video 
+                                        autoPlay
+                                        controlsList='nodownload'
+                                        disablePictureInPicture
                                         className='w-full max-h-[70vh] aspect-video rounded-xl'
                                         src={video?.url}
                                         controls
@@ -230,6 +234,9 @@ if(loading){
                                         }
                                     </div>
                                     <h1 className='text-3xl text-right py-2 font-medium'>{video.title}</h1>
+                                    <div>
+                                        <GetCourseForm course={course} model={false} access={access}/>
+                                    </div>
                                     </>
                                 ):(
                                     <div className='w-full max-h-[70vh] aspect-video rounded-xl bg-secondary flex justify-center items-center flex-col gap-4'>
@@ -313,8 +320,8 @@ const Sections = ({course,views,video_id,access}:{views:string[]|undefined,cours
                 <div className='my-2' key={section._id}>
                 <h1 className='text-xl font-medium'>{section.title}</h1>
                 <div className='flex'>
-                <div className='w-1 rounded my-8 translate-x-[20px] z-0 opacity-10 bg-foreground '></div>
-                <div className=' my-3 space-y-2 flex-1'>
+                <div className='w-1 rounded my-8 translate-x-[-20px] z-0 opacity-10 bg-foreground '></div>
+                <div className=' my-3 space-y-4 flex-1'>
                     {
                         section.videos.map(video => (
                                 <div key={video.id_video} className='flex gap-4 my-1 relative items-center'>

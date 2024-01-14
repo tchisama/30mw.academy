@@ -5,9 +5,10 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import useCategories from '@/hooks/categories'
 import useCategoriesStore from '@/hooks/categories-store'
 import { server } from '@/server'
-import { Loader } from 'lucide-react'
+import { ArrowLeft, Loader } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import React, { useEffect } from 'react'
+import { Button } from '../ui/button'
 
 type Props = {}
 type CourseClient={
@@ -60,7 +61,8 @@ function Courses({}: Props) {
                           .find(c=>c._id===course.category)?.name}</Badge>
                           <h3 className='text-xl'>{course.price==0?"Free":course.price+" Dh"} </h3>
                       </div>
-                      <CardDescription>{course.description.slice(0, 70)}</CardDescription>
+                      <CardDescription className='h-10 overflow-hidden'>{course.description}</CardDescription>
+                      <Button className='mt-auto flex gap-3'>المزيد من التفاصيل <ArrowLeft size={18}/></Button>
                   </CardHeader>
               </Card>
           ))
