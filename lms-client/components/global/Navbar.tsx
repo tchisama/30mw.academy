@@ -1,6 +1,7 @@
+"use client"
 import React from 'react'
 import { Button } from '../ui/button'
-import { Loader, Lock, LogIn } from 'lucide-react'
+import { Loader, Lock, LogIn, Menu } from 'lucide-react'
 import Link from 'next/link'
 import useFetchUser from '@/hooks/fetch-user'
 import useUserStore from '@/hooks/users-store'
@@ -27,15 +28,17 @@ const {user} = useUserStore()
 const u = useClerk()
 
   return (
-    <div dir='rtl' className='w-full py-8 flex items-center justify-between'>
+    <div>
+    <MobailNav />
+    <div dir='rtl' className='hidden md:flex w-full py-8 items-center justify-between'>
         <div className='flex-1'>
             <Link href={"/"} className='flex drop-shadow-md items-center '>
                 <Image className='h-14 w-14 dark:invert filter' height={50} width={50} src={logo} alt=""/>
-                <h1 className='text-xl font-medium'>Academy</h1>
+                <h1 className='text-xl md:block hidden font-medium'>Academy</h1>
             </Link>
         </div>
         <div className='flex-1 flex  items-center justify-center'>
-        <NavigationMenu>
+        <NavigationMenu className='md:block hidden'>
             <NavigationMenuList dir='rtl'>
                 <NavigationMenuItem>
                     <Link href="/" legacyBehavior passHref>
@@ -101,7 +104,24 @@ const u = useClerk()
             }
         </div>
     </div>
+    </div>
   )
 }
+
+
+const MobailNav = ()=>{
+    return(
+        <div className='md:hidden flex py-4 items-center justify-between'>
+            <Link href={"/"}>
+                <Image className='h-14 w-14 dark:invert filter' height={50} width={50} src={logo} alt=""></Image>
+            </Link>
+            <Button size={"icon"}> 
+                <Menu/>
+            </Button>
+        </div>
+    )
+}
+
+
 
 export default Navbar

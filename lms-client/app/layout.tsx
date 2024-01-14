@@ -7,6 +7,7 @@ import { EdgeStoreProvider } from '@/lib/edgestore'
 import CatsProvider from '@/components/CatsProvider'
 import { dev } from '@/server'
 import { Code } from 'lucide-react'
+import Navbar from '@/components/global/Navbar'
 
 const inter = Rubik({ subsets: ['arabic'] })
 
@@ -44,6 +45,9 @@ export default function RootLayout({
               >
                 <EdgeStoreProvider>
                   <CatsProvider>
+                    <div className="container mx-auto">
+                      <Navbar />
+                    </div>
                     {children}
                   </CatsProvider>
                 </EdgeStoreProvider>

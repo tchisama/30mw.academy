@@ -204,9 +204,6 @@ if(loading){
   return (
     <div className="w-full  px-8 ">
         {/* <Notes/> */}
-        <div className="py-0 container mx-auto flex flex-col">
-            <Navbar/>
-        </div>
         <div className='flex gap-4 max-w-[1700px] m-4 mx-auto'>
 
 
