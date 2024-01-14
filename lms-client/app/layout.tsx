@@ -45,10 +45,12 @@ export default function RootLayout({
               >
                 <EdgeStoreProvider>
                   <CatsProvider>
-                    <div className="container mx-auto">
-                      <Navbar />
+                    <div className='min-h-screen  flex flex-col'>
+                      <div className='max-w-[1800px] px-4 w-full mx-auto'>
+                        <Navbar />
+                      </div>
+                      {children}
                     </div>
-                    {children}
                   </CatsProvider>
                 </EdgeStoreProvider>
           </ThemeProvider>

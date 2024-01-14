@@ -43,11 +43,8 @@ const components: { title: string; href: string; description: string }[] = [
 
 export default function DashboardNavBar() {
   return (
-    <div className="py-8 flex justify-between">
+    <div className="py-3 flex justify-between">
     <NavigationMenu className="flex-1 flex justify-center">
-        <Link href={"/"} className="mr-8">
-          <h1 className=" text-2xl ">30mw<span className="text-lg">Academy</span></h1>
-        </Link>
       <NavigationMenuList>
 
         <NavigationMenuItem>
@@ -109,11 +106,6 @@ export default function DashboardNavBar() {
         </NavigationMenuItem>
       </NavigationMenuList>
     </NavigationMenu>
-    <div className="flex gap-2 items-center">
-                <Button variant={"ghost"} size={"icon"}><Bell size={18}/></Button>
-        <ModeToggle/>
-        <UserButton afterSignOutUrl="/sign-in"/>
-    </div>
     </div>
   )
 }

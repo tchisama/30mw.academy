@@ -56,7 +56,7 @@ function Courses({}: Props) {
                   <CardHeader>
                       <CardTitle>{course.title}</CardTitle>
                       <div className='flex items-center justify-between'>
-                          <Badge>{categories
+                          <Badge variant="outline">{categories
                           .find(c=>c._id===course.category)?.name}</Badge>
                           <h3 className='text-xl'>{course.price==0?"Free":course.price+" Dh"} </h3>
                       </div>

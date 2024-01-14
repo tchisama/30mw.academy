@@ -10,22 +10,14 @@ import Link from "next/link"
 export default function page() {
 
   return (
-    <div className="grid grid-cols-2 min-h-screen justify-center items-center">
-      <div className="w-full h-full relative bg-primary justify-center items-center flex">
+    
+    <div className="grid md:grid-cols-2 my-12 md:my-0 container  h-[80vh] md:bg-slate-200 rounded-3xl justify-center items-center ">
+      <div className="w-full md:flex hidden rounded-3xl h-full relative  justify-center items-center">
           <Image alt="illustration" className="w-[70%] object-contain drop-shadow-xl" src={illu}></Image>
-          <Link className="absolute bottom-4 right-6 text-white" href="/">
-            Create an teacher accout
-          </Link>
       </div>
-      <Link href="/sign-in" className="absolute top-6 right-8">
-        <Button>Sign in</Button>
-      </Link>
 
-      <Link href="/" className="absolute top-10 left-10">
-        <h1 className="text-white text-3xl font-bold">30mw Academy</h1>
-      </Link>
 
-        <div className="w-[400px] mx-auto">
+      <div className=" md:w-[400px] mx-auto flex items-center justify-center  w-full">
           <SignUp/>
           
         </div>
