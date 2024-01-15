@@ -116,7 +116,7 @@ const MobailNav = ()=>{
     const [open,setOpen ] = useState(false)
     const u = useClerk()
     return(
-        <div className='md:hidden z-[1000] relative flex py-4 items-center justify-between'>
+        <div className='md:hidden z-30 relative flex py-4 items-center justify-between'>
             <Link href={"/"}>
                 <Image className='h-14 w-14 dark:invert filter' height={50} width={50} src={logo} alt=""></Image>
             </Link>
