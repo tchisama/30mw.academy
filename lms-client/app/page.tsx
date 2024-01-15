@@ -54,9 +54,9 @@ export default function Home() {
     );
   }
   return (
-    <div className="w-full  px-6  mx-auto">
+    <div className="w-full  md:px-6 px-3  mx-auto">
       <div className="py-4 flex max-w-[1800px] mx-auto  flex-col">
-        <div className="  rounded-3xl  my-8  md:px-20 flex-1 flex  md:flex-row flex-col  md:py-8 dark:bg-slate-900 md:bg-slate-100 gap-2 justify-between items-center">
+        <div className="  rounded-3xl p-4  my-8  md:px-20 flex-1 flex  md:flex-row flex-col  md:py-8 dark:bg-slate-900 md:bg-slate-100 gap-2 justify-between items-center">
           <Image src={_30mw} alt="logo" className="drop-shadow-2xl opacity-60 filter dark:invert hidden md:block" width={400} height={400}></Image>
           <div className="flex flex-col items-end flex-1 justify-center ">
             <h1
@@ -75,7 +75,7 @@ export default function Home() {
             <div className="pt-8">
               <Link
                 href="/sign-up"
-                className="px-8 shadow-2xl flex-row-reverse hover:scale-105 items-center duration-150 py-4 text-lg bg-primary text-white uppercase rounded-full flex gap-2 "
+                className="md:px-8 px-4 shadow-2xl flex-row-reverse hover:scale-105 items-center duration-150 py-2 md:py-4 text-md md:text-lg bg-primary text-white uppercase rounded-full flex gap-2 "
               >
                 إشترك الآن المجان  <ArrowLeft />
               </Link>

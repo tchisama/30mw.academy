@@ -237,7 +237,7 @@ if(loading){
                                         <div className='hidden md:block'>
                                             <GetCourseForm course={course} model={false} access={access}/>
                                         </div>
-                                        <div onClick={()=>setOpenDesc(!opedDesc)} className={'px-4 pb-4 bg-gray-100 duration-150 block md:hidden rounded-xl cursor-pointer relative overflow-hidden ' + (opedDesc ? " h-full":" h-48 ")}  >
+                                        <div onClick={()=>setOpenDesc(!opedDesc)} className={'px-4 pb-4 bg-gray-100 dark:bg-gray-800 duration-150 block md:hidden rounded-xl cursor-pointer relative overflow-hidden ' + (opedDesc ? " h-full":" h-48 ")}  >
                                             <GetCourseForm course={course} model={false} access={access}/>
                                             <ChevronDown size={18} className={'absolute left-4 top-4 duration-150 '  + (opedDesc ? " rotate-180 " :" ")}/>
                                         </div>
