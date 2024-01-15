@@ -112,10 +112,12 @@ function GetCourseForm({course,model,access }: Props) {
                             بايونير <br />
                             Payoneer
                         </MethodButton>
+                        <div className='col-span-2'>
                         <MethodButton href="https://wa.me/+212642680949?text=HELP">
                             لطلب المساعدة
                             <br /> تواصل معنا عبر واطساب
                         </MethodButton>
+                        </div>
                         </div>
                     </DialogHeader>
             }
