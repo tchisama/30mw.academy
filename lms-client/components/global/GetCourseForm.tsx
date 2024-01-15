@@ -39,16 +39,21 @@ function GetCourseForm({course,model,access }: Props) {
                     <li>روابط البرامج</li>
                     <li>تواصل مباشر مع المؤطر</li>
                 </ul>
-                <Separator className='my-8' />
-                <ul className='list-disc mr-4'>
-                    <li>تأكد انك قد شاهدت الحصة المجانية لتفهم محتويات الدورة</li>
-                    <li>تعتبر الدورة عبارة عن استثمار في النفس ينصح إضافت المهارات التي ستتعلمها في سيرتكم الذاتية</li>
-                    <li>أو البدأ مباشرة في تطبيقها في العمل الحر و بناء معرض اعمال (Portfolio)</li>
-                    <li>تحتوي الدورة على العديد من التمارين التطبيقية يمكنك مشاركتها في المجموعة</li>
-                    <li>لا يوجد اي اختبار في نهاية الدورة لذالك لن يمكننا منحكم شهادة نهاية الدورة</li>
-                    <li>شكرا لإختيارنا يسعدنا التعامل معك.</li>
-                </ul>
-                <Separator className='my-8' />
+                {
+                    !model &&
+                    <div>
+                        <Separator className='my-8' />
+                            <ul className='list-disc mr-4'>
+                                <li>تأكد انك قد شاهدت الحصة المجانية لتفهم محتويات الدورة</li>
+                                <li>تعتبر الدورة عبارة عن استثمار في النفس ينصح إضافت المهارات التي ستتعلمها في سيرتكم الذاتية</li>
+                                <li>أو البدأ مباشرة في تطبيقها في العمل الحر و بناء معرض اعمال (Portfolio)</li>
+                                <li>تحتوي الدورة على العديد من التمارين التطبيقية يمكنك مشاركتها في المجموعة</li>
+                                <li>لا يوجد اي اختبار في نهاية الدورة لذالك لن يمكننا منحكم شهادة نهاية الدورة</li>
+                                <li>شكرا لإختيارنا يسعدنا التعامل معك.</li>
+                            </ul>
+                        <Separator className='my-8' />
+                    </div>
+                }
             </div>
             {
                 !access &&
@@ -71,7 +76,7 @@ function GetCourseForm({course,model,access }: Props) {
                                 <ArrowLeft size={18} />
                             </Button>
                             :
-                            <div className="p-4 bg-slate-100 rounded-xl w-full my-2">
+                            <div className="p-4 dark:bg-slate-900 bg-slate-100 rounded-xl w-full my-2">
                                 <h2 className="text-lg text-right mb-8">تحويل بنكي CIH Bank</h2>
                                 <h3 className="text-right text-md">اسم المؤطر :</h3>
                                 <h3 className="text-right text-md font-bold">ABDERRAHMAN OQBA</h3>
@@ -84,7 +89,7 @@ function GetCourseForm({course,model,access }: Props) {
                             }
                         </div>
                         <h2 className="text-xl text-right mt-8 pt-4">طرق دفع اخرى</h2>
-                        <div className="grid grid-cols-3 gap-2 " dir="rtl">
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-2 " dir="rtl">
                         <MethodButton href="https://wa.me/+212642680949?text=ATTIJARI">
                             التجاري وفا بنك <br />
                             Attijariwafa Bank
@@ -123,7 +128,7 @@ const MethodButton = ({ children,href }: { children: React.ReactNode ,href:strin
     <Link href={href+"/"+user.user?.emailAddresses} className="flex-1 w-full flex">
     <Button
       variant={"outline"}
-      className="flex-1  flex flex-col py-4 h-full justify-center items-center gap-3"
+      className="flex-1  flex flex-col py-2 md:py-4 h-full justify-center items-center gap-3"
     >
       {children}
     </Button>

@@ -42,7 +42,7 @@ function GetCourseAlert({ course }: Props) {
       <DialogTrigger>
         <Button onClick={buyNow} className="flex gap-2">
           <UnlockIcon size={18} />
-          Unlock course
+          طلب الدورة
         </Button>
       </DialogTrigger>
       <DialogContent className="max-w-6xl">

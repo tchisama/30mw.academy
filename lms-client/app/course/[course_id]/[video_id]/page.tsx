@@ -203,9 +203,9 @@ if(loading){
             </div>
 }
   return (
-    <div className="w-full  px-8 ">
+    <div className="w-full md:px-8  ">
         {/* <Notes/> */}
-        <div className='flex gap-4 max-w-[1700px] m-4 mx-auto'>
+        <div className='flex md:flex-row flex-col gap-4 max-w-[1700px] m-4 mx-auto'>
 
 
                     <div className='flex gap-2 flex-col flex-1'>
@@ -216,25 +216,24 @@ if(loading){
                                     <>
                                     {/* <iframe className='w-full max-h-[70vh] aspect-video rounded-xl' height="100%" src={video?.url} title="YouTube video player" allowFullScreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; "></iframe> */}
                                     <video 
-                                        autoPlay
                                         controlsList='nodownload'
                                         disablePictureInPicture
-                                        className='w-full max-h-[70vh] aspect-video rounded-xl'
+                                        className='w-full sticky md:relative top-0 max-h-[70vh] aspect-video md:rounded-xl'
                                         src={video?.url}
                                         controls
                                     ></video>
-                                    <div className='py-4 flex justify-between'>
+                                    <div className='py-4 px-2 md:px-0 flex justify-between'>
                                         <div className='flex gap-2'>
                                             <Button onClick={goPrev} variant={"secondary"}><ArrowLeft/></Button>
                                             <Button onClick={goNext} variant={"secondary"}><ArrowRight/></Button>
                                         </div>
                                         {views?.includes(params.video_id)?
-                                            <Button onClick={removeView} variant={"secondary"} className='flex gap-2'>Mark not completed <XCircle size={18}/></Button>:
-                                            <Button onClick={getViews} className='flex gap-2'>Mark completed <CheckCircle size={18}/></Button>
+                                            <Button onClick={removeView} variant={"secondary"} className='flex gap-2'> تمت المشاهدة <XCircle size={18}/></Button>:
+                                            <Button onClick={getViews} className='flex gap-2'> تمت المشاهدة  <CheckCircle size={18}/></Button>
                                         }
                                     </div>
-                                    <h1 className='text-3xl text-right py-2 font-medium'>{video.title}</h1>
-                                    <div>
+                                    <div className='px-4 md:px-0'>
+                                        <h1 className='text-3xl text-right py-2 font-medium'>{video.title}</h1>
                                         <GetCourseForm course={course} model={false} access={access}/>
                                     </div>
                                     </>
@@ -250,11 +249,12 @@ if(loading){
                                         </>
                                             ):(
 
-                                        <>
-                                        <Lock size={40}/>
+                                        <div className='text-center flex items-center justify-center p-4 gap-3 flex-col'>
+                                        <Lock className='scale-75 md:scale-100' size={40}/>
                                         Hello! To enjoy this video, consider purchasing the course. Thanks!🤗
+                                        <br/>
                                         <GetCourseAlert course={course}/>
-                                        </>
+                                        </div>
                                             )
                                         }
                                     </div>
@@ -267,9 +267,9 @@ if(loading){
                     </div>
 
 
-                    <div className=' relative w-[500px] p-4 px-6 ' dir='rtl'>
+                    <div className=' relative w-full md:w-[500px] p-4 px-6 ' dir='rtl'>
                         <div className=''>
-                            <h1 className='text-3xl  font-medium'>{course?.title}</h1>
+                            <h1 className='text-xl md:text-3xl  font-medium'>{course?.title}</h1>
                             <div className='flex flex-col justify-center my-4 gap-4'>
                                 <div className='flex gap-4 '>
                                     <Avatar>
@@ -296,7 +296,9 @@ if(loading){
                                 }
                                 </div>
                             </div>
-                            <Sections views={views} access={access} video_id={params.video_id} course={course}/>
+                            <div className='hidden md:block'>
+                                <Sections views={views} access={access} video_id={params.video_id} course={course}/>
+                            </div>
                         </div>
                     </div>
 
@@ -313,7 +315,7 @@ const Sections = ({course,views,video_id,access}:{views:string[]|undefined,cours
         <div className='py-4'>
             <Separator/>
         </div>
-        <div className=' pr-4'>
+        <div className=' md:pr-4'>
 
         {
             course?.sections.map(section => (
@@ -345,7 +347,7 @@ const Sections = ({course,views,video_id,access}:{views:string[]|undefined,cours
                                                 )
                                             }
                                         </div>
-                                        <div className='text-sm h-5 overflow-hidden'>{video.title}</div>
+                                        <div className='text-xs md:text-sm h-5 overflow-hidden'>{video.title}</div>
                                     </Card>
                                 </div>
                         ))
