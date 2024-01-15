@@ -3,7 +3,7 @@ import Navbar from '@/components/global/Navbar'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
-import { ArrowLeft, ArrowRight, CheckCircle, Circle, HeartCrack, Loader, Lock, Stars, StickyNote, Unlock, Video, XCircle } from 'lucide-react'
+import { ArrowLeft, ArrowRight, CheckCircle, ChevronDown, Circle, HeartCrack, Loader, Lock, Stars, StickyNote, Unlock, Video, XCircle } from 'lucide-react'
 import React, { useEffect, useState } from 'react'
 
 import {
@@ -175,7 +175,7 @@ const page = ({params}: Props) => {
         return [];
     }
     
-
+    const [opedDesc,setOpenDesc] = useState(false)
 
 
     async function goNext() {
@@ -205,7 +205,7 @@ if(loading){
   return (
     <div className="w-full md:px-8  ">
         {/* <Notes/> */}
-        <div className='flex md:flex-row flex-col gap-4 max-w-[1700px] m-4 mx-auto'>
+        <div className='flex md:flex-row flex-col-reverse gap-4 max-w-[1700px] m-4 mx-auto'>
 
 
                     <div className='flex gap-2 flex-col flex-1'>
@@ -218,7 +218,7 @@ if(loading){
                                     <video 
                                         controlsList='nodownload'
                                         disablePictureInPicture
-                                        className='w-full sticky md:relative top-0 max-h-[70vh] aspect-video md:rounded-xl'
+                                        className='w-full z-30 sticky md:relative top-0 max-h-[70vh] aspect-video md:rounded-xl'
                                         src={video?.url}
                                         controls
                                     ></video>
@@ -233,8 +233,17 @@ if(loading){
                                         }
                                     </div>
                                     <div className='px-4 md:px-0'>
-                                        <h1 className='text-3xl text-right py-2 font-medium'>{video.title}</h1>
-                                        <GetCourseForm course={course} model={false} access={access}/>
+                                        <h1 className=' text-xl md:text-3xl text-right py-2 font-medium'>{video.title}</h1>
+                                        <div className='hidden md:block'>
+                                            <GetCourseForm course={course} model={false} access={access}/>
+                                        </div>
+                                        <div onClick={()=>setOpenDesc(!opedDesc)} className={'px-4 pb-4 bg-gray-100 block md:hidden rounded-xl cursor-pointer relative overflow-hidden ' + (opedDesc ? " h-full":" h-44 ")}  >
+                                            <GetCourseForm course={course} model={false} access={access}/>
+                                            <ChevronDown size={24} className='absolute left-6 top-6'/>
+                                        </div>
+                                        <div className='block md:hidden' dir='rtl'>
+                                            <Sections views={views} access={access} video_id={params.video_id} course={course}/>
+                                        </div>
                                     </div>
                                     </>
                                 ):(
@@ -267,9 +276,9 @@ if(loading){
                     </div>
 
 
-                    <div className=' relative w-full md:w-[500px] p-4 px-6 ' dir='rtl'>
+                    <div className=' relative w-full md:w-[500px] p-4 md:px-6 ' dir='rtl'>
                         <div className=''>
-                            <h1 className='text-xl md:text-3xl  font-medium'>{course?.title}</h1>
+                            <h1 className='text-2xl md:text-3xl  font-medium'>{course?.title}</h1>
                             <div className='flex flex-col justify-center my-4 gap-4'>
                                 <div className='flex gap-4 '>
                                     <Avatar>
