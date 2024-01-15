@@ -218,7 +218,7 @@ if(loading){
                                     <video 
                                         controlsList='nodownload'
                                         disablePictureInPicture
-                                        className='w-full z-30 sticky md:relative top-0 max-h-[70vh] aspect-video md:rounded-xl'
+                                        className='w-full z-20 sticky md:static top-0 max-h-[70vh] aspect-video md:rounded-xl'
                                         src={video?.url}
                                         controls
                                     ></video>
@@ -229,7 +229,7 @@ if(loading){
                                         </div>
                                         {views?.includes(params.video_id)?
                                             <Button onClick={removeView} variant={"secondary"} className='flex gap-2'> تمت المشاهدة <XCircle size={18}/></Button>:
-                                            <Button onClick={getViews} className='flex gap-2'> تمت المشاهدة  <CheckCircle size={18}/></Button>
+                                            <Button onClick={getViews} className={'flex gap-2 '}> تمت المشاهدة  <CheckCircle size={18}/></Button>
                                         }
                                     </div>
                                     <div className='px-4 md:px-0'>
@@ -237,9 +237,9 @@ if(loading){
                                         <div className='hidden md:block'>
                                             <GetCourseForm course={course} model={false} access={access}/>
                                         </div>
-                                        <div onClick={()=>setOpenDesc(!opedDesc)} className={'px-4 pb-4 bg-gray-100 block md:hidden rounded-xl cursor-pointer relative overflow-hidden ' + (opedDesc ? " h-full":" h-44 ")}  >
+                                        <div onClick={()=>setOpenDesc(!opedDesc)} className={'px-4 pb-4 bg-gray-100 duration-150 block md:hidden rounded-xl cursor-pointer relative overflow-hidden ' + (opedDesc ? " h-full":" h-48 ")}  >
                                             <GetCourseForm course={course} model={false} access={access}/>
-                                            <ChevronDown size={24} className='absolute left-6 top-6'/>
+                                            <ChevronDown size={18} className={'absolute left-4 top-4 duration-150 '  + (opedDesc ? " rotate-180 " :" ")}/>
                                         </div>
                                         <div className='block md:hidden' dir='rtl'>
                                             <Sections views={views} access={access} video_id={params.video_id} course={course}/>
@@ -324,11 +324,11 @@ const Sections = ({course,views,video_id,access}:{views:string[]|undefined,cours
         <div className='py-4'>
             <Separator/>
         </div>
-        <div className=' md:pr-4'>
+        <div className=' z-0 md:pr-4'>
 
         {
             course?.sections.map(section => (
-                <div className='my-2' key={section._id}>
+                <div className=' my-2' key={section._id}>
                 <h1 className='text-xl font-medium'>{section.title}</h1>
                 <div className='flex'>
                 <div className='w-1 rounded my-8 translate-x-[-20px] z-0 opacity-10 bg-foreground '></div>

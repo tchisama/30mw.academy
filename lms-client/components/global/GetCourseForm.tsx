@@ -24,8 +24,8 @@ function GetCourseForm({course,model,access }: Props) {
     },[model])
   const user = useClerk()
   return (
-        <div  className={"flex gap-8 ml-auto  max-w-5xl " +(model ? " flex-row " : " flex-col mt-8 ") }>
-            <div className="flex-1" dir="rtl">
+        <div  className={"flex gap-8 ml-auto  max-w-5xl " +(model ? " flex-row " : " flex-col md:mt-8 ") }>
+            <div className="flex-1 hidden md:block" dir="rtl">
                 <h2 className="text-2xl text-right mb-4">معلومات عن الدورة</h2>
                 <ul className="text-right list-disc mr-4">
                     <li>لغة الدورة: الدارجة المغربية</li>
@@ -59,7 +59,7 @@ function GetCourseForm({course,model,access }: Props) {
                 !access &&
                     <DialogHeader >
                         {/* <DialogTitle>Price {course?.price} Dh</DialogTitle> */}
-                        <h2 className="text-xl text-right mt-4">
+                        <h2 className="text-md md:text-xl text-right mt-4">
                         {" "}
                         30MW مرحبا بكم في اكاديمية
                         </h2>
@@ -77,19 +77,19 @@ function GetCourseForm({course,model,access }: Props) {
                             </Button>
                             :
                             <div className="p-4 dark:bg-slate-900 bg-slate-100 rounded-xl w-full my-2">
-                                <h2 className="text-lg text-right mb-8">تحويل بنكي CIH Bank</h2>
-                                <h3 className="text-right text-md">اسم المؤطر :</h3>
-                                <h3 className="text-right text-md font-bold">ABDERRAHMAN OQBA</h3>
-                                <h3 className="text-right text-md">رقم الحساب :</h3>
-                                <h3 className="text-right text-md font-bold">230 450 7982684211027700 71</h3>
+                                <h2 className="text-md md:text-lg text-right mb-8">تحويل بنكي CIH Bank</h2>
+                                <h3 className="text-right text-sm md:text-md">اسم المؤطر :</h3>
+                                <h3 className="text-right text-sm md:text-md font-bold">ABDERRAHMAN OQBA</h3>
+                                <h3 className="text-right text-sm md:text-md">رقم الحساب :</h3>
+                                <h3 className="text-right text-sm md:text-md font-bold">230 450 7982684211027700 71</h3>
                                 <Link href={"https://wa.me/+212642680949?text=CIH" +"/"+user.user?.emailAddresses}>
-                                    <p className="text-primary text-right mt-4 flex items-center gap-2" dir="rtl"> بعد اتمام عملية التحويل قم بالتواصل معنا على واتساب <ArrowLeft size={18}/></p>
+                                    <p className="text-primary text-right text-sm md:text-md mt-4 flex items-center gap-2" dir="rtl"> بعد اتمام عملية التحويل قم بالتواصل معنا على واتساب <ArrowLeft size={18}/></p>
                                 </Link>
                             </div>
                             }
                         </div>
-                        <h2 className="text-xl text-right mt-8 pt-4">طرق دفع اخرى</h2>
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-2 " dir="rtl">
+                        <h2 className=" text-lg md:text-xl text-right mb-2 mt-8 pt-4">طرق دفع اخرى</h2>
+                        <div className="grid overflow-y-auto grid-cols-2 md:grid-cols-3 gap-2 " dir="rtl">
                         <MethodButton href="https://wa.me/+212642680949?text=ATTIJARI">
                             التجاري وفا بنك <br />
                             Attijariwafa Bank
@@ -128,7 +128,7 @@ const MethodButton = ({ children,href }: { children: React.ReactNode ,href:strin
     <Link href={href+"/"+user.user?.emailAddresses} className="flex-1 w-full flex">
     <Button
       variant={"outline"}
-      className="flex-1  flex flex-col py-2 md:py-4 h-full justify-center items-center gap-3"
+      className="flex-1 text-xs md:text-sm flex flex-col py-2 md:py-4 h-full justify-center items-center gap-3"
     >
       {children}
     </Button>
