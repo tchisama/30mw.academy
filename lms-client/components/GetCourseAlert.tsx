@@ -45,7 +45,7 @@ function GetCourseAlert({ course }: Props) {
           طلب الدورة
         </Button>
       </DialogTrigger>
-      <DialogContent className="max-w-6xl overflow-y-auto h-screen">
+      <DialogContent className="max-w-6xl overflow-y-auto h-[70vh]">
         <DialogTitle className="text-xl md:text-3xl text-right mt-4">
           {course?.title}{" "}
         </DialogTitle>
