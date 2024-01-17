@@ -59,14 +59,14 @@ function GetCourseForm({course,model,access }: Props) {
                 !access &&
                     <DialogHeader >
                         {/* <DialogTitle>Price {course?.price} Dh</DialogTitle> */}
-                        <h2 className="text-md md:text-xl text-right mt-4">
+                        <h2 className="text-sm md:text-xl text-right mt-4">
                         {" "}
                         30MW مرحبا بكم في اكاديمية
                         </h2>
-                        <p className="text-right text-sm">
+                        <p className="text-right text-xs md:text-sm">
                         انت الآن على بعد خطوة واحدة لبدأ تعلم مهارات جديدة
                         </p>
-                        <h2 className="text-xl text-right mt-8 pt-4"> طرق الدفع</h2>
+                        <h2 className="text-md md:text-xl text-right mt-8 pt-4"> طرق الدفع</h2>
                         <div className="flex gap-2  " dir="rtl">
                             {
                                 !bankInfoOpen ?
@@ -76,19 +76,19 @@ function GetCourseForm({course,model,access }: Props) {
                                 <ArrowLeft size={18} />
                             </Button>
                             :
-                            <div className="p-4 dark:bg-slate-900 bg-slate-100 rounded-xl w-full my-2">
+                            <div className="p-4 dark:bg-slate-900 bg-slate-100 rounded-xl w-full my-2 flex flex-col items-start">
                                 <h2 className="text-md md:text-lg text-right mb-8">تحويل بنكي CIH Bank</h2>
                                 <h3 className="text-right text-sm md:text-md">اسم المؤطر :</h3>
                                 <h3 className="text-right text-sm md:text-md font-bold">ABDERRAHMAN OQBA</h3>
                                 <h3 className="text-right text-sm md:text-md">رقم الحساب :</h3>
-                                <h3 className="text-right text-sm md:text-md font-bold">230 450 7982684211027700 71</h3>
+                                <h3 dir={"ltr"} className="text-right text-sm md:text-md font-bold">230 450 7982684211027700 71</h3>
                                 <Link href={"https://wa.me/+212642680949?text=CIH" +"/"+user.user?.emailAddresses}>
                                     <p className="text-primary text-right text-sm md:text-md mt-4 flex items-center gap-2" dir="rtl"> بعد اتمام عملية التحويل قم بالتواصل معنا على واتساب <ArrowLeft size={18}/></p>
                                 </Link>
                             </div>
                             }
                         </div>
-                        <h2 className=" text-lg md:text-xl text-right mb-2 mt-8 pt-4">طرق دفع اخرى</h2>
+                        <h2 className=" text-md md:text-xl text-right mb-2 mt-8 pt-4">طرق دفع اخرى</h2>
                         <div className="grid overflow-y-auto grid-cols-2 md:grid-cols-3 gap-2 " dir="rtl">
                         <MethodButton href="https://wa.me/+212642680949?text=ATTIJARI">
                             التجاري وفا بنك <br />
