@@ -37,6 +37,7 @@ function GetCourseAlert({ course }: Props) {
     // alert("hello world")
   };
 
+
   return (
     <Dialog onOpenChange={()=>setBankInfoOpen(false)}>
       <DialogTrigger>
