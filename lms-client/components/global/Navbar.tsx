@@ -66,7 +66,7 @@ const u = useClerk()
                     </Link>
                 </NavigationMenuItem> */}
                 <NavigationMenuItem>
-                    <Link href="/Contact" legacyBehavior passHref>
+                    <Link href="https://wa.me/+212642680949?text=HELP" legacyBehavior passHref>
                         <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                         تواصل معنا
                         </NavigationMenuLink>

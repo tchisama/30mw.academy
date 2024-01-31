@@ -9,6 +9,8 @@ import { use, useEffect, useState } from "react";
 import { useClerk } from "@clerk/nextjs";
 import TypeWriter from "@/components/global/TypingWriter";
 import Link from "next/link";
+import loaringIllstration from "@/public/Learning-bro.svg"
+import heroIllstration from "@/public/first.svg"
 import { server } from "@/server";
 import {
   Tooltip,
@@ -57,7 +59,7 @@ export default function Home() {
     <div className="w-full  md:px-6 px-3  mx-auto">
       <div className="py-4 flex max-w-[1800px] mx-auto  flex-col">
         <div className="  rounded-3xl p-4  my-8  md:px-20 flex-1 flex  md:flex-row flex-col  md:py-8 dark:bg-slate-900 md:bg-slate-100 gap-2 justify-between items-center">
-          <Image src={_30mw} alt="logo" className="drop-shadow-2xl opacity-60 filter dark:invert hidden md:block" width={400} height={400}></Image>
+          <Image src={heroIllstration} alt="logo" className="drop-shadow-2xl hidden md:block" width={400} height={400}></Image>
           <div className="flex flex-col items-end flex-1 justify-center ">
             <h1
               dangerouslySetInnerHTML={{
