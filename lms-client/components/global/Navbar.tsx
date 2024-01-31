@@ -159,7 +159,7 @@ const MobailNav = ()=>{
                                     </Link>
                                 </NavigationMenuItem> */}
                                 <NavigationMenuItem onClick={()=>setOpen(!open)} >
-                                    <Link href="/Contact" legacyBehavior passHref>
+                                    <Link href="https://wa.me/+212642680949?text=HELP" legacyBehavior passHref>
                                         <NavigationMenuLink className={navigationMenuTriggerStyle()+ " text-white text-xl"}>
                                         تواصل معنا
                                         </NavigationMenuLink>

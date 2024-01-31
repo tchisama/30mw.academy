@@ -114,6 +114,29 @@ const page = ({params}: Props) => {
                 })
             })
         })
+    }else{
+        axios.post(server+"get-course",{id:params.course_id}).then(data => {
+        setCourse(data.data)
+        }).then(() => {
+            axios.post(server+"auth/get-access",{id_user:1,id_course:params.course_id}).then(data => {
+                setAccess(data.data)
+            })
+        }).then(() => {
+            axios.post(server+"get-video",
+                {
+                    id_course:params.course_id,
+                    id_video:params.video_id,
+                    id_user:1
+                }
+            ).then(data => {
+                setVideo(data.data)
+            }).then(() => {
+                axios.get(server+"auth/get-views/"+1+"/"+params.course_id).then(data => {
+                    setViews(data.data)
+                    setLoading(false)
+                })
+            })
+        })
     }
   },[user.user?.id])
 
