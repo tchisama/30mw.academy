@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
     Sheet,
     SheetContent,
@@ -33,6 +33,7 @@ type User = {
 }
 function AddAccessUsers({usersHaveAccess,params}:{usersHaveAccess:any,params:{course_id:string}}) {
     const [users,setUsers]=React.useState<User[]>([])
+    const [search ,setSearch] = useState("")
     useEffect(()=>{
         fetch(server+'auth/users')
         .then(res => res.json())
@@ -71,13 +72,12 @@ function AddAccessUsers({usersHaveAccess,params}:{usersHaveAccess:any,params:{co
     <SheetTrigger>
         <Button className='flex gap-2'><PlusCircle size={18}/> Add User</Button>
     </SheetTrigger>
-  <SheetContent>
+  <SheetContent className='h-screen'>
       <SheetTitle>Give course access</SheetTitle>
-      <div className='min-w-[500px]'>
-        <div className=''>
+      <div className='min-w-[500px] h-full flex flex-col pb-4'>
           <div className='flex justify-between items-center gap-8'>
               <h1 className='text-2xl my-4'>Users</h1>
-              <Input/>
+              <Input placeholder='search by name or email' value={search} onInput={(e:any)=>setSearch(e.target.value)}/>
           </div>
           <div className='my-4'>
             {
@@ -85,8 +85,10 @@ function AddAccessUsers({usersHaveAccess,params}:{usersHaveAccess:any,params:{co
               <Button onClick={giveAccess}>Give Access</Button>
             }
           </div>
-          <div className='flex flex-col gap-2 '>
-            {users.map((user)=>(
+          <div className='flex flex-col px-1 gap-2 overflow-y-scroll '>
+            {users
+            .filter((user)=>user.fname.toLowerCase().includes(search.toLowerCase()) || user.lname.toLowerCase().includes(search.toLowerCase()) || user.email.toLowerCase().includes(search.toLowerCase()) || user.email.toLowerCase().includes(search.toLowerCase()))
+            .map((user)=>(
                 <div className={'p-2 flex gap-2 border rounded-md'+(user.check?' bg-secondary':'')} key={user._id}>
                     <Avatar>
                       <AvatarImage src={user.photo} alt="@shadcn" />
@@ -105,7 +107,6 @@ function AddAccessUsers({usersHaveAccess,params}:{usersHaveAccess:any,params:{co
                       </Button>
                 </div>
             ))}
-            </div>
             </div>
       </div>
   </SheetContent>
