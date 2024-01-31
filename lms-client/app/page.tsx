@@ -58,8 +58,8 @@ export default function Home() {
   return (
     <div className="w-full  md:px-6 px-3  mx-auto">
       <div className="py-4 flex max-w-[1800px] mx-auto  flex-col">
-        <div className="  rounded-3xl p-4  my-8  md:px-20 flex-1 flex  md:flex-row flex-col  md:py-8 dark:bg-slate-900 md:bg-slate-100 gap-2 justify-between items-center">
-          <Image src={heroIllstration} alt="logo" className="drop-shadow-2xl hidden md:block" width={400} height={400}></Image>
+        <div className="  rounded-3xl p-4  my-8  md:px-20 flex-1 flex  md:flex-row flex-col  md:py-0  gap-2 justify-between items-center">
+          <Image src={heroIllstration} alt="logo" className="drop-shadow-2xl animated hidden md:block" width={500} height={500}></Image>
           <div className="flex flex-col items-end flex-1 justify-center ">
             <h1
               dangerouslySetInnerHTML={{
