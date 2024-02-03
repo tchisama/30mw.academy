@@ -59,15 +59,15 @@ export default function Home() {
     <div className="w-full  md:px-6 px-3  mx-auto">
       <div className="py-4 flex max-w-[1800px] mx-auto  flex-col">
         <div className="  rounded-3xl p-4  my-8  md:px-20 flex-1 flex  md:flex-row flex-col  md:py-0  gap-2 justify-between items-center">
-          <Image src={heroIllstration} alt="logo" className="drop-shadow-2xl animated hidden md:block" width={500} height={500}></Image>
-          <div className="flex flex-col items-end flex-1 justify-center ">
+          <Image src={heroIllstration} alt="logo" className="drop-shadow-2xl animated w-[350px] md:w-[500px]" width={500} height={500}></Image>
+          <div className="flex flex-col items-center md:items-end flex-1 justify-center ">
             <h1
               dangerouslySetInnerHTML={{
                 __html: config?.landing_page?.Header as string,
               }}
-              className="md:text-2xl text-lg text-muted-foreground  text-right "
+              className="md:text-2xl text-md text-muted-foreground text-center md:text-right "
             ></h1>
-            <h2 className="text-lg md:text-5xl max-w-4xl mt-4 text-mutid-foreground text-right font-bold ">
+            <h2 className="text-2xl md:text-5xl max-w-4xl mt-4 text-mutid-foreground text-center md:text-right font-bold ">
               {config?.landing_page?.Text}
             </h2>
             {/* <h2 className="text-4xl font-medium text-mutid-foreground text-center">
