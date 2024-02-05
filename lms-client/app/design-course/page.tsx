@@ -1,7 +1,9 @@
 import { Button } from '@/components/ui/button'
-import { CheckCircle } from 'lucide-react'
+import { CheckCircle, Circle } from 'lucide-react'
 import Link from 'next/link'
 import React from 'react'
+import illustration from "@/public/psaipr.png"
+import Image from 'next/image'
 
 type Props = {}
 
@@ -15,7 +17,7 @@ function page({}: Props) {
         <div className='flex-1'>
           <h1 className='text-4xl font-medium'>دورة التصميم و المونتاج</h1>
           <div className='pt-4'>
-            {
+            {/* {
               [
                 "5 ساعات فيديو تدريبية ",
                 "من الصفر دون الحاجة لخبرة مسبقة",
@@ -24,6 +26,21 @@ function page({}: Props) {
               .map(item => (
                 <div className='my-2 flex gap-4 items-center' key={item}>
                   <CheckCircle size={20} />
+                  <h1 className='text-xl'>{item}</h1>
+                </div>
+              ))
+            } */}
+            {
+              [
+    'المدة: 9 ساعات فيديو تدريبية',
+    'التوجيه: من الصفر دون الحاجة لخبرة مسبقة',
+    'البرامج:  Photoshop،  Illustrator،  Premiere Pro',
+    'اللغة: الشرح بالدارجة المغربية',
+    'المؤطر: عبد الرحمان عقبة مدرب ذو خبرة 10 سنوات في المجال'
+              ]
+              .map(item => (
+                <div className='my-2 flex gap-4 items-start' key={item}>
+                  <Circle size={20} />
                   <h1 className='text-xl'>{item}</h1>
                 </div>
               ))
@@ -37,42 +54,34 @@ function page({}: Props) {
         </div>
       </div>
     </div>
-    <div className='flex flex-col items-center container max-w-4xl gap-6 py-24'>
+    <div className='flex flex-col-reverse md:flex-row px-4 items-center  max-w-7xl mx-auto gap-6 py-24'>
+      <div className='flex flex-col gap-4'>
           <h1 className='text-3xl '>عن الدورة</h1>
-        <p>
-            مرحبًا بك في دورتنا المميزة في تصميم الجرافيك والتحرير! إذا كنت تبحث عن فرصة لتطوير مهاراتك في مجال التصميم والتحرير باستخدام أحدث الأدوات والتقنيات الرقمية، فإن هذه الدورة هي الخيار المثالي لك.
-        </p>
-        <p>
-            سنقوم بتوجيهك خلال رحلة تعلم ممتعة وتحفيزية، حيث ستكتسب المهارات اللازمة لإنشاء تصاميم جرافيكية رائعة وتحرير محتوى فيديو مذهل. ستغطي الدورة أساسيات برامج Photoshop وIllustrator لتصميم الجرافيك، وPremiere Pro وAfter Effects للتحرير والإنتاج الفني.
-        </p>
-        <p>
-            سوف تحصل على الفهم العميق لكيفية استخدام هذه الأدوات بفعالية، وكيفية دمج الإبداع مع التقنية لإنتاج أعمال استثنائية. ستتعلم أسرار الرسومات الرقمية، وكيفية تحسين مشروعات الفيديو الخاصة بك بأساليب متقدمة.
-        </p>
+        <p className=' text-lg md:text-xl'>استعد لرحلة فريدة من نوعها في عالم التصميم والمونتاج! دورتنا المسجلة تقدم لك 8 ساعات من التدريب المكثف، مع شرح وافي وتطبيقات عملية تمكنك من اكتساب المهارات الضرورية للعمل على الإنترنت.</p>
+            <Link href={"/course/652019e1200c377a6d6c31b5/146w9h"}>
+              <Button >طلب الدورة</Button>
+            </Link>
+      </div>
+      <img src={illustration.src} className="w-[400px] " alt="" />
     </div>
     <div className='bg-slate-50'>
-      <div className='flex flex-col items-center container max-w-4xl gap-6 py-24'>
-            <h1 className='text-3xl '>لمن هذه الدورة</h1>
-          <ul className='w-full space-y-2 list-disc'>
-            <li>تعلم الأساسيات في تصميم الجرافيك باستخدام Photoshop و Illustrator.</li>
-            <li>رفع وجودك على الإنترنت من خلال تصاميم ملهمة بصرياً.</li>
-            <li>اتقن Premiere Pro و After Effects لإنتاج محتوى فيديو جذاب.</li>
-            <li>أنشئ مواد تسويقية تأثيرية باستخدام برمجيات التصميم.</li>
-            <li>اكتسب مهارات التصميم لتعزيز هوية العلامة البصرية لعملك.</li>
-        </ul>
+      <div className='flex flex-col items-start container max-w-4xl gap-6 py-24'>
+            <h1 className='text-3xl '>لمن هذه الدورة؟</h1>
+          <ul className='w-full space-y-2 text-lg list-disc md:text-xl'>
+              <li>أولئك الذين يرغبون في اكتساب مهارات التصميم والمونتاج من الصفر.</li>
+              <li>المبتدئين الذين يسعون لدخول سوق العمل في مجال الإنترنت.</li>
+              <li>المهتمين بتعزيز مهاراتهم في استخدام برامج Adobe المعروفة.</li>
+          </ul>
       </div>
       </div>
      <div className=''>
-      <div className='flex flex-col items-center container max-w-4xl gap-6 py-24'>
+      <div className='flex flex-col items-start container max-w-4xl gap-6 py-24'>
             <h1 className='text-3xl '>ماذا ستتعلم في هذه الدورة؟</h1>
-            <ul className='w-full space-y-2 list-decimal'>
-                <li>اكتساب المهارات الأساسية في تصميم الجرافيك باستخدام برامج Photoshop وIllustrator.</li>
-                <li>تحرير وتنقيح الصور بفعالية باستخدام أحدث تقنيات التحرير في Photoshop.</li>
-                <li>إنشاء رسومات متجهة مذهلة للاستخدام في التصميم باستخدام Illustrator.</li>
-                <li>تعلم تقنيات التحرير الاحترافية للفيديو باستخدام Premiere Pro.</li>
-                <li>إضافة تأثيرات بصرية وحركية رائعة لمشاريع الفيديو باستخدام After Effects.</li>
-                <li>تحسين مهارات التصميم الخاصة بك من خلال مشاريع عملية وتحليلات فنية.</li>
-                <li>فهم كيفية تواصل الألوان والأنماط لإنشاء تصاميم جذابة ومتناسقة.</li>
-                <li>استكشاف أسرار التصميم الإبداعي والابتكار في عالم الجرافيك.</li>
+          <ul className='w-full space-y-2 text-lg list-decimal md:text-xl'>
+                <li>استخدام برامج Adobe: Photoshop، اليستريتور، Premiere Pro.</li>
+  <li>إنشاء تصاميم جرافيكية مبدعة.</li>
+  <li>تحرير وإنتاج محتوى فيديو احترافي.</li>
+  <li>التعامل مع الأدوات والتقنيات الحديثة في مجال التصميم والمونتاج.</li>
             </ul>
           <div className='py-4 w-full'>
             <Link href={"/course/652019e1200c377a6d6c31b5/146w9h"}>
@@ -81,6 +90,16 @@ function page({}: Props) {
           </div>
       </div>
     </div>
+    <div className='bg-slate-50'>
+      <div className='flex flex-col items-start container max-w-4xl gap-6 py-24'>
+            <h1 className='text-3xl '>ماذا ستحتاج؟</h1>
+          <ul className='w-full space-y-2 text-lg list-disc md:text-xl'>
+              <li>حاسوب يدعم تشغيل برامج Adobe.</li>
+  <li>الرغبة في تعلم وتحسين مهارات التصميم والمونتاج.</li>
+  <li>اتصال قوي بالإنترنت للوصول إلى محتوى الدورة.</li>
+          </ul>
+      </div>
+      </div>
     </div>
   )
 }
