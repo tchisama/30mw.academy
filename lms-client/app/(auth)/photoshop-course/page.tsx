@@ -3,7 +3,7 @@ import Image from 'next/image'
 import React from 'react'
 import hero from "@/public/photoshop hero.jpg"
 import Link from 'next/link'
-
+import { FaWhatsapp } from "react-icons/fa";
 type Props = {}
 
 function page({}: Props) {
@@ -17,7 +17,10 @@ function page({}: Props) {
             <h1 className='md:text-5xl text-4xl text-[#124972]'>يوم الأحد ١١ فبراير </h1>
             <h1 className='md:text-3xl text-2xl text-[#124972]'>أسرع بالالتحاق</h1>
       <ButtonLink>
-          <Button variant={"outline"} className='bg-white rounded-full text-[#124972] text-2xl p-8'>إحجز الآن </Button>
+          <Button variant={"outline"} className='bg-white rounded-full border-2 text-[#124972] text-2xl p-8 flex items-center gap-3'>
+          إنضم الآن 
+          <FaWhatsapp />
+          </Button>
       </ButtonLink>
           </div>
         </div>
@@ -29,7 +32,7 @@ function page({}: Props) {
 استعد لرحلة مثيرة في عالم الفوتوشوب! دورتنا الحية المجانية تقدم لك فرصة لتجربة الدرس الأول مجانًا، مع تدريب مكثف وشرح شامل وتطبيقات عملية تمكنك من اكتساب المهارات اللازمة للعمل في مجال التصميم والمونتاج عبر الإنترنت.</p>
         </div>
     </div>
-    <div className='bg-slate-50'>
+    <div className='bg-slate-50 dark:bg-slate-900'>
       <div className='flex flex-col items-start max-w-7xl mx-auto px-4 gap-6 py-24'>
     <h1 className='text-3xl'>لمن هذه الدورة؟</h1>
     <ul className='w-full space-y-2 text-lg list-disc md:text-xl'>
@@ -38,7 +41,10 @@ function page({}: Props) {
         <li>المهتمين بتعزيز مهاراتهم في استخدام برنامج Adobe Photoshop المعروف.</li>
     </ul>
       <ButtonLink>
-        <Button variant={"outline"} className=' bg-[#30a8ff] hover:bg-[#2892df] text-white hover:text-white rounded-full  text-2xl p-8'>إحجز الآن </Button>
+        <Button variant={"outline"} className=' bg-[#30a8ff] border-white border-2 hover:bg-[#2892df] text-white hover:text-white rounded-full  text-2xl p-8 flex items-center gap-3'>
+          إنضم الآن 
+          <FaWhatsapp />
+        </Button>
       </ButtonLink>
       </div>     
       </div>
@@ -56,7 +62,7 @@ function page({}: Props) {
           </ul>
       </div>
     </div>
-      <div className='bg-slate-50'>
+      <div className='bg-slate-50 dark:bg-slate-900'>
         <div className='flex flex-col items-start max-w-7xl mx-auto px-4 gap-6 py-24'>
               <h1 className='text-3xl '>ماذا ستحتاج؟</h1>
             <ul className='w-full space-y-2 text-lg list-disc md:text-xl'>
@@ -65,7 +71,10 @@ function page({}: Props) {
     <li>اتصال قوي بالإنترنت للوصول إلى محتوى الدورة.</li>
             </ul>
       <ButtonLink>
-        <Button variant={"outline"} className=' bg-[#30a8ff] hover:bg-[#2892df] text-white hover:text-white rounded-full  text-2xl p-8'>إحجز الآن </Button>
+        <Button variant={"outline"} className=' bg-[#30a8ff] border-white border-2  hover:bg-[#2892df] text-white hover:text-white rounded-full  text-2xl p-8 flex items-center gap-3'>
+          إنضم الآن 
+          <FaWhatsapp />
+        </Button>
       </ButtonLink>
         </div>
         </div>

@@ -10,7 +10,7 @@ type Props = {}
 function page({}: Props) {
   return (
     <div dir='rtl' className=' '>
-      <div className='bg-slate-100'>
+      <div className='bg-slate-100 dark:bg-slate-950'>
 
       <div className='py-8 items-center  container flex md:flex-row-reverse flex-col-reverse gap-6'>
         <video className='w-[700px] ' controls src="https://d2rk6n1qqhht0d.cloudfront.net/G05_EP00_INTRO.mp4"></video>
@@ -40,15 +40,15 @@ function page({}: Props) {
               ]
               .map(item => (
                 <div className='my-2 flex gap-4 items-start' key={item}>
-                  <Circle size={20} />
-                  <h1 className='text-xl'>{item}</h1>
+                  <Circle size={20} className=''/>
+                  <h1 className='md:text-xl flex-1'>{item}</h1>
                 </div>
               ))
             }
           </div>
           <div className='py-4'>
             <Link href={"/course/652019e1200c377a6d6c31b5/146w9h"}>
-              <Button >طلب الدورة</Button>
+              <Button className='  border-white border-2  rounded-full  text-2xl p-8 flex items-center gap-3'>طلب الدورة</Button>
             </Link>
           </div>
         </div>
@@ -61,8 +61,8 @@ function page({}: Props) {
       </div>
       <img src={illustration.src} className="w-[400px] " alt="" />
     </div>
-    <div className='bg-slate-50'>
-      <div className='flex flex-col items-start container max-w-4xl gap-6 py-24'>
+    <div className='bg-slate-50 dark:bg-slate-950'>
+      <div className='flex flex-col items-start max-w-7xl mx-auto px-4 gap-6 py-24'>
             <h1 className='text-3xl '>لمن هذه الدورة؟</h1>
           <ul className='w-full space-y-2 text-lg list-disc md:text-xl'>
               <li>أولئك الذين يرغبون في اكتساب مهارات التصميم والمونتاج من الصفر.</li>
@@ -72,7 +72,7 @@ function page({}: Props) {
       </div>
       </div>
      <div className=''>
-      <div className='flex flex-col items-start container max-w-4xl gap-6 py-24'>
+      <div className='flex flex-col items-start max-w-7xl mx-auto px-4  gap-6 py-24'>
             <h1 className='text-3xl '>ماذا ستتعلم في هذه الدورة؟</h1>
           <ul className='w-full space-y-2 text-lg list-decimal md:text-xl'>
                 <li>استخدام برامج Adobe: Photoshop، اليستريتور، Premiere Pro.</li>
@@ -87,8 +87,8 @@ function page({}: Props) {
           </div>
       </div>
     </div>
-    <div className='bg-slate-50'>
-      <div className='flex flex-col items-start container max-w-4xl gap-6 py-24'>
+    <div className='bg-slate-50 dark:bg-slate-950'>
+      <div className='flex flex-col items-start max-w-7xl mx-auto px-4 gap-6 py-24'>
             <h1 className='text-3xl '>ماذا ستحتاج؟</h1>
           <ul className='w-full space-y-2 text-lg list-disc md:text-xl'>
               <li>حاسوب يدعم تشغيل برامج Adobe.</li>
