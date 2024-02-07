@@ -5,33 +5,16 @@ import hero from "@/public/photoshop hero.jpg"
 import Link from 'next/link'
 import { FaWhatsapp } from "react-icons/fa";
 import CountdownClock from '@/components/global/CountDownClock'
+import PhotoshopCourse from '@/components/global/PhotoshopCourse'
 type Props = {}
 
 function page({}: Props) {
-  // i want a date in 2024 02 11 and in time 9:pm 
+  // i want a date i=n 2024 02 11 and in time 9:pm 
   const targetDate = new Date("2024-02-11T21:00:00");
   return (
     <div className='px-4' dir='rtl'>
-      <div className='bg-[#30a8ff] p-4 md:p-8 drop-shadow-2xl rounded-3xl' >
-        <div className='md:container flex flex-col md:flex-row-reverse justify-between items-center'>
-          <Image alt="illustration" className=" object-contain" width={400} src={hero}></Image>
-          <div className='flex flex-col items-start gap-4 w-full md:w-fit'>
-            <h1 className='md:text-7xl text-5xl text-white'>حصة مجانية </h1>
-            <h1 className='md:text-4xl text-3xl text-[#124972]'>يوم الأحد ١١ فبراير </h1>
-            <div className='text-white'>
-              <CountdownClock targetDate={targetDate} />
-            </div>
-            <h1 className='md:text-2xl text-lg text-[#124972]'>سارع بالالتحاق بنا و ابدأ في تعلم التصميم ببرنامج الفوطوشوب</h1>
-      <ButtonLink>
-          <Button variant={"outline"} className='bg-white rounded-full border-2 text-[#124972] text-2xl p-8 flex items-center gap-3'>
-          إنضم الآن 
-          <FaWhatsapp />
-          </Button>
-      </ButtonLink>
-          </div>
-        </div>
-      </div>
-    <div className='flex flex-col-reverse md:flex-row px-4 items-center  max-w-7xl mx-auto gap-6 py-24'>
+      <PhotoshopCourse />
+      <div className='flex flex-col-reverse md:flex-row px-4 items-center  max-w-7xl mx-auto gap-6 py-24'>
         <div className='flex flex-col gap-4'>
             <h1 className='text-3xl '>عن الدورة</h1>
           <p className='max-w-3xl text-lg md:text-xl'>

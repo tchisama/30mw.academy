@@ -20,6 +20,7 @@ import {
 } from "@/components/ui/tooltip";
 import Courses from "@/components/global/Courses";
 import { Separator } from "@/components/ui/separator";
+import PhotoshopCourse from "@/components/global/PhotoshopCourse";
 
 interface LandingPage {
   landing_page: {
@@ -77,15 +78,19 @@ export default function Home() {
             <div className="pt-8">
               <Link
                 href="/sign-up"
-                className="md:px-8 px-4 shadow-2xl flex-row-reverse hover:scale-105 items-center duration-150 py-2 md:py-4 text-md md:text-lg bg-primary text-white uppercase rounded-full flex gap-2 "
+                className="md:px-8 px-8 shadow-2xl flex-row-reverse hover:scale-105 items-center duration-150 py-4 md:py-4 text-md md:text-lg bg-primary text-white uppercase rounded-full flex gap-2 "
               >
-                إشترك الآن المجان  <ArrowLeft />
+                إشترك الآن بالمجان  <ArrowLeft />
               </Link>
             </div>
           </div>
         </div>
       </div>
-      <div className="md:container mx-auto my-8">
+      <div className="">
+        <PhotoshopCourse  home/>
+      </div>
+      <div dir="rtl" className="md:container mx-auto my-8">
+        <h1 className="text-4xl font-medium py-8">دورات مسجلة </h1>
         <Courses />
       </div>
 
