@@ -10,9 +10,9 @@ function page({}: Props) {
   return (
     <div className='px-4' dir='rtl'>
       <div className='bg-[#30a8ff] p-8 drop-shadow-2xl rounded-3xl' >
-        <div className='md:container flex flex-col md:flex-row-reverse justify-between md:items-center'>
+        <div className='md:container flex flex-col md:flex-row-reverse justify-between items-center'>
           <Image alt="illustration" className=" object-contain" width={400} src={hero}></Image>
-          <div className='flex flex-col items-start gap-4 '>
+          <div className='flex flex-col items-start gap-4 w-full md:w-fit'>
             <h1 className='md:text-7xl text-5xl text-white'>حصة مجانية </h1>
             <h1 className='md:text-5xl text-4xl text-[#124972]'>يوم الأحد ١١ فبراير </h1>
             <h1 className='md:text-3xl text-2xl text-[#124972]'>أسرع بالالتحاق</h1>
