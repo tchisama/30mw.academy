@@ -21,7 +21,7 @@ function page({}: Props) {
             <div className='text-white'>
               <CountdownClock targetDate={targetDate} />
             </div>
-            <h1 className='md:text-3xl text-2xl text-[#124972]'>أسرع بالالتحاق</h1>
+            <h1 className='md:text-2xl text-lg text-[#124972]'>سارع بالالتحاق بنا و ابدأ في تعلم التصميم ببرنامج الفوطوشوب</h1>
       <ButtonLink>
           <Button variant={"outline"} className='bg-white rounded-full border-2 text-[#124972] text-2xl p-8 flex items-center gap-3'>
           إنضم الآن 
