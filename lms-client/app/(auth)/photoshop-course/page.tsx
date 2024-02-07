@@ -18,7 +18,9 @@ function page({}: Props) {
           <div className='flex flex-col items-start gap-4 w-full md:w-fit'>
             <h1 className='md:text-7xl text-5xl text-white'>حصة مجانية </h1>
             <h1 className='md:text-4xl text-3xl text-[#124972]'>يوم الأحد ١١ فبراير </h1>
-            <CountdownClock targetDate={targetDate} />
+            <div className='text-white'>
+              <CountdownClock targetDate={targetDate} />
+            </div>
             <h1 className='md:text-3xl text-2xl text-[#124972]'>أسرع بالالتحاق</h1>
       <ButtonLink>
           <Button variant={"outline"} className='bg-white rounded-full border-2 text-[#124972] text-2xl p-8 flex items-center gap-3'>
@@ -74,13 +76,19 @@ function page({}: Props) {
     <li>الرغبة في تعلم وتحسين مهارات التصميم والمونتاج.</li>
     <li>اتصال قوي بالإنترنت للوصول إلى محتوى الدورة.</li>
             </ul>
-      <ButtonLink>
-        <Button variant={"outline"} className=' bg-[#30a8ff] border-white border-2  hover:bg-[#2892df] text-white hover:text-white rounded-full  text-2xl p-8 flex items-center gap-3'>
-          إنضم الآن 
-          <FaWhatsapp />
-        </Button>
-      </ButtonLink>
         </div>
+        </div>
+        <div className='max-w-7xl flex flex-col gap-4 mx-auto px-4 py-12'>
+            <div className='text-gray-800 dark:text-gray-300'>
+              <CountdownClock targetDate={targetDate} />
+            </div>
+            <h1 className='text-3xl '>أسرع بالإنضمام الآن </h1>
+            <ButtonLink>
+              <Button variant={"outline"} className=' bg-[#30a8ff] border-white border-2  hover:bg-[#2892df] text-white hover:text-white rounded-full  text-2xl p-8 flex items-center gap-3'>
+                إنضم الآن 
+                <FaWhatsapp />
+              </Button>
+            </ButtonLink>
         </div>
   </div>
   )
