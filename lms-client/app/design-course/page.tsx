@@ -58,9 +58,6 @@ function page({}: Props) {
       <div className='flex flex-col gap-4'>
           <h1 className='text-3xl '>عن الدورة</h1>
         <p className=' text-lg md:text-xl'>استعد لرحلة فريدة من نوعها في عالم التصميم والمونتاج! دورتنا المسجلة تقدم لك 8 ساعات من التدريب المكثف، مع شرح وافي وتطبيقات عملية تمكنك من اكتساب المهارات الضرورية للعمل على الإنترنت.</p>
-            <Link href={"/course/652019e1200c377a6d6c31b5/146w9h"}>
-              <Button >طلب الدورة</Button>
-            </Link>
       </div>
       <img src={illustration.src} className="w-[400px] " alt="" />
     </div>
