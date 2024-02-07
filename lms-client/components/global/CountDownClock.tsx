@@ -37,7 +37,7 @@ const CountdownClock: React.FC<Props> = ({ targetDate }) => {
   };
 
   return (
-    <div className='flex gap-4 text-6xl '>
+    <div className='flex gap-4 text-5xl '>
       <div className='flex items-end flex-row-reverse'>
         <div className='flex gap-2 items-end'>
           <span>{timeLeft.days || "0"}</span>
