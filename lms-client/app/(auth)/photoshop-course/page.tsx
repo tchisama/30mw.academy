@@ -21,9 +21,9 @@ function page({}: Props) {
 			<PhotoshopCourse />
 			<div className="flex flex-col md:flex-row px-2 items-center  max-w-7xl mx-auto gap-12 py-24">
         <div className="relative"> 
-          <Pipette strokeWidth={2} className="absolute -top-8 drop-shadow-xl border -left-2 md:-left-10 z-10 text-[#2892df] p-4 md:p-6 rotate-12 md:w-24 w-16 h-16 md:h-24 bg-white/70 backdrop-blur-md  rounded-3xl " />
-          <Settings2 strokeWidth={2} className="absolute -top-8 drop-shadow-xl border -right-2 z-10 text-[#2892df] p-6 -rotate-6 w-20 h-20 bg-white/80 rounded-3xl backdrop-blur-md " />
-          <PaintBucket className="absolute -bottom-8 drop-shadow-xl border right-1/2 z-10 text-[#2892df] p-3 -rotate-6 w-16 h-16 bg-white/70 rounded-3xl backdrop-blur-md " />
+          <Pipette strokeWidth={2} className="  absolute -top-8 drop-shadow-xl border -left-2 md:-left-10 z-10 text-[#2892df] p-4 md:p-6 rotate-12 md:w-24 w-16 h-16 md:h-24 dark:bg-slate-900/80 bg-white/70 backdrop-blur-md  rounded-3xl " />
+          <Settings2 strokeWidth={2} className="  absolute -top-8 drop-shadow-xl border -right-2 z-10 text-[#2892df] p-6 -rotate-6 w-20 h-20 dark:bg-slate-900/80 bg-white/80 rounded-3xl backdrop-blur-md " />
+          <PaintBucket className="  absolute -bottom-8 drop-shadow-xl border right-1/2 z-10 text-[#2892df] p-3 -rotate-6 w-16 h-16 dark:bg-slate-900/80 bg-white/70 rounded-3xl backdrop-blur-md " />
           <Image className="w-[400px] drop-shadow-2xl h-[300px] md:h-[400px] object-cover rounded-3xl" width={500} alt="" height={500} src={laptop}></Image>
         </div>
 				<div className="flex flex-col gap-8">
@@ -45,7 +45,7 @@ function page({}: Props) {
 			<div className=" dark:bg-slate-900  ">
 				<div className="flex flex-col md:flex-row-reverse items-center max-w-7xl mx-auto  px-1 gap-6 py-10 md:py-24">
           <div className="relative">
-            <Medal strokeWidth={1} className="absolute -top-8 drop-shadow-xl border  md:-right-12 z-10 text-[#2892df] p-3 -rotate-6 w-20 h-20 bg-white/50 rounded-3xl backdrop-blur-md " />
+            <Medal strokeWidth={1} className="  absolute -top-8 drop-shadow-xl border  md:-right-12 z-10 text-[#2892df] p-3 -rotate-6 w-20 h-20 dark:bg-slate-900/80 bg-white/50 rounded-3xl backdrop-blur-md " />
             <Image src={girlWithLaptop} alt="" width={540} height={500} className="rounded-3xl shadow-2xl w-full md:w-[550px] md:h-[400px] object-cover"></Image>
           </div>
           <div className="flex flex-1 flex-col gap-8">
@@ -66,7 +66,7 @@ function page({}: Props) {
 			<div className="">
 				<div  className="flex flex-col md:flex-row items-center max-w-7xl mx-auto px-2 gap-20 py-24">
           <div className="relative w-full md:w-fit">
-            <PencilRuler strokeWidth={1} className="absolute -top-8 drop-shadow-xl border left-0 md:-left-12 z-10 text-[#2892df] p-3 -rotate-12 w-20 h-20 bg-white/50 rounded-3xl backdrop-blur-md " />
+            <PencilRuler strokeWidth={1} className="  absolute -top-8 drop-shadow-xl border left-0 md:-left-12 z-10 text-[#2892df] p-3 -rotate-12 w-20 h-20 dark:bg-slate-900/80 bg-white/50 rounded-3xl backdrop-blur-md " />
             <Image src={Crazy} alt="" width={600} height={600} className="rounded-3xl w-[600px] md:h-[400px] object-cover"></Image>
             <Image src={toolbar} alt="" width={100} height={700} className="absolute border md:-right-10 rounded-xl -bottom-10 rotate-6 md:rotate-12 shadow-2xl w-[50px] md:w-[70px] object-contain"></Image>
           </div>
@@ -86,21 +86,21 @@ function page({}: Props) {
           </div>
 				</div>
 			</div>
-			<div className="bg-[#2892df] rounded-3xl md:rounded-none dark:bg-slate-900">
+			<div className="bg-slate-100 dark:bg-slate-900 rounded-3xl md:rounded-none ">
 				<div className="flex flex-col items-start max-w-7xl mx-auto px-4 gap-6 py-10 md:py-24">
-					<h1 className="text-3xl font-medium text-white">ماذا ستحتاج؟</h1>
+					<h1 className="text-3xl font-medium dark:text-white">ماذا ستحتاج؟</h1>
           <div className="flex flex-col md:flex-row gap-2 md:gap-8 w-full">
-            <div className="h-fit py-8 border border-white/20 drop-shadow-lg flex flex-col gap-4 items-center justify-center bg-white/10 rounded-3xl flex-1">
-              <Laptop strokeWidth={1} size={100} className="mx-auto" color="#fff"/>
-              <h1 className="text-lg max-w-[200px]  text-center text-white">حاسوب يدعم تشغيل برامج Adobe</h1>
+            <div className="h-fit py-8 border dark:bg-black/5 border-black/20 drop-shadow-lg flex flex-col gap-4 items-center justify-center bg-white/30 rounded-3xl flex-1">
+              <Laptop strokeWidth={1} size={100} className="mx-auto text-gray-700 dark:text-white"/>
+              <h1 className="text-lg max-w-[200px]  text-center dark:text-white">حاسوب يدعم تشغيل برامج Adobe</h1>
             </div>
-            <div className="h-fit py-8 border border-white/20 drop-shadow-lg flex flex-col gap-4 items-center justify-center bg-white/10 rounded-3xl flex-1">
-              <Laugh strokeWidth={1} size={100} className="mx-auto" color="#fff"/>
-              <h1 className="text-lg max-w-[200px]  text-center text-white">الرغبة في تعلم مهارات التصميم والمونتاج</h1>
+            <div className="h-fit py-8 border dark:bg-black/5 border-black/20 drop-shadow-lg flex flex-col gap-4 items-center justify-center bg-white/30 rounded-3xl flex-1">
+              <Laugh strokeWidth={1} size={100} className="mx-auto text-gray-700 dark:text-white"/>
+              <h1 className="text-lg max-w-[200px]  text-center dark:text-white">الرغبة في تعلم مهارات التصميم والمونتاج</h1>
             </div>
-            <div className="h-fit py-8 border border-white/20 drop-shadow-lg flex flex-col gap-4 items-center justify-center bg-white/10 rounded-3xl flex-1">
-              <Wifi strokeWidth={1} size={100} className="mx-auto" color="#fff"/>
-              <h1 className="text-lg max-w-[200px]  text-center text-white">اتصال بالإنترنت للوصول إلى محتوى الدورة</h1>
+            <div className="h-fit py-8 border dark:bg-black/5 border-black/20 drop-shadow-lg flex flex-col gap-4 items-center justify-center bg-white/30 rounded-3xl flex-1">
+              <Wifi strokeWidth={1} size={100} className="mx-auto text-gray-700 dark:text-white"/>
+              <h1 className="text-lg max-w-[200px]  text-center dark:text-white">اتصال بالإنترنت للوصول إلى محتوى الدورة</h1>
             </div>
           </div>
 				</div>
