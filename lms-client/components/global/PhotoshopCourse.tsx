@@ -27,7 +27,7 @@ function PhotoshopCourse({home=false}: Props) {
             <h1 className='md:text-2xl text-lg text-[#124972]'>سارع بالالتحاق بنا و ابدأ في تعلم التصميم ببرنامج الفوطوشوب</h1>
             <div className='flex gap-2 items-center'>
           <ButtonLink>
-              <Button variant={"outline"} className='bg-white rounded-full border-2 text-[#124972] text-2xl p-8 flex items-center gap-3'>
+              <Button variant={"outline"} className='bg-white  rounded-full border-2 text-[#124972] text-2xl p-8 flex items-center gap-3'>
               إنضم الآن 
               <FaWhatsapp />
               </Button>
@@ -35,7 +35,7 @@ function PhotoshopCourse({home=false}: Props) {
           {
             home ?
           <Link href={"/photoshop-course"}>
-              <Button variant={"ghost"} className=' rounded-full text-white text-lg  flex items-center gap-3'>
+              <Button variant={"ghost"} className=' rounded-full  text-white text-lg  flex items-center gap-3'>
                 المزيد <ArrowLeft />
               </Button>
           </Link>
