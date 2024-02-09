@@ -68,14 +68,14 @@ function page({}: Props) {
 			</div>
 			<div className="">
 				<div  className="flex flex-col md:flex-row items-center max-w-7xl mx-auto px-2 gap-20 py-24">
-          <div className="relative w-full ">
+          <div className="relative w-full md:w-fit">
             <PencilRuler strokeWidth={1} className="absolute -top-8 drop-shadow-xl border left-0 md:-left-12 z-10 text-[#2892df] p-3 -rotate-12 w-20 h-20 bg-white/50 rounded-3xl backdrop-blur-md " />
             <Image src={Crazy} alt="" width={600} height={600} className="rounded-3xl w-[600px] md:h-[400px] object-cover"></Image>
             <Image src={toolbar} alt="" width={100} height={700} className="absolute border md:-right-10 rounded-xl -bottom-10 rotate-6 md:rotate-12 shadow-2xl w-[50px] md:w-[70px] object-contain"></Image>
           </div>
-          <div className="flex flex-col gap-9">
+          <div className="flex flex-col gap-9 ">
             <h1 className="text-3xl ">ماذا ستتعلم في هذه الدورة؟</h1>
-            <ul className="space-y-2 text-md list-decimal md:text-xl mr-4">
+            <ul className="space-y-2 text-md list-decimal md:text-xl mr-4 md:w-full">
               <li>استخدام برنامج Adobe Photoshop بطريقة احترافية.</li>
               <li>إنشاء تصاميم جرافيكية مبدعة وجذابة.</li>
               <li>تطوير مهاراتك في تحرير الصور وتحسين جودتها.</li>
