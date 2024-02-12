@@ -7,10 +7,11 @@ import { FaWhatsapp } from "react-icons/fa";
 import CountdownClock from "@/components/global/CountDownClock";
 import PhotoshopCourse from "@/components/global/PhotoshopCourse";
 import laptop from "@/public/photoshop/laptop-photoshop.jpg"
-import { ImageIcon, Laptop, Laugh, Medal, PaintBucket, Pen, PencilRuler, Pipette, Settings2, Wifi } from "lucide-react";
+import { ChevronLeft, ImageIcon, Laptop, Laugh, Medal, PaintBucket, Pen, PencilRuler, Pipette, Settings2, Wifi } from "lucide-react";
 import girlWithLaptop from "@/public/photoshop/pexels-fauxels-3182792.jpg"
 import Crazy from "@/public/photoshop/pexels-caio-56759.jpg"
 import toolbar from "@/public/photoshop/toolbar.png"
+import BuyNow from "@/components/global/BuyNow";
 type Props = {};
 
 function page({}: Props) {
@@ -19,6 +20,10 @@ function page({}: Props) {
 	return (
 		<div className="px-2 overflow-hidden" dir="rtl">
 			<PhotoshopCourse />
+      <div className=" max-w-7xl mx-auto px-2 py-8 md:py-12">
+					<h1 className="text-3xl ">الحصة المجانية </h1>
+          <iframe className="w-full aspect-video mt-8 md:rounded-2xl" src="https://www.youtube.com/embed/2Ux35b29k1Y?si=ZcqpkP9Gtx06N0Wb" title="YouTube video player"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" ></iframe>
+      </div>
 			<div className="flex flex-col md:flex-row px-2 items-center  max-w-7xl mx-auto gap-12 py-24">
         <div className="relative"> 
           <Pipette strokeWidth={2} className="  absolute -top-8 drop-shadow-xl border -left-2 md:-left-10 z-10 text-[#2892df] p-4 md:p-6 rotate-12 md:w-24 w-16 h-16 md:h-24 dark:bg-slate-900/80 bg-white/70 backdrop-blur-md  rounded-3xl " />
@@ -36,8 +41,10 @@ function page({}: Props) {
 							variant={"outline"}
 							className=" bg-[#30a8ff] border-white border-2 hover:bg-[#2892df] text-white hover:text-white rounded-full  text-2xl p-8 flex items-center gap-3"
 						>
-							إنضم الآن
-							<FaWhatsapp />
+							{/* إنضم الآن
+							<FaWhatsapp /> */}
+            أطلب الدورة 
+            <ChevronLeft />
 						</Button>
 					</ButtonLink>
 				</div>
@@ -105,7 +112,7 @@ function page({}: Props) {
           </div>
 				</div>
 			</div>
-			<div className="max-w-7xl flex flex-col gap-4 mx-auto px-4 py-12">
+			{/* <div className="max-w-7xl flex flex-col gap-4 mx-auto px-4 py-12">
 				<div className="text-gray-800 dark:text-gray-300">
 					<CountdownClock targetDate={targetDate} />
 				</div>
@@ -115,20 +122,27 @@ function page({}: Props) {
 						variant={"outline"}
 						className=" bg-[#30a8ff] border-white border-2  hover:bg-[#2892df] text-white hover:text-white rounded-full  text-2xl p-8 flex items-center gap-3"
 					>
-						إنضم الآن
-						<FaWhatsapp />
+            أطلب الدورة 
+            <ChevronLeft />
 					</Button>
 				</ButtonLink>
-			</div>
+			</div> */}
 		</div>
 	);
 }
 
 const ButtonLink = ({ children }: { children: React.ReactNode }) => {
 	return (
-		<Link href={"https://chat.whatsapp.com/EsrYFGsKXvO2bklNq4GZ5D"}>
-			{children}
-		</Link>
+		// <Link href={"https://chat.whatsapp.com/EsrYFGsKXvO2bklNq4GZ5D"}>
+		// 	{children}
+		// </Link>
+          <BuyNow>
+              {/* <Button variant={"outline"} className='bg-white  rounded-full border-2 text-[#124972] text-2xl p-8 flex items-center gap-3'>
+                  أطلب الدورة 
+                  <ChevronLeft />
+              </Button> */}
+            {children}
+          </BuyNow>
 	);
 };
 

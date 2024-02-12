@@ -5,7 +5,8 @@ import CountdownClock from './CountDownClock'
 import { FaWhatsapp } from 'react-icons/fa'
 import { Button } from '../ui/button'
 import Link from 'next/link'
-import { ArrowLeft } from 'lucide-react'
+import { ArrowLeft, ChevronLeft } from 'lucide-react'
+import BuyNow from './BuyNow'
 type Props = {
   home?:boolean
 }
@@ -19,19 +20,26 @@ function PhotoshopCourse({home=false}: Props) {
         <div className='md:container flex flex-col md:flex-row-reverse justify-between items-center'>
           <Image alt="illustration" className=" object-contain" width={400} src={hero}></Image>
           <div className='flex flex-col items-start gap-4 w-full md:w-fit'>
-            <h1 className='md:text-7xl text-5xl text-white'>حصة مجانية </h1>
-            <h1 className='md:text-4xl text-3xl text-[#124972]'>يوم الأحد ١١ فبراير </h1>
-            <div className='text-white'>
+            <h1 className='md:text-7xl text-5xl text-white'>دورة الفوتوشوب </h1>
+            {/* <h1 className='md:text-4xl text-3xl text-[#124972]'>يوم الأحد  فبراير </h1> */}
+            {/* <div className='text-white'>
               <CountdownClock targetDate={targetDate} />
-            </div>
+            </div> */}
             <h1 className='md:text-2xl text-lg text-[#124972]'>سارع بالالتحاق بنا و ابدأ في تعلم التصميم ببرنامج الفوطوشوب</h1>
             <div className='flex gap-2 items-center'>
-          <ButtonLink>
+          {/* <ButtonLink>
               <Button variant={"outline"} className='bg-white  rounded-full border-2 text-[#124972] text-2xl p-8 flex items-center gap-3'>
               إنضم الآن 
               <FaWhatsapp />
               </Button>
-          </ButtonLink>
+          </ButtonLink> */}
+          <BuyNow>
+              <Button variant={"outline"} className='bg-white  rounded-full border-2 text-[#124972] text-2xl p-8 flex items-center gap-3'>
+                  أطلب الدورة 
+                  <ChevronLeft />
+              </Button>
+          </BuyNow>
+          
           {
             home ?
           <Link href={"/photoshop-course"}>
