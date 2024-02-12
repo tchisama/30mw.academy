@@ -22,7 +22,7 @@ function page({}: Props) {
 			<PhotoshopCourse />
       <div className=" max-w-7xl mx-auto px-2 py-8 md:py-12">
 					<h1 className="text-3xl ">الحصة المجانية </h1>
-          <iframe className="w-full aspect-video mt-8 md:rounded-2xl" src="https://www.youtube.com/embed/2Ux35b29k1Y?si=ZcqpkP9Gtx06N0Wb" title="YouTube video player"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" ></iframe>
+          <iframe className="w-full aspect-video mt-8 md:rounded-2xl" src="https://www.youtube.com/embed/2Ux35b29k1Y?si=ZcqpkP9Gtx06N0Wb" title="YouTube video player" allowFullScreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" ></iframe>
       </div>
 			<div className="flex flex-col md:flex-row px-2 items-center  max-w-7xl mx-auto gap-12 py-24">
         <div className="relative"> 
