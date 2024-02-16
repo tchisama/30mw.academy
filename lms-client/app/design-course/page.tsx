@@ -45,7 +45,7 @@ function Page({}: Props) {
           </div>
         </div>
       </div>
-			<div className="flex flex-col md:flex-row px-2 items-center  max-w-7xl mx-auto gap-12 py-24">
+			<div className="flex flex-col-reverse md:flex-row px-2 items-center  max-w-7xl mx-auto gap-12 py-24">
         <div className='flex flex-col gap-4 flex-1'>
           <h1 className='text-3xl '>عن الدورة</h1>
           <p className=' text-lg md:text-xl max-w-3xl'>
