@@ -35,24 +35,24 @@ function page({}: Props) {
   },[])
   return (
     <div className=''>
-        <div className='container min-h-screen  mx-auto'>
+        <div className='container px-2 md:px-4 min-h-screen  mx-auto'>
             <DashboardNavbar/>
             <div className='my-8'>
-              <h1 className='text-6xl font-medium'>Welcome {user.user?.firstName} 👋</h1>
+              <h1 className='text-3xl md:text-6xl font-medium'>Welcome {user.user?.firstName} 👋</h1>
             </div>
             <Separator/>
             <div className='my-4'>
               <h2 className='text-2xl '>Last week results 🎉</h2>
             </div>
 
-            <div className='grid my-4 grid-cols-3 gap-4 justify-between'>
+            <div className='grid my-4 md:grid-cols-3 grid-cols-2 gap-2 md:gap-4 justify-between'>
               <Card>
                 <CardHeader className='flex flex-col h-full'>
                         <div className='flex gap-4'>
                             <Users size={30}/>
                             <h2> users</h2>
                         </div>
-                  <h1 className='text-6xl'>+ <CountUp duration={3} end={data?.lastWeekUsersCount as number} /></h1>
+                  <h1 className='text-2xl md:text-6xl'>+ <CountUp duration={3} end={data?.lastWeekUsersCount as number} /></h1>
                 </CardHeader>
               </Card>
               <Card>
@@ -61,7 +61,7 @@ function page({}: Props) {
                         <ShoppingCart size={30}/>
                         <h2> Sales</h2>
                     </div>
-                  <h1 className='text-6xl'>+ <CountUp duration={3} end={data?.lastWeekSalesCount as number} /></h1>
+                  <h1 className='text-2xl md:text-6xl'>+ <CountUp duration={3} end={data?.lastWeekSalesCount as number} /></h1>
                 </CardHeader>
               </Card>
               <Card>
@@ -70,7 +70,7 @@ function page({}: Props) {
                         <CircleDollarSign size={30}/>
                         <h2> Profits</h2>
                     </div>
-                  <h1 className='text-5xl'>+<CountUp duration={3} end={data?.lastWeekProfits as number} /> Dh</h1>
+                  <h1 className='text-2xl md:text-5xl'>+<CountUp duration={3} end={data?.lastWeekProfits as number} /> Dh</h1>
                 </CardHeader>
               </Card>
             </div>
@@ -82,7 +82,7 @@ function page({}: Props) {
             </div>
 
 
-            <div className='grid my-4 grid-cols-4 gap-4 justify-between'>
+            <div className='grid my-4 grid-cols-2 md:grid-cols-4 gap-2 md:gap-4 justify-between'>
               <Card>
                 <CardHeader className='flex flex-col h-full'>
                     <div className='flex gap-4'>

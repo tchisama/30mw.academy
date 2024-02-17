@@ -20,6 +20,8 @@ import { Input } from '@/components/ui/input'
 import { useClerk } from '@clerk/nextjs'
 import { Separator } from '@/components/ui/separator'
 import { server } from '@/server'
+import UsersTable from '@/components/global/UsersTable'
+import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area'
 
 
 
@@ -57,29 +59,17 @@ function Page({}: Props) {
                     <h1 className='flex gap-3'><Loader className='animate-spin'/>Loading...</h1>
                 </div>
     }
-    const setAdmin = (id:string)=>{
-        // make user admin
-        fetch(server+'auth/change-rule/'+id+'/admin').then(res => res.json()).then(data => {
-            fetchUser()
-        })
-    }
 
-    const setUserRule = (id:string)=>{
-        // make user admin
-        fetch(server+'auth/change-rule/'+id+'/user').then(res => res.json()).then(data => {
-            fetchUser()
-        })
-    }
   return (
     <div className=''>
-        <div className='container min-h-screen  mx-auto'>
+        <div className='container px-2 md:px-4 min-h-screen  mx-auto'>
             <DashboardNavBar/>
             <div className='my-4'>
                 <div>
                     <h1 className='text-3xl'>Analytics</h1>
                 </div>
             </div>
-            <div className='grid grid-cols-4 gap-4'>
+            <div className='grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4'>
                 <Card className='flex-1 bg-secondary'>
                     <CardHeader>
                         <div className='flex gap-4'>
@@ -129,53 +119,58 @@ function Page({}: Props) {
                 <Separator/>
             </div>
             <div className='my-4'>
-                <div className='flex justify-between'>
+                <div className='flex gap-4 justify-between flex-col md:flex-row'>
                     <h1 className='text-3xl'>Users</h1>
-                    <Input type='text' value={search} onInput={(e) => setSearch((e.target as HTMLInputElement).value)} className='max-w-[400px]' placeholder='search users'></Input>
+                    <Input type='text'  value={search} onInput={(e) => setSearch((e.target as HTMLInputElement).value)} className='max-w-[400px]' placeholder='search users'></Input>
                 </div>
             </div>
             <div className='grid my-6 gap-2 grid-cols-1'>
+                <ScrollArea>
+                    <UsersTable search={search} setUsers={setUsers} fetchUser={fetchUser} users={users}/>
+                    <ScrollBar orientation="horizontal" />
+                </ScrollArea>
                 {
                     users.filter(_user => (_user.email.toLowerCase()+" "+_user.fname.toLowerCase()+" "+_user.lname.toLowerCase()).includes(search.toLowerCase())).map((_user, index) => {
                         return(
-                        <Card key={index} className='max-w-[800px]'>
-                            <div className='p-4 flex gap-4 items-center'>
-                                <Avatar>
-                                    <AvatarImage src={_user?.photo} alt="@shadcn" />
-                                    <AvatarFallback>{_user?.fname[0]}  {_user?.lname[0]}</AvatarFallback>
-                                </Avatar>
-                                <div className='flex flex-col flex-1'>
-                                    <div className='flex gap-2 w-full justify-between'>
-                                        <h1>{_user?.fname} {_user?.lname}</h1>
-                                    </div>
-                                    <p className='text-sm text-muted-foreground'>{_user.email}</p>
-                                </div>
-                                <Badge variant={_user?.rule=="user"?"secondary":"default"}>{_user?.rule}</Badge>
-                                <DropdownMenu>
-                                <DropdownMenuTrigger>
-                                    {
-                                        user.user?.id!==_user.id_user && (
-                                            <Button variant={"ghost"} className='flex gap-2' size={"icon"}>
-                                                <MoreHorizontal size={16}/>
-                                            </Button>
-                                        )
-                                    }
-                                </DropdownMenuTrigger>
-                                <DropdownMenuContent>
-                                    <DropdownMenuLabel>User Actions</DropdownMenuLabel>
-                                    <DropdownMenuSeparator />
-                                    {
-                                        _user.rule=="admin"?
-                                        <DropdownMenuItem onClick={()=>setUserRule(_user.id_user)} className='flex gap-2 items-center'><ShieldCheck size={16}/> Set user</DropdownMenuItem>
-                                        :<DropdownMenuItem onClick={()=>setAdmin(_user.id_user)} className='flex gap-2 items-center'><ShieldCheck size={16}/> Set admin</DropdownMenuItem>
-                                    }
-                                    <DropdownMenuItem className='flex gap-2 items-center'><Ban size={16}/>Block user</DropdownMenuItem>
-                                    <DropdownMenuItem className='flex gap-2 items-center dark:text-red-400 text-red-600'><Trash2 size={16}/>Delete user</DropdownMenuItem>
-                                </DropdownMenuContent>
-                                </DropdownMenu>
+                            ""
+                        // <Card key={index} className='max-w-[800px]'>
+                        //     <div className='p-4 flex gap-4 items-center'>
+                        //         <Avatar>
+                        //             <AvatarImage src={_user?.photo} alt="@shadcn" />
+                        //             <AvatarFallback>{_user?.fname[0]}  {_user?.lname[0]}</AvatarFallback>
+                        //         </Avatar>
+                        //         <div className='flex flex-col flex-1'>
+                        //             <div className='flex gap-2 w-full justify-between'>
+                        //                 <h1>{_user?.fname} {_user?.lname}</h1>
+                        //             </div>
+                        //             <p className='text-sm text-muted-foreground'>{_user.email}</p>
+                        //         </div>
+                        //         <Badge variant={_user?.rule=="user"?"secondary":"default"}>{_user?.rule}</Badge>
+                        //         <DropdownMenu>
+                        //         <DropdownMenuTrigger>
+                        //             {
+                        //                 user.user?.id!==_user.id_user && (
+                        //                     <Button variant={"ghost"} className='flex gap-2' size={"icon"}>
+                        //                         <MoreHorizontal size={16}/>
+                        //                     </Button>
+                        //                 )
+                        //             }
+                        //         </DropdownMenuTrigger>
+                        //         <DropdownMenuContent>
+                        //             <DropdownMenuLabel>User Actions</DropdownMenuLabel>
+                        //             <DropdownMenuSeparator />
+                        //             {
+                        //                 _user.rule=="admin"?
+                        //                 <DropdownMenuItem onClick={()=>setUserRule(_user.id_user)} className='flex gap-2 items-center'><ShieldCheck size={16}/> Set user</DropdownMenuItem>
+                        //                 :<DropdownMenuItem onClick={()=>setAdmin(_user.id_user)} className='flex gap-2 items-center'><ShieldCheck size={16}/> Set admin</DropdownMenuItem>
+                        //             }
+                        //             <DropdownMenuItem className='flex gap-2 items-center'><Ban size={16}/>Block user</DropdownMenuItem>
+                        //             <DropdownMenuItem className='flex gap-2 items-center dark:text-red-400 text-red-600'><Trash2 size={16}/>Delete user</DropdownMenuItem>
+                        //         </DropdownMenuContent>
+                        //         </DropdownMenu>
 
-                            </div>
-                        </Card>
+                        //     </div>
+                        // </Card>
                         )
                     })
                 }

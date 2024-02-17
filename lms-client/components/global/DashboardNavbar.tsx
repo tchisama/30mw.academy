@@ -24,22 +24,19 @@ const components: { title: string; href: string; description: string }[] = [
   {
     title: "Users",
     href: "/dashboard/users",
-    description:
-      "A modal dialog that interrupts the user with important content and expects a response.",
+    description: "Manage user accounts and permissions.",
   },
   {
     title: "Categories",
     href: "/dashboard/categories",
-    description:
-      "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.",
+    description: "Organize content into different categories.",
   },
   {
-    title: "landing page",
+    title: "Landing Page",
     href: "/dashboard/landing-page",
-    description:
-      "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.",
+    description: "Customize the landing page for your website or application.",
   },
-]
+];
 
 export default function DashboardNavBar() {
   return (

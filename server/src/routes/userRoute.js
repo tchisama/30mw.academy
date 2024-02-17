@@ -27,7 +27,8 @@ router.post('/create-user', async (req, res) => {
 // get all users from the database
 router.get('/users', async (req, res) => {
   try {
-    const users = await UserModel.find();
+    // i want to get users by order or time
+    const users = await UserModel.find({}).sort({ createdAt: -1 });
     res.status(200).json(users);
   } catch (error) {
     console.error(error);
@@ -91,25 +92,19 @@ router.get('/users-analytics', async (req, res) => {
            }
        }
    ])
-    const admins = await UserModel.aggregate([
-      {
-           $match: {
-               rule: 'admin',
-           }
-       },
-       {
-           $group: {
-               _id: {$week: '$createdAt'},
-               count: {$sum: 1}
-           }
-       }
+   const admins = await UserModel.aggregate([
+    {
+         $match: {
+             rule:"admin",
+         }
+    }
    ])
 
     res.status(200).json({
         user,
         Last7Days:Last7Days[0]?.count || 0,
         today:today[0]?.count || 0 ,
-        admins:(admins[0]?.count)||0
+        admins:(admins?.length)||0
       });
   } catch (error) {
     console.error(error);
@@ -128,6 +123,17 @@ router.post('/make-access', async (req, res) => {
     res.status(500).json({ message: 'Failed to make access' });
   }
 });
+// remove access by id
+router.delete('/remove-access', async (req, res) => {
+  try {
+    const newAccess = await AccessModel.findByIdAndDelete(req.body.id_access);
+    res.status(200).json(newAccess);
+  } catch (error) {
+    console.error(error);
+  }
+})
+
+
 // get access
 router.post('/get-access', async (req, res) => {
   try {

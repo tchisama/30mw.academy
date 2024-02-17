@@ -275,5 +275,18 @@ router.get('/accesses/:id_course', async (req, res) => {
     res.status(500).json({ message: 'Failed to get the accesses' });
   }
 })
+// get accesses by id_user
+router.get('/accesses-user/:id_user', async (req, res) => {
+  try {
+    const accesses = await AccessModel.aggregate([
+      {
+        $match: { id_user: req.params.id_user }
+      }
+    ])
+    res.status(200).json(accesses);
+  } catch (error) {
+    console.error(error);
+  }
+})
 
 module.exports = router;
