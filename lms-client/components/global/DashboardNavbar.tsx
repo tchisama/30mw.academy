@@ -40,7 +40,7 @@ const components: { title: string; href: string; description: string }[] = [
 
 export default function DashboardNavBar() {
   return (
-    <div className="py-3 flex justify-between">
+    <div className="py-3 w-full flex justify-between">
     <NavigationMenu className="flex-1 flex justify-center">
       <NavigationMenuList>
 

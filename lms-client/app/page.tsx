@@ -88,8 +88,8 @@ export default function Home() {
       </div>
       <div className="">
       </div>
-      <div dir="rtl" className="md:container mx-auto my-8">
-        <h1 className="text-4xl font-medium py-8">دورات مسجلة </h1>
+      <div dir="rtl" className="md:container space-y-4 mx-auto my-8">
+        <h1 className="text-4xl  font-medium py-8">دورات مسجلة </h1>
         <Courses />
         <PhotoshopCourse  home/>
       </div>

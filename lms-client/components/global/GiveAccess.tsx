@@ -89,9 +89,9 @@ function GiveAccess({children,id,courses}: Props) {
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Give Access </DialogTitle>
+          <DialogTitle className='text-start'>Give Access </DialogTitle>
           <DialogDescription>
-            <div className='mt-4 flex flex-col gap-2'>
+            <div className='mt-4 flex flex-col   gap-2'>
               <Select onValueChange={(value)=>{setSelectedCourse(courses.find((course)=>course._id===value) as Course)}}>
                 <SelectTrigger className="flex-1">
                   <SelectValue placeholder="course" />
@@ -114,7 +114,7 @@ function GiveAccess({children,id,courses}: Props) {
                 </Button>
               </div>
             </div>
-            <h2 className='mt-4 text-xl '> Accesses</h2>
+            <h2 className='mt-4 text-xl text-start '> Accesses</h2>
             <div className='p-4  bg-slate-50 mt-2 rounded-xl border'>
               {
                 (loading) ?

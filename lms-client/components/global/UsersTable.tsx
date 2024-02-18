@@ -44,9 +44,9 @@ function UsersTable({users:_users,search,fetchUser,setUsers:_setUsers}: Props) {
   console.log(users)
   const fields = [
     {name:"avatar",key:"photo"},
+    {name:"email",key:"email"},
     {name:"first name",key:"fname"},
     {name:"last name",key:"lname"},
-    {name:"email",key:"email"},
     {name:"sign in date",key:"createdAt"},
     {name:"rule",key:"rule"},
   ]
@@ -67,21 +67,27 @@ function UsersTable({users:_users,search,fetchUser,setUsers:_setUsers}: Props) {
     setUsers(_users)
   },[_users])
   return (
-    <Table className='w-max'>
+    <Table className='w-max md:w-full'>
       <TableHeader>
         <TableRow>
+              <TableHead  className='capitalize md:hidden'>Access</TableHead>
           {
             fields.map((field)=>(
               <TableHead  key={field.key} className='capitalize min-w-[100px]'>{field.name}</TableHead>
             ))
           }
-              <TableHead  className='capitalize text-right'>actions</TableHead>
+              <TableHead  className='capitalize text-left'>actions</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
         {
           users.filter(_user => (_user.email.toLowerCase()+" "+_user.fname.toLowerCase()+" "+_user.lname.toLowerCase()).includes(search.toLowerCase())).map((user, index) => (
             <TableRow key={user._id}>
+              <TableCell className='text-left flex md:hidden'>
+                <GiveAccess courses={courses} id={user.id_user} >
+                  <Button variant={"outline"} size={"icon"}><BookCopy size={16}/></Button>
+                </GiveAccess>
+              </TableCell>
               {
                 fields.map((field)=>(
                   <TableCell key={field.key}>
@@ -103,7 +109,7 @@ function UsersTable({users:_users,search,fetchUser,setUsers:_setUsers}: Props) {
                   </TableCell>
                 ))
               }
-              <TableCell className='text-right'>
+              <TableCell className='text-left'>
                 <GiveAccess courses={courses} id={user.id_user} >
                   <Button variant={"outline"} size={"icon"}><BookCopy size={16}/></Button>
                 </GiveAccess>
