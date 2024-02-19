@@ -5,27 +5,30 @@ import CountdownClock from './CountDownClock'
 import { FaWhatsapp } from 'react-icons/fa'
 import { Button } from '../ui/button'
 import Link from 'next/link'
-import { ArrowLeft, ChevronLeft } from 'lucide-react'
+import { ArrowLeft, ChevronLeft, Pipette } from 'lucide-react'
 import BuyNow from './BuyNow'
+import montage from "@/public/psaipr.png"
 type Props = {
   home?:boolean
 }
 
-function PhotoshopCourse({home=false}: Props) {
+function MontagCourse({home=false}: Props) {
   const targetDate = new Date("2024-02-11T21:00:00");
   
   return (
     <div dir='rtl'>
-      <div className='bg-[#30a8ff] p-4 md:p-8 drop-shadow-2xl rounded-3xl border-2 border-[#3660a088]' >
+      <div className=' bg-gradient-to-br to-[#3131A3] md:p-0 p-4 from-[#9999FF] mt-28 drop-shadow-2xl rounded-3xl border-2 border-[#3660a088]' >
         <div className='md:container flex flex-col md:flex-row-reverse justify-between items-center'>
-          <Image alt="illustration" className=" object-contain" width={400} src={hero}></Image>
-          <div className='flex flex-col items-start gap-4 w-full md:w-fit'>
-            <h1 className='md:text-7xl text-5xl text-white'>دورة الفوتوشوب </h1>
+          <div className='relative'>
+            <Image alt="illustration" className=" object-contain relative -top-20 " width={600} src={montage}></Image>
+          </div>
+          <div className='flex flex-col  items-start flex-1 gap-8 w-full md:w-fit'>
+            <h1 className='md:text-6xl text-5xl text-white'>دورة التصميم و المونتاج</h1>
             {/* <h1 className='md:text-4xl text-3xl text-[#124972]'>يوم الأحد  فبراير </h1> */}
             {/* <div className='text-white'>
               <CountdownClock targetDate={targetDate} />
             </div> */}
-            <h1 className='md:text-2xl text-lg text-[#124972]'>سارع بالالتحاق بنا و ابدأ في تعلم التصميم ببرنامج الفوطوشوب</h1>
+            <h1 className='md:text-xl text-lg text-white max-w-xl'>تجربة استثنائية في التصميم والمونتاج! دورة مسجلة تمنحك 8 ساعات تدريب مكثف لاكتساب المهارات اللازمة للعمل عبر الإنترنت.</h1>
             <div className='flex gap-2 items-center'>
           {/* <ButtonLink>
               <Button variant={"outline"} className='bg-white  rounded-full border-2 text-[#124972] text-2xl p-8 flex items-center gap-3'>
@@ -42,8 +45,8 @@ function PhotoshopCourse({home=false}: Props) {
           
           {
             home ?
-          <Link href={"/photoshop-course"}>
-              <Button variant={"ghost"} className=' rounded-full  text-white text-lg  flex items-center gap-3'>
+          <Link href={"/design-course"}>
+              <Button variant={"ghost"} className=' rounded-full hover:bg-transparent hover:text-white  text-white text-md  flex items-center gap-3'>
                 المزيد <ArrowLeft />
               </Button>
           </Link>
@@ -65,4 +68,4 @@ const ButtonLink = ({ children }:{children: React.ReactNode})=>{
   )
 }
 
-export default PhotoshopCourse
+export default MontagCourse

@@ -21,6 +21,7 @@ import {
 import Courses from "@/components/global/Courses";
 import { Separator } from "@/components/ui/separator";
 import PhotoshopCourse from "@/components/global/PhotoshopCourse";
+import MontagCourse from "@/components/global/MontagCourseBar";
 
 interface LandingPage {
   landing_page: {
@@ -89,6 +90,7 @@ export default function Home() {
       <div className="">
       </div>
       <div dir="rtl" className="md:container space-y-4 mx-auto my-8">
+        <MontagCourse home />
         <h1 className="text-4xl  font-medium py-8">دورات مسجلة </h1>
         <Courses />
         <PhotoshopCourse  home/>
