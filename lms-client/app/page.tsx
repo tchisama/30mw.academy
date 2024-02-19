@@ -83,7 +83,7 @@ export default function Home() {
               }}
               className="md:text-2xl text-md text-muted-foreground text-center md:text-right "
             ></h1>
-            <h2 className="text-2xl md:text-5xl max-w-4xl mt-4 text-mutid-foreground text-center md:text-right font-bold ">
+            <h2 className="text-2xl max-w-3xl  md:text-5xl mt-4 text-mutid-foreground text-center md:text-right font-bold ">
               {config?.landing_page?.Text}
             </h2>
             {/* <h2 className="text-4xl font-medium text-mutid-foreground text-center">
@@ -114,21 +114,20 @@ export default function Home() {
                     delay: 5000,
                   }),
                 ]}
+                className="container p-0"
           >
-          <CarouselContent className="py-12">
-            <CarouselItem >
-              <div className="px-2">
+          <CarouselContent className="py-12 ">
+            <CarouselItem  className="">
+              <div className="px-2 md:px-6">
                 <YoutubeCourseBar home />
               </div>
             </CarouselItem>
-            <CarouselItem >
-                <div className="px-2">
+            <CarouselItem  className="">
+                <div className="px-2 md:px-6">
                   <MontagCourse home />
                 </div>
             </CarouselItem>
           </CarouselContent>
-          <CarouselPrevious />
-          <CarouselNext />
         </Carousel>
       <div dir="rtl" className="md:container px-3 space-y-4 mx-auto my-8">
 
