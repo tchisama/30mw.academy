@@ -122,12 +122,12 @@ export default function Home() {
                   <MontagCourse home />
                 </div>
             </CarouselItem>
-          </CarouselContent>
             <CarouselItem  className="">
               <div className="px-2 md:px-6">
                 <YoutubeCourseBar home />
               </div>
             </CarouselItem>
+          </CarouselContent>
         </Carousel>
       <div dir="rtl" className="md:container px-3 space-y-4 mx-auto my-8">
 
