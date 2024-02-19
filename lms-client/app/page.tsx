@@ -22,6 +22,35 @@ import Courses from "@/components/global/Courses";
 import { Separator } from "@/components/ui/separator";
 import PhotoshopCourse from "@/components/global/PhotoshopCourse";
 import MontagCourse from "@/components/global/MontagCourseBar";
+import YoutubeCourseBar from "@/components/global/YoutubeCourseBar";
+import Autoplay from "embla-carousel-autoplay"
+
+export function Example() {
+  return (
+    <Carousel
+      plugins={[
+        Autoplay({
+          delay: 2000,
+        }),
+      ]}
+    >
+      // ...
+    </Carousel>
+  )
+}
+
+
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel"
+
+
+
+
 
 interface LandingPage {
   landing_page: {
@@ -58,8 +87,8 @@ export default function Home() {
     );
   }
   return (
-    <div className="w-full  md:px-6 px-3  mx-auto">
-      <div className="py-4 flex max-w-[1800px] mx-auto  flex-col">
+    <div className="w-full  md:px-6   mx-auto">
+      <div className="py-4 px-3 flex max-w-[1800px] mx-auto  flex-col">
         <div className="  rounded-3xl p-4  my-8  md:px-20 flex-1 flex  md:flex-row flex-col  md:py-0  gap-2 justify-between items-center">
           <Image src={heroIllstration} alt="logo" className="drop-shadow-2xl animated w-[350px] md:w-[500px]" width={500} height={500}></Image>
           <div className="flex flex-col items-center md:items-end flex-1 justify-center ">
@@ -89,8 +118,35 @@ export default function Home() {
       </div>
       <div className="">
       </div>
-      <div dir="rtl" className="md:container space-y-4 mx-auto my-8">
-        <MontagCourse home />
+        <Carousel
+          opts={
+            {
+              loop: true,
+            }
+          }
+                plugins={[
+                  Autoplay({
+                    delay: 3000,
+                  }),
+                ]}
+          >
+          <CarouselContent className="py-12">
+            <CarouselItem >
+              <div className="px-2">
+                <YoutubeCourseBar home />
+              </div>
+            </CarouselItem>
+            <CarouselItem >
+                <div className="px-2">
+                  <MontagCourse home />
+                </div>
+            </CarouselItem>
+          </CarouselContent>
+          <CarouselPrevious />
+          <CarouselNext />
+        </Carousel>
+      <div dir="rtl" className="md:container px-3 space-y-4 mx-auto my-8">
+
         <h1 className="text-4xl  font-medium py-8">دورات مسجلة </h1>
         <Courses />
         <PhotoshopCourse  home/>
@@ -102,7 +158,7 @@ export default function Home() {
 
       <p className="text-center opacity-60">Powered By</p>
 
-      <div className="flex dark:invert pb-10 filter gap-8 opacity-70 drop-shadow-2xl justify-center items-center">
+      <div className="flex dark:invert pb-10 px-3 filter gap-8 opacity-70 drop-shadow-2xl justify-center items-center">
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger>
