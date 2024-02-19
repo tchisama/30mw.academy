@@ -118,16 +118,16 @@ export default function Home() {
           >
           <CarouselContent className="py-12 ">
             <CarouselItem  className="">
-              <div className="px-2 md:px-6">
-                <YoutubeCourseBar home />
-              </div>
-            </CarouselItem>
-            <CarouselItem  className="">
                 <div className="px-2 md:px-6">
                   <MontagCourse home />
                 </div>
             </CarouselItem>
           </CarouselContent>
+            <CarouselItem  className="">
+              <div className="px-2 md:px-6">
+                <YoutubeCourseBar home />
+              </div>
+            </CarouselItem>
         </Carousel>
       <div dir="rtl" className="md:container px-3 space-y-4 mx-auto my-8">
 
