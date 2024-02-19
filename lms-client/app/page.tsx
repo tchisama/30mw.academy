@@ -25,21 +25,6 @@ import MontagCourse from "@/components/global/MontagCourseBar";
 import YoutubeCourseBar from "@/components/global/YoutubeCourseBar";
 import Autoplay from "embla-carousel-autoplay"
 
-export function Example() {
-  return (
-    <Carousel
-      plugins={[
-        Autoplay({
-          delay: 2000,
-        }),
-      ]}
-    >
-      // ...
-    </Carousel>
-  )
-}
-
-
 import {
   Carousel,
   CarouselContent,
