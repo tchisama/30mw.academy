@@ -17,7 +17,7 @@ function MontagCourse({home=false}: Props) {
   
   return (
     <div dir='rtl'>
-      <div className=' bg-gradient-to-br to-[#3131A3] md:p-0 p-4 md:py-8 from-[#9999FF] mt-28 drop-shadow-2xl rounded-3xl border-2 border-[#3660a088]' >
+      <div className=' bg-gradient-to-br to-[#3131A3] md:p-0 p-4 md:py-8 from-[#9999FF] mt-28 drop-shadow-lg rounded-3xl border-2 border-[#3660a088]' >
         <div className='md:container flex flex-col md:flex-row-reverse justify-between items-center'>
           <div className='relative'>
             <Image alt="illustration" className=" mb-[-50px] h-[200px] md:h-[400px] object-contain relative -top-20 md:-top-32" width={600} height={600} src={montage}></Image>

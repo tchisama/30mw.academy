@@ -5,7 +5,7 @@ import _30mw from "@/public/30mw.png";
 import _s3d from "@/public/s3d.png";
 import Image from "next/image";
 import useFetchUser from "@/hooks/fetch-user";
-import { use, useEffect, useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import { useClerk } from "@clerk/nextjs";
 import TypeWriter from "@/components/global/TypingWriter";
 import Link from "next/link";
@@ -24,7 +24,8 @@ import PhotoshopCourse from "@/components/global/PhotoshopCourse";
 import MontagCourse from "@/components/global/MontagCourseBar";
 import YoutubeCourseBar from "@/components/global/YoutubeCourseBar";
 import Autoplay from "embla-carousel-autoplay"
-
+import { type CarouselApi } from "@/components/ui/carousel"
+ 
 import {
   Carousel,
   CarouselContent,
@@ -49,6 +50,23 @@ interface LandingPage {
 }
 
 export default function Home() {
+    const [api, setApi] = React.useState<CarouselApi>()
+  const [current, setCurrent] = React.useState(0)
+  const [count, setCount] = React.useState(0)
+ 
+  React.useEffect(() => {
+    if (!api) {
+      return
+    }
+ 
+    setCount(api.scrollSnapList().length)
+    setCurrent(api.selectedScrollSnap() + 1)
+ 
+    api.on("select", () => {
+      setCurrent(api.selectedScrollSnap() + 1)
+    })
+  }, [api])
+ 
   const user = useClerk();
   const [config, setConfig] = useState<LandingPage>();
   const [loading, setLoading] = useState(true);
@@ -104,6 +122,7 @@ export default function Home() {
       <div className="">
       </div>
         <Carousel
+          setApi={setApi}
           opts={
             {
               loop: true,
@@ -111,12 +130,12 @@ export default function Home() {
           }
                 plugins={[
                   Autoplay({
-                    delay: 5000,
+                    delay: 3000,
                   }),
                 ]}
                 className="container p-0"
           >
-          <CarouselContent className="py-12 ">
+          <CarouselContent className="py-6 ">
             <CarouselItem  className="">
                 <div className="px-2 md:px-6">
                   <MontagCourse home />
@@ -128,6 +147,13 @@ export default function Home() {
               </div>
             </CarouselItem>
           </CarouselContent>
+          <div className="flex items-center justify-center gap-2">
+            {
+              new Array(count).fill(0).map((_, index) => (
+                <div key={index} className={`w-4 h-4 rounded-full duration-150 ${current - 1 === index ? " w-8 bg-primary" : "bg-muted-foreground/50"}`}></div>
+              ))
+            }
+          </div>
         </Carousel>
       <div dir="rtl" className="md:container px-3 space-y-4 mx-auto my-8">
 
