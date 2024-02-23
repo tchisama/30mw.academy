@@ -10,8 +10,11 @@ const useProtuctDashboard = () => {
   React.useEffect(() => {
     if(user.user?.id){
       fetch(`${server}auth/user/${user.user?.id}`).then(res => res.json()).then(data => {
-        if(data.rule=="admin"||data.rule=="teacher"){
+        if(data.rule=="admin"||data.rule=="teacher"||data.rule=="contributor"){
           setLoading(false)
+          if(data.rule=="contributor"){
+            route.push("/dashboard/users")
+          }
         }else{
           route.push("/")
         }

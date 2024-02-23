@@ -74,7 +74,7 @@ const u = useClerk()
                 </NavigationMenuItem>
 
                 {
-                user?.rule==='admin'&&<>
+                (user?.rule==='admin' || user?.rule==='teacher' || user?.rule==='contributor' )&&<>
                 <NavigationMenuItem>
                     <Link href="/dashboard" legacyBehavior passHref>
                         <NavigationMenuLink className={navigationMenuTriggerStyle()}>

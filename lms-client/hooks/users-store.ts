@@ -10,7 +10,7 @@ export interface User {
     _id?:string;
     __v?:number;
     courses_count:number;
-    rule:"admin"|"teacher"|"user";
+    rule:"admin"|"teacher"|"user"|"contributor";
     createdAt:Date;
     updatedAt:Date;
 }

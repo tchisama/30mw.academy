@@ -13,11 +13,12 @@ import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '../ui/dropdown-menu';
 import { useClerk } from '@clerk/nextjs';
 import { Button } from '../ui/button';
-import { Ban, BookCopy, MoreHorizontal, ShieldCheck, Trash2 } from 'lucide-react';
+import { Ban, BookCopy, HelpCircle, MoreHorizontal, ShieldCheck, Trash2, User } from 'lucide-react';
 import { server } from '@/server';
 import { Badge } from '../ui/badge';
 import GiveAccess from './GiveAccess';
 import { Course } from '@/hooks/course-store';
+import useUserStore from '@/hooks/users-store';
 
 
 type Props = {
@@ -133,6 +134,7 @@ function UsersTable({users:_users,search,fetchUser,setUsers:_setUsers}: Props) {
 
 const MakeAdmin = ({_user,fetchUser,setUsers}:{  _user: User,fetchUser: ()=>void,setUsers: React.Dispatch<React.SetStateAction<any>>})=>{
   const user = useClerk()
+  const {user:userAdmin} = useUserStore()
     const setAdmin = (id:string)=>{
         // make user admin
         fetch(server+'auth/change-rule/'+id+'/admin').then(res => res.json()).then(data => {
@@ -168,7 +170,25 @@ const MakeAdmin = ({_user,fetchUser,setUsers}:{  _user: User,fetchUser: ()=>void
             })
         })
     }
+    const setContributor = (id:string)=>{
+        // make user admin
+        fetch(server+'auth/change-rule/'+id+'/contributor').then(res => res.json()).then(data => {
+            // fetchUser()
+            setUsers((users:User[]) => {
+                return users.map(user => {
+                    if (user.id_user === id) {
+                        return {
+                            ...user,
+                            rule: 'contributor',
+                        };
+                    }
+                    return user;
+                });
+            })
+        })
+    }
  return (
+                            userAdmin?.rule === "admin" &&
                             <DropdownMenu>
                             <DropdownMenuTrigger>
                                 {
@@ -182,11 +202,20 @@ const MakeAdmin = ({_user,fetchUser,setUsers}:{  _user: User,fetchUser: ()=>void
                             <DropdownMenuContent>
                                 <DropdownMenuLabel>User Actions</DropdownMenuLabel>
                                 <DropdownMenuSeparator />
-                                {
-                                    _user.rule=="admin"?
-                                    <DropdownMenuItem onClick={()=>setUserRule(_user.id_user)} className='flex gap-2 items-center'><ShieldCheck size={16}/> Set user</DropdownMenuItem>
-                                    :<DropdownMenuItem onClick={()=>setAdmin(_user.id_user)} className='flex gap-2 items-center'><ShieldCheck size={16}/> Set admin</DropdownMenuItem>
-                                }
+                                    
+                                    {
+                                        _user.rule!=="user" &&
+                                        <DropdownMenuItem onClick={()=>setUserRule(_user.id_user)} className='flex gap-2 items-center'><User size={16}/> Set user</DropdownMenuItem>
+                                    }
+                                    {
+                                        _user.rule!=="contributor" &&
+                                        <DropdownMenuItem onClick={()=>setContributor(_user.id_user)} className='flex gap-2 items-center'><HelpCircle size={16}/> Set contributor</DropdownMenuItem>
+                                    }
+                                    {
+                                        _user.rule!=="admin" &&
+                                        <DropdownMenuItem onClick={()=>setAdmin(_user.id_user)} className='flex gap-2 items-center'><ShieldCheck size={16}/> Set admin</DropdownMenuItem>
+                                    }
+                                    
                                 <DropdownMenuItem className='flex gap-2 items-center'><Ban size={16}/>Block user</DropdownMenuItem>
                                 <DropdownMenuItem className='flex gap-2 items-center dark:text-red-400 text-red-600'><Trash2 size={16}/>Delete user</DropdownMenuItem>
                             </DropdownMenuContent>

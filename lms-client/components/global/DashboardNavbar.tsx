@@ -19,6 +19,7 @@ import { ModeToggle } from "./DarkModeButton"
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar"
 import { UserButton } from "@clerk/nextjs"
 import { Button } from "../ui/button"
+import useUserStore from "@/hooks/users-store"
 
 const components: { title: string; href: string; description: string }[] = [
   {
@@ -39,7 +40,9 @@ const components: { title: string; href: string; description: string }[] = [
 ];
 
 export default function DashboardNavBar() {
+  const {user} = useUserStore()
   return (
+    user?.rule == "admin" &&
     <div className="py-3 w-full flex justify-between">
     <NavigationMenu className="flex-1 flex justify-center">
       <NavigationMenuList>
