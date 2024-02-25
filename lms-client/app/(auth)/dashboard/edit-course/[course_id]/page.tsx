@@ -107,6 +107,16 @@ const Page = ({params}: Props) => {
 
   },[params.course_id,updateCourse])
 
+
+    useEffect(()=>{
+    if(loading) return
+    if(!course) return
+    if(!course.sections) return
+    publish()
+  },[course])
+
+
+
   if(loading){
       return  <div className='h-screen flex justify-center items-center '>
                   <h1 className='flex gap-3'><Loader className='animate-spin'/>Loading...</h1>
@@ -128,7 +138,7 @@ const Page = ({params}: Props) => {
             <DashboardNavBar/>
             <div className='h-[120px] items-center flex justify-between'>
               <h1 className='text-3xl'>Manage course</h1>
-              <Button onClick={publish} className='flex gap-2' disabled={publishing}>
+              {/* <Button onClick={publish} className='flex gap-2' disabled={publishing}>
                 {
                   publishing ?
                   <>
@@ -139,7 +149,7 @@ const Page = ({params}: Props) => {
                     Publish <Upload size={18}/>
                   </>
                 }
-              </Button>
+              </Button> */}
             </div>
 
             <Tabs defaultValue="general" className="w-full">
