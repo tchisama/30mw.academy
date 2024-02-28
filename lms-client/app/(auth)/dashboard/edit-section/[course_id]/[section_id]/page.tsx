@@ -32,17 +32,24 @@ const Page = ({params}: Props) => {
   useEffect(()=>{
     try {
       axios.get(server+"course/"+params.course_id)
-      .then((res)=>{
+      .then((res:any)=>{
         updateCourse(res.data)
         setTimeout(() => {
           setLoading(false)
-        }, 1200);
+        }, 0);
       })
     } catch (error) {
       console.log(error)
       setLoading(false)
     }
   },[params.course_id,updateCourse])
+
+  useEffect(()=>{
+    if(loading) return
+    if(!course) return
+    if(!course.sections) return
+    publish()
+  },[course])
 
   if(loading){
       return <div className='h-screen flex justify-center items-center '>
@@ -59,7 +66,7 @@ const Page = ({params}: Props) => {
                 <Button variant={"outline"} onClick={()=>{publish();router.push(`/dashboard/edit-course/${params.course_id}`)}} className='flex gap-2 items-center '><ArrowLeft size={18}/>Back course</Button>
                 <h1 className='text-3xl'>Edit Section</h1>
               </div>
-              <Button onClick={publish} className='flex gap-2' disabled={publishing}>
+              {/* <Button onClick={publish} className='flex gap-2' disabled={publishing}>
                 {
                   publishing ?
                   <>
@@ -70,14 +77,14 @@ const Page = ({params}: Props) => {
                     Publish <Upload size={18}/>
                   </>
                 }
-              </Button>
+              </Button> */}
             </div>
-            <div className='grid grid-cols-2 gap-4'>
+            <div className='grid grid-cols-3 gap-4'>
               <div className='space-y-4'>
                 <NewSectionTitle section={params.section_id}/>
                 <NewSectionDescription section={params.section_id}/>
               </div>
-              <div>
+              <div className='col-span-2'>
                 <NewSectionVideos params={params}/>
               </div>
             </div>

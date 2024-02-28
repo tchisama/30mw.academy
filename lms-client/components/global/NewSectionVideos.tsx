@@ -155,12 +155,12 @@ function NewSectionVideos({params:{course_id,section_id}}: Props) {
           <Droppable droppableId="characters">
             {(provided) => (
               <div className="px-4 space-y-2" {...provided.droppableProps} ref={provided.innerRef}>
-                {course.sections.find((section)=>section.id_section===section_id)?.videos.map(({id_video, title:ttl}, index) => {
+                {course.sections.find((section)=>section.id_section===section_id)?.videos.map(({id_video ,url, title:ttl}, index) => {
                   return (
-                    <Draggable key={id_video} draggableId={id_video} index={index}>
+                    <Draggable key={id_video} draggableId={id_video} index={index} >
                       {(provided) => (
-                        <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
-                            <div className='p-3 px-3 pl-5 bg-background border rounded-lg flex justify-between items-center'>
+                        <div className='p-3 px-3 gap-2 pl-5 bg-background border rounded-lg flex flex-col ' ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
+                            <div className=' bg-background   flex justify-between items-center'>
                                 <span className='text-lg flex gap-4 items-center'><V/> {ttl}</span>
                                 <div className='flex gap-2 items-center'>
                                     {/* <div className='p-1 bg-primary text-sm text-white rounded-md px-4'>published</div> */}
@@ -183,6 +183,20 @@ function NewSectionVideos({params:{course_id,section_id}}: Props) {
                                           <Button onClick={()=>saveAndNavigate(`/dashboard/edit-video/${course._id}/${section_id}/${id_video}`)} variant={"outline"} size={"icon"}><ArrowRight size={18}/></Button>
                                 </div>
                             </div>
+                            <Input value={ttl} onChange={
+                              (e)=>{
+                                const newVideo = course.sections.find((section)=>section.id_section===section_id)?.videos ?? [ ]
+                                newVideo[index].title = e.target.value
+                                updateCourse({...course,sections:course.sections.map((section)=>section.id_section===section_id?{...section,videos:newVideo}:section)})
+                              }
+                            } placeholder='video Title'></Input>
+                            <Input onChange={
+                              (e)=>{
+                                const newVideo = course.sections.find((section)=>section.id_section===section_id)?.videos ?? [ ]
+                                newVideo[index].url = e.target.value
+                                updateCourse({...course,sections:course.sections.map((section)=>section.id_section===section_id?{...section,videos:newVideo}:section)})
+                              }
+                            } value={url} placeholder='video url'></Input>
                         </div>
                       )}
                     </Draggable>
@@ -211,6 +225,7 @@ function NewSectionVideos({params:{course_id,section_id}}: Props) {
   )
 
 }
+
 
 
 
