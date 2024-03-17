@@ -28,7 +28,7 @@ function Courses({}: Props) {
     const router = useRouter()
     const [loading, setLoading] = React.useState(true)
     useEffect(() => {
-        fetch(server+"courses-client/test").then(res => res.json()).then(data => {
+        fetch("/api/courses").then(res => res.json()).then(data => {
             setCourses(data)
             update(p=>p+1)
             setLoading(false)

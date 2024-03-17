@@ -8,7 +8,7 @@ const useCategories = () => {
     const {categories,updateCats} = useCategoriesStore()
     const [u,update]=useState(0)
     useEffect(() => {
-        fetch(server+'category/categories')
+        fetch('/api/categories')
         .then(res => res.json())
         .then(data => 
             {
