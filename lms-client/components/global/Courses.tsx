@@ -42,7 +42,7 @@ function Courses({}: Props) {
         )
     }
   return (
-  <div className='grid grid-cols-1 md:grid-cols-3 gap-4'>
+  <div className='grid grid-cols-1 md:grid-cols-3 gap-4 '>
       {
           courses.map(course => (
               
@@ -52,7 +52,7 @@ function Courses({}: Props) {
                 }else{
                     router.push(`/course/${course._id}/start`)
                 }
-              }} key={course._id} className='overflow-hidden group cursor-pointer'>
+              }} key={course._id} className='overflow-hidden drop-shadow-xl group cursor-pointer'>
                   <div className='relative aspect-video w-full overflow-hidden'>
                   {
 
@@ -61,14 +61,14 @@ function Courses({}: Props) {
                   }
                   </div>
                   <CardHeader>
-                      <CardTitle>{course.title}</CardTitle>
+                      <CardTitle className='text-lg'>{course.title}</CardTitle>
                       <div className='flex items-center justify-between'>
-                          <Badge variant="outline">{categories
-                          .find(c=>c._id===course.category)?.name}</Badge>
-                          <h3 className='text-xl'>{course.price==0?"Free":course.price+" Dh"} </h3>
+                          <div >{categories
+                          .find(c=>c._id===course.category)?.name}</div>
+                          <h3 className='text-2xl font-medium'>{course.price==0?"Free":course.price+" Dh"} </h3>
                       </div>
                       <CardDescription className='h-10 overflow-hidden'>{course.description}</CardDescription>
-                      <Button className='mt-auto flex gap-3'>المزيد من التفاصيل <ArrowLeft size={18}/></Button>
+                      {/* <Button className='mt-auto flex gap-3'>المزيد من التفاصيل <ArrowLeft size={18}/></Button> */}
                   </CardHeader>
               </Card>
           ))
