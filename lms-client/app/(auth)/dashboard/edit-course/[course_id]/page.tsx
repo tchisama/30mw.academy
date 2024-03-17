@@ -86,7 +86,7 @@ const Page = ({params}: Props) => {
   // get the course by the param id using axios
   useEffect(()=>{
     try {
-      axios.get(server+"course/"+params.course_id)
+      axios.get("/api/course/"+params.course_id)
       .then((res)=>{
         if(res.data!==null){
           updateCourse(res.data)

@@ -1,12 +1,5 @@
 import  mongoose from 'mongoose'
-
-const videoSchema = new mongoose.Schema({
-  title: String,
-  url: String,
-  duration: Number,
-  id_video: String,
-  free: Boolean,
-});
+import videoSchema from './Video'
 
 const courseSectionSchema = new mongoose.Schema({
   title: String,

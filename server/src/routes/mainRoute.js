@@ -52,6 +52,7 @@ router.post('/update-course/:courseId', async (req, res) => {
       res.status(404).json({ message: 'Course not found' });
     }
 })
+
 // get all courses
 router.get('/courses', async (req, res) => {
   try {

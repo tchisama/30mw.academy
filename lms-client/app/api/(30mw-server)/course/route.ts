@@ -7,6 +7,7 @@ import CourseModel from "@/models/Course";
 
 export async function POST(request: Request) {
   try {
+    console.log("fire route")
     const newCourse = new CourseModel(await request.json());
     const savedCourse = await newCourse.save();
     return NextResponse.json({id:savedCourse._id});
@@ -27,3 +28,5 @@ export async function DELETE(request: Request) {
     return NextResponse.json({ message: 'Failed to delete the course' });
   }
 }
+
+
