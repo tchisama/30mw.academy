@@ -208,7 +208,18 @@ const Page = ({params}: Props) => {
                       <CardTitle>Delete Course</CardTitle>
                       <p className='text-sm text-muted-foreground'>this will remove the course and all its content</p>
                       </div>
-                      <Button variant={"destructive"} className='flex gap-2'><Trash2 size={18}/> Delete</Button>
+                      <Button onClick={()=>{
+                        if (!confirm("Are you sure you want to delete this course?")) return
+                        axios.delete("/api/course",{
+                          data:{
+                            id:params.course_id
+                          }
+                        }).then((res)=>{
+                          if(res.status==200){
+                            window.location.href="/dashboard/courses"
+                          }
+                        })
+                      }} variant={"destructive"} className='flex gap-2'><Trash2 size={18}/> Delete</Button>
                     </div>
                   </CardHeader>
                 </Card>

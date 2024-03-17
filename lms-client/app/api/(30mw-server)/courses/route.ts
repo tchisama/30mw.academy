@@ -8,3 +8,5 @@ export async function GET() {
   const courses = await CourseModel.find();
   return NextResponse.json(courses);
 }
+
+
