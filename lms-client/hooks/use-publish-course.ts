@@ -10,7 +10,7 @@ const usePublishCourse = () => {
   const publish = async () => {
     setPublishing(true);
     try {
-      const response = await axios.post(`${server}update-course/${course._id}`, course);
+      const response = await axios.patch(`/api/course/${course._id}`, course);
       setTimeout(() => {
         setPublishing(false);
       }, 800);

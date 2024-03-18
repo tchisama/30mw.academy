@@ -118,7 +118,7 @@ function NewSectionVideos({params:{course_id,section_id}}: Props) {
 
 
     async function saveAndNavigate(link:string) {
-      await  axios.post(server+"update-course/"+course._id,course)
+      await  axios.patch("/api/course/"+course._id,course)
       router.push(link)
     }
 

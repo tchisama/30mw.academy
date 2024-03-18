@@ -92,7 +92,7 @@ const page = ({params}: Props) => {
   useEffect(() => {
     setLoading(true)
     if (user.user?.id) {
-        axios.post(server+"get-course",{id:params.course_id}).then(data => {
+        axios.get("/api/course/"+params.course_id).then(data => {
         setCourse(data.data)
         }).then(() => {
             axios.post(server+"auth/get-access",{id_user:user?.user?.id,id_course:params.course_id}).then(data => {
@@ -115,7 +115,7 @@ const page = ({params}: Props) => {
             })
         })
     }else{
-        axios.post(server+"get-course",{id:params.course_id}).then(data => {
+        axios.get("/api/course/"+params.course_id).then(data => {
         setCourse(data.data)
         }).then(() => {
             axios.post(server+"auth/get-access",{id_user:1,id_course:params.course_id}).then(data => {

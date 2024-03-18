@@ -24,7 +24,7 @@ const  Page = (props: Props) => {
     const createCourse =async ()=>{
         setLoading(true)
         try {
-            const response = await axios.post(server+"create-course",{
+            const response = await axios.post("/api/course",{
                 title,
                 owner:{
                     fname:user?.fname,

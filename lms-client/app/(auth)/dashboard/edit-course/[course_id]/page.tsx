@@ -86,7 +86,7 @@ const Page = ({params}: Props) => {
   // get the course by the param id using axios
   useEffect(()=>{
     try {
-      axios.get(server+"course/"+params.course_id)
+      axios.get("/api/course/"+params.course_id)
       .then((res)=>{
         if(res.data!==null){
           updateCourse(res.data)
@@ -156,10 +156,15 @@ const Page = ({params}: Props) => {
               <TabsList>
                 <TabsTrigger value="general">General</TabsTrigger>
                 <TabsTrigger value="security">Security</TabsTrigger>
+                <TabsTrigger value="landingpage">Landing Page</TabsTrigger>
               </TabsList>
               <div className='my-6'>
                 <Separator/>
               </div>
+              <TabsContent value="landingpage">
+                {/* <LandingPage/> */}
+                hello world
+              </TabsContent>
               <TabsContent value="general" className='w-full'>
                 <div className='grid grid-cols-2 gap-4'>
                   <div className='flex flex-col gap-4'>
@@ -173,7 +178,7 @@ const Page = ({params}: Props) => {
                       <NewCoursePrice/>
                   </div>
                 </div>
-              </TabsContent>
+              Ta</TabsContent>
               <TabsContent value="security" className=' flex gap-4 flex-col'>
 
 
@@ -208,7 +213,18 @@ const Page = ({params}: Props) => {
                       <CardTitle>Delete Course</CardTitle>
                       <p className='text-sm text-muted-foreground'>this will remove the course and all its content</p>
                       </div>
-                      <Button variant={"destructive"} className='flex gap-2'><Trash2 size={18}/> Delete</Button>
+                      <Button onClick={()=>{
+                        if (!confirm("Are you sure you want to delete this course?")) return
+                        axios.delete("/api/course",{
+                          data:{
+                            id:params.course_id
+                          }
+                        }).then((res)=>{
+                          if(res.status==200){
+                            window.location.href="/dashboard/courses"
+                          }
+                        })
+                      }} variant={"destructive"} className='flex gap-2'><Trash2 size={18}/> Delete</Button>
                     </div>
                   </CardHeader>
                 </Card>
