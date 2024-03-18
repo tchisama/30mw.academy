@@ -15,7 +15,7 @@ type Props = {};
 
 function Page({}: Props) {
   return (
-    <div dir='rtl' className=''>
+    <div dir='rtl'  className=''>
       <div className='bg-slate-100 dark:bg-slate-950'>
         <div className='py-8 items-center  container flex md:flex-row-reverse flex-col-reverse gap-6'>
           <video className='w-[700px] ' controls src="https://d2rk6n1qqhht0d.cloudfront.net/G05_EP00_INTRO.mp4"></video>
@@ -45,6 +45,7 @@ function Page({}: Props) {
           </div>
         </div>
       </div>
+
 			<div className="flex flex-col-reverse md:flex-row px-2 items-center  max-w-7xl mx-auto gap-12 py-24">
         <div className='flex flex-col gap-4 flex-1'>
           <h1 className='text-3xl '>عن الدورة</h1>
