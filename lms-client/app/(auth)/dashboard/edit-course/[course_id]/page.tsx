@@ -28,6 +28,7 @@ import useCategories from '@/hooks/categories';
 import useCategoriesStore from '@/hooks/categories-store';
 import { server } from '@/server';
 import AddAccessUsers from '@/components/global/AddAccessUsers';
+import LandingPageController from './LandingPageController';
 type Props = {
   params: {
     course_id: string
@@ -162,8 +163,7 @@ const Page = ({params}: Props) => {
                 <Separator/>
               </div>
               <TabsContent value="landingpage">
-                {/* <LandingPage/> */}
-                hello world
+                <LandingPageController/>
               </TabsContent>
               <TabsContent value="general" className='w-full'>
                 <div className='grid grid-cols-2 gap-4'>
