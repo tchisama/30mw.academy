@@ -156,10 +156,15 @@ const Page = ({params}: Props) => {
               <TabsList>
                 <TabsTrigger value="general">General</TabsTrigger>
                 <TabsTrigger value="security">Security</TabsTrigger>
+                <TabsTrigger value="landingpage">Landing Page</TabsTrigger>
               </TabsList>
               <div className='my-6'>
                 <Separator/>
               </div>
+              <TabsContent value="landingpage">
+                {/* <LandingPage/> */}
+                hello world
+              </TabsContent>
               <TabsContent value="general" className='w-full'>
                 <div className='grid grid-cols-2 gap-4'>
                   <div className='flex flex-col gap-4'>
@@ -173,7 +178,7 @@ const Page = ({params}: Props) => {
                       <NewCoursePrice/>
                   </div>
                 </div>
-              </TabsContent>
+              Ta</TabsContent>
               <TabsContent value="security" className=' flex gap-4 flex-col'>
 
 
