@@ -32,10 +32,6 @@ export default function RootLayout({
         {/* adding the google tag manager tag to targit all the pages */}
 
         <GoogleTagManager gtmId="AW-16503732124" />
-        
-
-
-
 
         <body className={inter.className}>
           {dev && (

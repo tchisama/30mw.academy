@@ -41,6 +41,7 @@
     "mongoose": "^8.2.2",
     "mux-embed": "^4.28.1",
     "next": "latest",
+    "next/third-parties":"latest",
     "next-themes": "^0.2.1",
     "react": "latest",
     "react-beautiful-dnd": "^13.0.0",
