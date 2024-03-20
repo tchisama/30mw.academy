@@ -1,6 +1,9 @@
 import { cn } from "@/lib/utils";
 
-type Props = SectionType;
+type Props = {
+  type: SectionType["type"];
+  data: SectionType["data"];
+};
 
 export type SectionType = {
   id: string;
@@ -38,17 +41,20 @@ export default function Section({ type, data }: Props) {
       >
         <div className="flex flex-col gap-4 flex-1">
           <h1 className="text-3xl ">{data.title}</h1>
-          <p
-            className=" text-lg md:text-xl max-w-3xl"
-            dangerouslySetInnerHTML={{
-              __html: data.content
-                .replaceAll(/\n/g, "</br>")
-                .replaceAll("  ", "&nbsp;"),
-            }}
-          ></p>
+          {data?.content && (
+            <p
+              className=" text-lg md:text-xl max-w-3xl"
+              dangerouslySetInnerHTML={{
+                __html:
+                  data?.content
+                    .replaceAll(/\n/g, "</br>")
+                    .replaceAll("  ", "&nbsp;") ?? "",
+              }}
+            ></p>
+          )}
         </div>
         <div className="relative">
-          {data["show image"] && (
+          {"show image" in data && data["show image"] && (
             <img
               className="w-[400px] bg-slate-100 drop-shadow-2xl h-[300px] md:h-[400px] object-cover rounded-3xl"
               width={500}
@@ -68,7 +74,7 @@ export default function Section({ type, data }: Props) {
           data?.reverse && "md:flex-row-reverse",
         )}
       >
-        {data?.addContent && (
+        {(data as any)?.addContent && (
           <div className="flex flex-col gap-4 flex-1">
             {data?.title && (
               <h1
@@ -95,11 +101,11 @@ export default function Section({ type, data }: Props) {
           </div>
         )}
         <div className="relative flex-1">
-           {/*data.videoUrl*/}
+          {/*data.videoUrl*/}
           <video
             className="max-w-[900px] w-full mx-auto "
             controls
-            src={data?.videoUrl}
+            src={(data as any)?.videoUrl}
           ></video>
         </div>
       </div>

@@ -62,6 +62,7 @@ export default function Controllers({}: Props) {
             </TabsContent>
           </Tabs>
         </CardContent>
+        {/* <div className="text-xs">{JSON.stringify(selectedSection)}</div>*/}
       </Card>
     )
   );
@@ -82,8 +83,10 @@ const Field = ({
   //
   useEffect(() => {
     if (!selectedSection) return;
-    if (!(field.name in selectedSection.data)) return;
-    setValue(selectedSection.data[field.name as keyof typeof selectedSection.data] );
+    // if (!(field.name in selectedSection.data)) return;
+    setValue(
+      selectedSection.data[field.name as keyof typeof selectedSection.data],
+    );
   }, [selectedSection]);
   //
 
@@ -168,4 +171,3 @@ const Field = ({
     return null;
   }
 };
-

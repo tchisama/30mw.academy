@@ -33,7 +33,7 @@ export default function LandingPageController ()  {
       {
         sections.map(section => (
           <div key={section.id} className={cn("hover:bg-slate-50 relative group rounded-xl ",selectedSection?.id === section.id && "border-2")} onClick={()=>setSelectedSection(section)} >
-          <Section id={section.id} key={section.id} data={section.data} type={section.type}/>
+          <Section data={section.data} type={section.type} />
           {
             selectedSection?.id === section.id &&
             <div className="p-2 gap-2 flex shadow-lg bg-white absolute bottom-2 left-1/2 -translate-x-1/2  w-fit border rounded-xl ">
