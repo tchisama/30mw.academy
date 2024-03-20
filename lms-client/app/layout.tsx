@@ -8,8 +8,6 @@ import CatsProvider from "@/components/CatsProvider";
 import { dev } from "@/server";
 import { Code } from "lucide-react";
 import Navbar from "@/components/global/Navbar";
-import { GoogleTagManager } from "@next/third-parties/google";
-
 const inter = Rubik({ subsets: ["arabic"] });
 
 export const metadata: Metadata = {
@@ -29,9 +27,6 @@ export default function RootLayout({
           <link rel="icon" href="/favicon.png" sizes={"any"} />
         </head>
 
-        {/* adding the google tag manager tag to targit all the pages */}
-
-        <GoogleTagManager gtmId="AW-16503732124" />
 
         <body className={inter.className}>
           {dev && (

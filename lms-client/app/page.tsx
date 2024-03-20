@@ -9,8 +9,8 @@ import React, { use, useEffect, useState } from "react";
 import { useClerk } from "@clerk/nextjs";
 import TypeWriter from "@/components/global/TypingWriter";
 import Link from "next/link";
-import loaringIllstration from "@/public/Learning-bro.svg"
-import heroIllstration from "@/public/first.svg"
+import loaringIllstration from "@/public/Learning-bro.svg";
+import heroIllstration from "@/public/first.svg";
 import { server } from "@/server";
 import {
   Tooltip,
@@ -23,20 +23,15 @@ import { Separator } from "@/components/ui/separator";
 import PhotoshopCourse from "@/components/global/PhotoshopCourse";
 import MontagCourse from "@/components/global/MontagCourseBar";
 import YoutubeCourseBar from "@/components/global/YoutubeCourseBar";
-import Autoplay from "embla-carousel-autoplay"
-import { type CarouselApi } from "@/components/ui/carousel"
- 
+import Autoplay from "embla-carousel-autoplay";
+import { type CarouselApi } from "@/components/ui/carousel";
+
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel"
-
-
-
-
+} from "@/components/ui/carousel";
+import GTMProvider from "@/components/providers/GoogleTagManager";
 
 interface LandingPage {
   landing_page: {
@@ -50,23 +45,23 @@ interface LandingPage {
 }
 
 export default function Home() {
-  const [api, setApi] = React.useState<CarouselApi>()
-  const [current, setCurrent] = React.useState(0)
-  const [count, setCount] = React.useState(0)
- 
+  const [api, setApi] = React.useState<CarouselApi>();
+  const [current, setCurrent] = React.useState(0);
+  const [count, setCount] = React.useState(0);
+
   React.useEffect(() => {
     if (!api) {
-      return
+      return;
     }
- 
-    setCount(api.scrollSnapList().length)
-    setCurrent(api.selectedScrollSnap() + 1)
- 
+
+    setCount(api.scrollSnapList().length);
+    setCurrent(api.selectedScrollSnap() + 1);
+
     api.on("select", () => {
-      setCurrent(api.selectedScrollSnap() + 1)
-    })
-  }, [api])
- 
+      setCurrent(api.selectedScrollSnap() + 1);
+    });
+  }, [api]);
+
   const user = useClerk();
   const [config, setConfig] = useState<LandingPage>();
   const [loading, setLoading] = useState(true);
@@ -91,9 +86,16 @@ export default function Home() {
   }
   return (
     <div className="w-full  md:px-6   mx-auto">
+      <GTMProvider />
       <div className="py-4 px-3 flex max-w-[1800px] mx-auto  flex-col">
         <div className="  rounded-3xl p-4  my-8  md:px-20 flex-1 flex  md:flex-row flex-col  md:py-0  gap-2 justify-between items-center">
-          <Image src={heroIllstration} alt="logo" className="drop-shadow-2xl animated w-[350px] md:w-[500px]" width={500} height={500}></Image>
+          <Image
+            src={heroIllstration}
+            alt="logo"
+            className="drop-shadow-2xl animated w-[350px] md:w-[500px]"
+            width={500}
+            height={500}
+          ></Image>
           <div className="flex flex-col items-center md:items-end flex-1 justify-center ">
             <h1
               dangerouslySetInnerHTML={{
@@ -113,53 +115,50 @@ export default function Home() {
                 href="/sign-up"
                 className="md:px-8 px-8 shadow-2xl flex-row-reverse hover:scale-105 items-center duration-150 py-4 md:py-4 text-md md:text-lg bg-primary text-white uppercase rounded-full flex gap-2 "
               >
-                إشترك الآن بالمجان  <ArrowLeft />
+                إشترك الآن بالمجان <ArrowLeft />
               </Link>
             </div>
           </div>
         </div>
       </div>
-      <div className="">
-      </div>
-        <Carousel
-          setApi={setApi}
-          opts={
-            {
-              loop: true,
-            }
-          }
-                plugins={[
-                  Autoplay({
-                    delay: 3000,
-                  }),
-                ]}
-                className="container p-0"
-          >
-          <CarouselContent className="py-6 ">
-            <CarouselItem  className="">
-                <div className="px-2 md:px-6">
-                  <MontagCourse home />
-                </div>
-            </CarouselItem>
-            <CarouselItem  className="">
-              <div className="px-2 md:px-6">
-                <YoutubeCourseBar home />
-              </div>
-            </CarouselItem>
-          </CarouselContent>
-          <div className="flex items-center justify-center gap-2">
-            {
-              new Array(count).fill(0).map((_, index) => (
-                <div key={index} className={`w-4 h-4 rounded-full duration-150 ${current - 1 === index ? " w-8 bg-primary" : "bg-muted-foreground/50"}`}></div>
-              ))
-            }
-          </div>
-        </Carousel>
+      <div className=""></div>
+      <Carousel
+        setApi={setApi}
+        opts={{
+          loop: true,
+        }}
+        plugins={[
+          Autoplay({
+            delay: 3000,
+          }),
+        ]}
+        className="container p-0"
+      >
+        <CarouselContent className="py-6 ">
+          <CarouselItem className="">
+            <div className="px-2 md:px-6">
+              <MontagCourse home />
+            </div>
+          </CarouselItem>
+          <CarouselItem className="">
+            <div className="px-2 md:px-6">
+              <YoutubeCourseBar home />
+            </div>
+          </CarouselItem>
+        </CarouselContent>
+        <div className="flex items-center justify-center gap-2">
+          {new Array(count).fill(0).map((_, index) => (
+            <div
+              key={index}
+              className={`w-4 h-4 rounded-full duration-150 ${current - 1 === index ? " w-8 bg-primary" : "bg-muted-foreground/50"}`}
+            ></div>
+          ))}
+        </div>
+      </Carousel>
       <div dir="rtl" className="md:container px-3 space-y-4 mx-auto my-8">
-
         <h1 className="text-4xl  font-medium py-8">دورات مسجلة </h1>
         <Courses />
-        <PhotoshopCourse  home/>
+        <PhotoshopCourse home />
       </div>
 
       <div className="my-8">
