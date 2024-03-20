@@ -270,5 +270,4 @@ const Page = ({params}: Props) => {
 }
 
 
-
 export default Page
