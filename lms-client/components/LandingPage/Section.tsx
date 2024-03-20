@@ -18,6 +18,7 @@ export type SectionType = {
   | {
       type: "video";
       data: {
+        addContent?: boolean;
         title?: string;
         content?: string;
         videoUrl?: string;
@@ -67,7 +68,7 @@ export default function Section({ type, data }: Props) {
           data?.reverse && "md:flex-row-reverse",
         )}
       >
-        {(data?.title || data?.content) && (
+        {data?.addContent && (
           <div className="flex flex-col gap-4 flex-1">
             {data?.title && (
               <h1
@@ -94,13 +95,14 @@ export default function Section({ type, data }: Props) {
           </div>
         )}
         <div className="relative flex-1">
-          <video className="w-full" controls width="560" height="315">
-            <source src={data.videoUrl} type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
+           {/*data.videoUrl*/}
+          <video
+            className="max-w-[900px] w-full mx-auto "
+            controls
+            src={data?.videoUrl}
+          ></video>
         </div>
       </div>
     );
   }
 }
-

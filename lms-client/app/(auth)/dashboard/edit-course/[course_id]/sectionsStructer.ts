@@ -23,6 +23,14 @@ export default {
   ],
   video: [
     {
+      name: "videoUrl",
+      type: "string",
+    },
+    {
+      name: "addContent",
+      type: "boolean",
+    },
+    {
       name: "title",
       type: "string",
     },
@@ -31,13 +39,8 @@ export default {
       type: "text",
     },
     {
-      name: "videoUrl",
-      type: "string",
-    },
-    {
       name: "reverse",
       type: "boolean",
     },
   ],
 };
-
