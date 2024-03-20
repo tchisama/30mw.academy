@@ -1,24 +1,43 @@
 export default {
-  "content": [
+  content: [
     {
-      name:"title",
-      type: "string"
+      name: "title",
+      type: "string",
     },
     {
-      name:"content",
-      type: "text"
+      name: "content",
+      type: "text",
     },
     {
-      name:"show image",
-      type: "boolean"
+      name: "show image",
+      type: "boolean",
     },
     {
-      name:"image",
-      type: "image"
+      name: "image",
+      type: "image",
     },
     {
-      name:"reverce",
-      type: "boolean"
+      name: "reverse",
+      type: "boolean",
     },
-  ]
-}
+  ],
+  video: [
+    {
+      name: "title",
+      type: "string",
+    },
+    {
+      name: "content",
+      type: "text",
+    },
+    {
+      name: "videoUrl",
+      type: "string",
+    },
+    {
+      name: "reverse",
+      type: "boolean",
+    },
+  ],
+};
+

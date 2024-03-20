@@ -15,7 +15,7 @@ const CatsProvider = ({children}: Props) => {
         update(p => p + 1)
     },[])
   return (
-    <div>{children}</div>
+    <div className="" >{children}</div>
   )
 }
 export default CatsProvider
