@@ -7,9 +7,7 @@ import NewCourseSections from '@/components/global/NewCourseSections'
 import NewCourseImage from '@/components/global/NewCourseImage'
 import NewCourseTitle from '@/components/global/NewCourseTitle'
 import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Frown, Loader, PlusCircle, Shield, ShieldCheck, Trash2, Upload } from 'lucide-react'
-import Masonry from 'react-masonry-css'
+import { Frown, Loader, ShieldCheck, Trash2 } from 'lucide-react'
 import NewCoursePrice from '@/components/global/NewCoursePrice'
 import NewCourseCat from '@/components/global/NewCourseCat'
 
@@ -17,7 +15,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
 
 import axios from 'axios';
-import { useSearchParams } from 'next/navigation'
 import useCourseStore from '@/hooks/course-store';
 import usePublishCourse from '@/hooks/use-publish-course';
 import { Separator } from '@/components/ui/separator';
@@ -28,6 +25,7 @@ import useCategories from '@/hooks/categories';
 import useCategoriesStore from '@/hooks/categories-store';
 import { server } from '@/server';
 import AddAccessUsers from '@/components/global/AddAccessUsers';
+import LandingPageController from './LandingPageController';
 type Props = {
   params: {
     course_id: string
@@ -162,8 +160,7 @@ const Page = ({params}: Props) => {
                 <Separator/>
               </div>
               <TabsContent value="landingpage">
-                {/* <LandingPage/> */}
-                hello world
+                <LandingPageController/>
               </TabsContent>
               <TabsContent value="general" className='w-full'>
                 <div className='grid grid-cols-2 gap-4'>

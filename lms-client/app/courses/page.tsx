@@ -14,7 +14,7 @@ const page = (props: Props) => {
                     <h1 className='text-5xl font-bold'>دوراتنا 📚</h1>
                 </div>
                 <div className='my-8'>
-                    <Separator/>
+                    <Separator />
                 </div>
                 <Courses/>
         </div>
