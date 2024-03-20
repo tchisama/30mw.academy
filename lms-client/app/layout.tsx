@@ -8,6 +8,8 @@ import CatsProvider from '@/components/CatsProvider'
 import { dev } from '@/server'
 import { Code } from 'lucide-react'
 import Navbar from '@/components/global/Navbar'
+import { GoogleTagManager } from '@next/third-parties/google'
+
 
 const inter = Rubik({ subsets: ['arabic'] })
 
@@ -33,6 +35,7 @@ export default function RootLayout({
         <head>
           <link rel='icon' href="/favicon.png" sizes={"any"} />
         </head>
+        <GoogleTagManager gtmId="AW-16503732124" />
 
         <body className={inter.className}>
           {
