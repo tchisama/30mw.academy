@@ -83,7 +83,7 @@ const Field = ({
   useEffect(() => {
     if (!selectedSection) return;
     if (!(field.name in selectedSection.data)) return;
-    setValue(selectedSection.data[field.name]);
+    setValue(selectedSection.data[field.name as keyof typeof selectedSection.data] );
   }, [selectedSection]);
   //
 
