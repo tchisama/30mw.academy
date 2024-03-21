@@ -1,21 +1,19 @@
-"use client"
-import useCategories from '@/hooks/categories'
-import useFetchUser from '@/hooks/fetch-user'
-import React, { useEffect } from 'react'
-
+"use client";
+import useCategories from "@/hooks/categories";
+import useFetchUser from "@/hooks/fetch-user";
+import React, { useEffect } from "react";
 
 type Props = {
-    children: React.ReactNode
-}
+  children: React.ReactNode;
+};
 
-const CatsProvider = ({children}: Props) => {
-    const {update} = useCategories()
-    useFetchUser()
-    useEffect(() => {
-        update(p => p + 1)
-    },[])
-  return (
-    <div className="" >{children}</div>
-  )
-}
-export default CatsProvider
+const CatsProvider = ({ children }: Props) => {
+  const { update } = useCategories();
+  useFetchUser();
+  useEffect(() => {
+    update((p) => p + 1);
+  }, []);
+  return <div className="">{children}</div>;
+};
+export default CatsProvider;
+

@@ -1,9 +1,6 @@
 import { Button } from "@/components/ui/button";
 import {
   Circle,
-  CheckCircle,
-  Pipette,
-  Settings2,
   PaintBucket,
   Medal,
   PencilRuler,
@@ -161,6 +158,7 @@ function Page({}: Props) {
           </div>
         </div>
       </div>
+
       <div className="bg-slate-100 dark:bg-slate-900 rounded-3xl md:rounded-none ">
         <div className="flex flex-col items-start max-w-7xl mx-auto px-4 gap-6 py-10 md:py-24">
           <h1 className="text-3xl font-medium dark:text-white">ماذا ستحتاج؟</h1>
@@ -196,7 +194,9 @@ function Page({}: Props) {
               </h1>
             </div>
           </div>
+
         </div>
+
       </div>
     </div>
   );

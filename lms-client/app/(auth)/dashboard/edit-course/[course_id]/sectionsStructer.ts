@@ -43,4 +43,32 @@ export default {
       type: "boolean",
     },
   ],
+  cards: [
+    {
+      name:"title",
+      type:"string",
+    },
+    {
+      name:"content",
+      type:"text",
+    },
+    {
+      name: "cards",
+      type: "cards array",
+      structer: [
+        {
+          name: "title",
+          type: "string",
+        },
+        {
+          name: "icon",
+          type: "string",
+        },
+        {
+          name: "subtitle",
+          type: "string",
+        },
+      ],
+    },
+  ],
 };

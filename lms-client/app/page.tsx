@@ -1,15 +1,11 @@
 "use client";
-import Navbar from "@/components/global/Navbar";
-import { ArrowLeft, ArrowRight, Loader } from "lucide-react";
+import { ArrowLeft, Loader } from "lucide-react";
 import _30mw from "@/public/30mw.png";
 import _s3d from "@/public/s3d.png";
 import Image from "next/image";
 import useFetchUser from "@/hooks/fetch-user";
-import React, { use, useEffect, useState } from "react";
-import { useClerk } from "@clerk/nextjs";
-import TypeWriter from "@/components/global/TypingWriter";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import loaringIllstration from "@/public/Learning-bro.svg";
 import heroIllstration from "@/public/first.svg";
 import { server } from "@/server";
 import {
@@ -62,7 +58,6 @@ export default function Home() {
     });
   }, [api]);
 
-  const user = useClerk();
   const [config, setConfig] = useState<LandingPage>();
   const [loading, setLoading] = useState(true);
   useFetchUser();

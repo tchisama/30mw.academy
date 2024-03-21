@@ -5,14 +5,11 @@ import structer from "./sectionsStructer";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useEffect, useState } from "react";
-import { X } from "lucide-react";
+import { Plus, Trash, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SingleImageDropzone } from "@/components/SingleImageDropzone";
 import { useEdgeStore } from "@/lib/edgestore";
 import { Switch } from "@/components/ui/switch";
-import { SectionType } from "@/components/LandingPage/Section";
-
-const sectionControllers = {};
 
 type Props = {};
 export default function Controllers({}: Props) {
@@ -20,7 +17,7 @@ export default function Controllers({}: Props) {
     useLandingPage();
   return (
     selectedSection && (
-      <Card className="w-[420px] sticky top-4 h-fit shadow-2xl ">
+      <Card className="w-[435px] sticky top-4 h-[90vh] overflow-y-auto shadow-2xl ">
         <Button
           className="absolute top-2 right-2"
           variant={"outline"}
@@ -75,7 +72,7 @@ const Field = ({
   field: { name: string; type: string };
   value: any;
 }) => {
-  const { updateSection, selectedSection } = useLandingPage();
+  const { sections, updateSection, selectedSection } = useLandingPage();
   const [value, setValue] = useState<any>();
   const [file, setFile] = useState<File>();
   //
@@ -89,10 +86,17 @@ const Field = ({
     );
   }, [selectedSection]);
   //
+  useEffect(() => {
+    console.log("fire");
+    if (!selectedSection) return;
+    if (!sections) return;
+    const findSection = sections.find((s) => s.id === selectedSection.id);
+    if (!findSection) return;
+    updateSection(findSection);
+  }, []);
 
   //
   const { edgestore } = useEdgeStore();
-  console.log(v);
   if (!selectedSection) return null;
   if (field.type === "string") {
     return (
@@ -166,6 +170,89 @@ const Field = ({
           })();
         }}
       />
+    );
+  } else if (field.type == "cards array") {
+    return (
+      <div className="flex flex-col gap-2">
+        <div>
+          <div className="flex flex-col gap-2 mb-4">
+            {value &&
+              value.map((c: any, i: number) => {
+                return (
+                  <div
+                    key={i}
+                    className="border flex gap-2 flex-col p-2 rounded-lg shadow"
+                  >
+                    <Button
+                      variant={"outline"}
+                      size="icon"
+                      onClick={() => {
+                        if (!value) return;
+                        updateSection({
+                          ...selectedSection,
+                          data: {
+                            ...selectedSection.data,
+                            cards: value.filter((cc: any) => cc.id !== c.id),
+                          },
+                        } as any);
+                      }}
+                    >
+                      <Trash size={16} />
+                    </Button>
+                    {["icon", "title", "subtitle"].map((f, i) => {
+                      return (
+                        <Input
+                          value={c[f]}
+                          onInput={(e: any) => {
+                            updateSection({
+                              ...selectedSection,
+                              data: {
+                                ...selectedSection.data,
+                                cards: (selectedSection.data as any).cards.map(
+                                  (cc: any) =>
+                                    cc.id === c.id
+                                      ? { ...cc, [f]: e.target.value }
+                                      : cc,
+                                ),
+                              },
+                            } as any);
+                          }}
+                        ></Input>
+                      );
+                    })}
+                  </div>
+                );
+              })}
+          </div>
+          <Button
+            onClick={() => {
+              const newCard = {
+                title: "test",
+                icon: "💕",
+                subtitle: "test test test",
+                id: crypto.randomUUID(),
+              };
+              const newCards =
+                value.length > 0
+                  ? [...(selectedSection.data as any).cards, newCard]
+                  : [newCard];
+              updateSection({
+                ...selectedSection,
+                data: {
+                  ...selectedSection.data,
+                  cards: newCards,
+                },
+              } as any);
+              setValue(newCards);
+            }}
+            variant="outline"
+            className="flex gap-2"
+          >
+            <Plus />
+            add card
+          </Button>
+        </div>
+      </div>
     );
   } else {
     return null;
