@@ -6,8 +6,8 @@ import RequestModel from "@/models/request";
 export async function GET() {
   await db();
   try {
-    const requests = await RequestModel.find();
-    return NextResponse.json( requests );
+    const requests = await RequestModel.find().sort({ createdAt: "desc" });
+    return NextResponse.json(requests);
   } catch (e) {
     console.log(e);
     NextResponse.error();
