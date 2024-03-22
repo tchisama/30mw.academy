@@ -18,6 +18,7 @@ export async function GET(request: Request , context : any) {
 
 // update course by id 
 export async function PATCH(request: Request, context : any) {
+  await db();
   try {
     const {id} = context.params
     const data = await request.json();
