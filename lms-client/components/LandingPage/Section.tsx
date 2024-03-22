@@ -107,7 +107,7 @@ export default function Section({ section }: Props) {
                   __html:
                     section.data?.content
                       .replaceAll(/\n/g, "</br>")
-                      .replaceall("  ", "&nbsp;") ?? "",
+                      .replaceAll("  ", "&nbsp;") ?? "",
                 }}
               ></p>
             )}
