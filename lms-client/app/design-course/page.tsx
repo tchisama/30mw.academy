@@ -9,6 +9,7 @@ import {
   Wifi,
   Clapperboard,
   Wand2,
+  VideoIcon,
 } from "lucide-react";
 import Link from "next/link";
 import React from "react";
@@ -18,6 +19,8 @@ import toolbar from "@/public/photoshop/toolbar.png";
 import montage from "@/public/photoshop/montag.avif";
 import timeline from "@/public/photoshop/timeLine.jpg";
 import GTMProvider from "@/components/providers/GoogleTagManager";
+import { Input } from "@/components/ui/input";
+import { FaWhatsapp } from "react-icons/fa";
 
 type Props = {};
 
@@ -25,7 +28,14 @@ function Page({}: Props) {
   return (
     <div dir="rtl" className="">
       <GTMProvider />
-      <div className="bg-slate-100 dark:bg-slate-950">
+      <div className=" dark:bg-slate-950">
+        {/* 
+        video section 
+
+
+        - i want to add form to the section
+        
+        */}
         <div className="py-8 items-center  container flex md:flex-row-reverse flex-col-reverse gap-6">
           <video
             className="w-[700px] "
@@ -34,20 +44,52 @@ function Page({}: Props) {
           ></video>
           <div className="flex-1">
             <h1 className="text-4xl font-medium">دورة التصميم و المونتاج</h1>
-            <div className="pt-4">
-              {[
-                "المدة: 9 ساعات فيديو تدريبية",
-                "التوجيه: من الصفر دون الحاجة لخبرة مسبقة",
-                "البرامج: Photoshop، Illustrator، Premiere Pro",
-                "اللغة: الشرح بالدارجة المغربية",
-                "المؤطر: عبد الرحمان عقبة مدرب ذو خبرة 10 سنوات في المجال",
-              ].map((item) => (
-                <div className="my-2 flex gap-4 items-start" key={item}>
-                  <Circle size={20} className="" />
-                  <h1 className="md:text-xl flex-1">{item}</h1>
-                </div>
-              ))}
+            <h3 className="text-xl opacity-70 mt-2">
+              أطلب الدورة ، الأمر سياخذ منك دقيقة فقط من وقتك
+            </h3>
+
+            <div className="flex flex-col gap-4 mt-10">
+              <div className="flex gap-4">
+                <Input
+                  className="text-lg h-16 bg-slate-100 border"
+                  placeholder="الإسم الكامل"
+                ></Input>
+                <Input
+                  placeholder="رقم الهاتف "
+                  className="text-lg h-16 bg-slate-100 border"
+                ></Input>
+              </div>
+              <Input
+                className="text-lg h-16 bg-slate-100  border"
+                placeholder="البريد الإلكتروني "
+              ></Input>
             </div>
+
+            <div className="mt-4 flex gap-2 items-center">
+              أو يمكنك إعطائنا معلوماتك عبر
+              <Link href="" className="flex gap-1 text-primary items-center">
+                واتساب
+                <FaWhatsapp />
+              </Link>
+            </div>
+
+            <div className="flex gap-2 mt-4">
+              <Button className="  border-white border-2  rounded-3xl  text-2xl p-8 flex items-center gap-3">
+                طلب الدورة
+              </Button>
+              <div>
+                <Link href={"/course/652019e1200c377a6d6c31b5/146w9h"}>
+                  <Button
+                    variant="outline"
+                    className=" rounded-3xl border border-2 text-lg p-8 flex items-center gap-2"
+                  >
+                    <VideoIcon />
+                    شاهد المقدمة
+                  </Button>
+                </Link>
+              </div>
+            </div>
+            {/*
             <div className="py-4">
               <Link href={"/course/652019e1200c377a6d6c31b5/146w9h"}>
                 <Button className="  border-white border-2  rounded-full  text-2xl p-8 flex items-center gap-3">
@@ -55,9 +97,12 @@ function Page({}: Props) {
                 </Button>
               </Link>
             </div>
+            */}
           </div>
         </div>
       </div>
+      {/*
+       */}
 
       <div className="flex flex-col-reverse md:flex-row px-2 items-center  max-w-7xl mx-auto gap-12 py-24">
         <div className="flex flex-col gap-4 flex-1">
@@ -194,9 +239,7 @@ function Page({}: Props) {
               </h1>
             </div>
           </div>
-
         </div>
-
       </div>
     </div>
   );

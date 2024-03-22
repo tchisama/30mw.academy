@@ -28,6 +28,7 @@ import {
   CarouselItem,
 } from "@/components/ui/carousel";
 import GTMProvider from "@/components/providers/GoogleTagManager";
+import { cn } from "@/lib/utils";
 
 interface LandingPage {
   landing_page: {
@@ -79,11 +80,16 @@ export default function Home() {
       </div>
     );
   }
+
+
+
+    
+
   return (
-    <div className="w-full  md:px-6   mx-auto">
+    <div className={cn("w-full  md:px-6   mx-auto")}>
       <GTMProvider />
       <div className="py-4 px-3 flex max-w-[1800px] mx-auto  flex-col">
-        <div className="  rounded-3xl p-4  my-8  md:px-20 flex-1 flex  md:flex-row flex-col  md:py-0  gap-2 justify-between items-center">
+        <div className={cn( "rounded-3xl p-4  my-8  md:px-20 flex-1 flex  md:flex-row flex-col  md:py-0  gap-2 justify-between items-center" )}>
           <Image
             src={heroIllstration}
             alt="logo"
