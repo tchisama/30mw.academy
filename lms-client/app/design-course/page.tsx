@@ -29,8 +29,8 @@ type Props = {};
 function Page({}: Props) {
   return (
     <div dir="rtl" className="">
-          <GTMProvider />
-          <FormSection />
+      <GTMProvider />
+      <FormSection />
 
       <div className="flex flex-col-reverse md:flex-row px-2 items-center  max-w-7xl mx-auto gap-12 py-24">
         <div className="flex flex-col gap-4 flex-1">

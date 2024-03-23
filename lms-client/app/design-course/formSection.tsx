@@ -10,7 +10,7 @@ import axios from "axios";
 
 export default function FormSection({}: Props) {
   const [sendedRequest, setSendedRequest] = useState(false);
-  const designcourseid = "652019e1200c377a6d6c31b5"
+  const designcourseid = "652019e1200c377a6d6c31b5";
 
   const [fullName, setFullName] = useState("");
   const [number, setNumber] = useState("");
@@ -57,53 +57,64 @@ export default function FormSection({}: Props) {
         - i want to add form to the section
         
         */}
-      <div className="py-8 items-center  container flex md:flex-row-reverse flex-col-reverse gap-6">
-        <video
-          className="w-[700px] md:rounded-2xl "
-          controls
-          src="https://d2rk6n1qqhht0d.cloudfront.net/G05_EP00_INTRO.mp4"
-        ></video>
+      <div className="py-8 items-center  container flex md:flex-row-reverse flex-col gap-6">
+        <div className="w-screen md:w-fit">
+          <video
+            className="md:w-[700px] w-[100vw] md:rounded-2xl "
+            controls
+            src="https://d2rk6n1qqhht0d.cloudfront.net/G05_EP00_INTRO.mp4"
+          ></video>
+        </div>
         {!sendedRequest ? (
-          <div className="flex-1">
-            <h1 className="text-4xl font-medium">دورة التصميم و المونتاج</h1>
+          <div className="flex-1 w-screen px-3">
+            <h1 className="text-2xl  font-medium">دورة التصميم و المونتاج</h1>
             <h3 className="text-xl opacity-70 mt-2">
               أطلب الدورة ، الأمر سياخذ منك دقيقة فقط من وقتك
             </h3>
 
             <div className="flex flex-col gap-4 mt-10">
-              <div className="flex gap-4">
+              <div className="flex gap-4 md:flex-row flex-col">
                 <Input
                   value={fullName}
+                  type="text"
+                  name="fullName"
                   onInput={(e: any) => setFullName(e.target.value)}
-                  className="text-lg h-16 bg-slate-100 border"
+                  className="md:text-lg h-16 bg-slate-100 border"
                   placeholder="الإسم الكامل"
                 ></Input>
                 <Input
                   value={number}
+                  type="tel"
+                  name="number"
                   onInput={(e: any) => setNumber(e.target.value)}
                   placeholder="رقم الهاتف "
-                  className="text-lg h-16 bg-slate-100 border"
+                  className="md:text-lg h-16 bg-slate-100 border"
                 ></Input>
               </div>
               <Input
                 value={email}
+                type="email"
+                name="email"
                 onInput={(e: any) => {
                   setEmail(e.target.value);
                 }}
-                className="text-lg h-16 bg-slate-100  border"
+                className="md:text-lg h-16 bg-slate-100  border"
                 placeholder="البريد الإلكتروني "
               ></Input>
             </div>
 
-            <div className="mt-4 flex gap-2 items-center">
+            <div className="mt-4 w flex gap-2 items-center">
               أو يمكنك إعطائنا معلوماتك عبر
-              <Link href="" className="flex gap-1 text-primary items-center">
+              <Link
+                href="https://wa.me/+212642680949?text=HELP"
+                className="flex gap-1 text-primary items-center"
+              >
                 واتساب
                 <FaWhatsapp />
               </Link>
             </div>
 
-            <div className="flex gap-2 mt-4">
+            <div className="flex gap-2 mt-4 flex-col md:flex-row">
               <Button
                 disabled={!fullName || !number || !email}
                 onClick={requestCourse}
@@ -111,11 +122,11 @@ export default function FormSection({}: Props) {
               >
                 طلب الدورة
               </Button>
-              <div>
+              <div className="w-full md:w-fit">
                 <Link href={"/course/652019e1200c377a6d6c31b5/146w9h"}>
                   <Button
-                    variant="outline"
-                    className=" rounded-3xl border border-2 text-lg p-8 flex items-center gap-2"
+                    variant="ghost"
+                    className=" rounded-3xl text-lg p-8 flex items-center gap-2"
                   >
                     <VideoIcon />
                     شاهد المقدمة
@@ -127,8 +138,10 @@ export default function FormSection({}: Props) {
         ) : (
           <div className="flex-1">
             <h1 className="font-bold  text-7xl">💕</h1>
-            <h1 className="font-bold  text-5xl mt-6">شكرا على الطلب</h1>
-            <h3 className="text-2xl max-w-md mt-4">
+            <h1 className="font-bold text-4xl  md:text-5xl mt-6">
+              شكرا على الطلب
+            </h1>
+            <h3 className="md:text-2xl text-xl max-w-md mt-4">
               {" "}
               وسوف يقوم فريقنا بالتواصل معك في أقرب وقت ممكن
             </h3>

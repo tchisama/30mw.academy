@@ -1,0 +1,10 @@
+
+
+---------------
+---------------
+
+question:
+    how to show what remote link i use in git
+answer:  
+    git remote -v
+
