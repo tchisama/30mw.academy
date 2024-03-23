@@ -1,5 +1,5 @@
+"use client";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
 import {
   Circle,
   PaintBucket,
@@ -11,6 +11,8 @@ import {
   Clapperboard,
   Wand2,
   VideoIcon,
+  Stars,
+  Pointer,
 } from "lucide-react";
 import Link from "next/link";
 import React from "react";
@@ -28,14 +30,14 @@ type Props = {};
 
 function Page({}: Props) {
   return (
-    <div dir="rtl" className="">
+    <div dir="rtl" className="px-2 ">
       <GTMProvider />
       <FormSection />
 
-      <div className="flex flex-col-reverse md:flex-row px-2 items-center  max-w-7xl mx-auto gap-12 py-24">
+      <div className="flex w-full overflow-x-hidden flex-col-reverse md:flex-row  items-center  max-w-7xl mx-auto gap-12 py-24">
         <div className="flex flex-col gap-4 flex-1">
-          <h1 className="text-3xl ">عن الدورة</h1>
-          <p className=" text-lg md:text-xl max-w-3xl">
+          <h1 className="text-3xl mr-2 ">عن الدورة</h1>
+          <p className=" text-lg mr-3 md:text-xl max-w-3xl">
             استعد لتجربة استثنائية في عالم التصميم والمونتاج! تقدم دورتنا
             المسجلة لك فرصة الاستفادة من 8 ساعات من التدريب المكثف، مع شرح شامل
             وتطبيقات عملية. ستمكنك هذه الدورة من اكتساب المهارات اللازمة للعمل
@@ -43,7 +45,7 @@ function Page({}: Props) {
             جديدة في مجال الإبداع والتكنولوجيا!
           </p>
         </div>
-        <div className="relative">
+        <div className="relative px-8">
           <Clapperboard
             strokeWidth={2}
             className="  absolute -top-8 drop-shadow-xl border -left-2 md:-left-10 z-10 text-[#2892df] p-4 md:p-6 rotate-12 md:w-24 w-16 h-16 md:h-24 dark:bg-slate-900/80 bg-white/70 backdrop-blur-md  rounded-3xl "
@@ -64,11 +66,11 @@ function Page({}: Props) {
       </div>
 
       <div className=" dark:bg-slate-900  ">
-        <div className="flex flex-col md:flex-row items-center max-w-7xl mx-auto  px-1 gap-6 py-10 md:py-24">
+        <div className="flex flex-col md:flex-row items-center max-w-7xl mx-auto  px-1 gap-6 py-8 md:py-24">
           <div className="relative">
             <Medal
               strokeWidth={1}
-              className="  absolute -top-8 drop-shadow-xl border  md:-right-12 z-10 text-[#2892df] p-3 -rotate-6 w-20 h-20 dark:bg-slate-900/80 bg-white/50 rounded-3xl backdrop-blur-md "
+              className="  absolute -top-8 drop-shadow-xl border  md:-right-12 z-10 text-[#2892df] p-3 -rotate-6 w-20 h-20 dark:bg-slate-900/80 bg-white/80 rounded-3xl backdrop-blur-md "
             />
             <Image
               src={timeline}
@@ -78,7 +80,7 @@ function Page({}: Props) {
               className="rounded-3xl shadow-2xl w-full md:w-[550px] md:h-[400px] object-cover"
             ></Image>
           </div>
-          <div className="flex flex-col items-start max-w-7xl mx-auto px-4 gap-6 py-24">
+          <div className="flex flex-col items-start max-w-7xl mx-auto px-4 gap-6 py-10">
             <h1 className="text-3xl">لمن هذه الدورة؟</h1>
             <ul className="w-full space-y-2 text-lg list-disc md:text-xl">
               <li>
@@ -115,7 +117,7 @@ function Page({}: Props) {
           </div>
           <div>
             <h1 className="text-3xl ">ماذا ستتعلم في هذه الدورة؟</h1>
-            <ul className="w-full space-y-2 text-lg list-decimal md:text-xl">
+            <ul className="w-full mt-4 mr-5 space-y-2 text-lg list-decimal md:text-xl">
               <li>استخدام برامج Adobe: Photoshop، اليستريتور، Premiere Pro.</li>
               <li>إنشاء تصاميم جرافيكية مبدعة.</li>
               <li>تحرير وإنتاج محتوى فيديو احترافي.</li>
@@ -123,12 +125,42 @@ function Page({}: Props) {
                 التعامل مع الأدوات والتقنيات الحديثة في مجال التصميم والمونتاج.
               </li>
             </ul>
-            <div className="py-4 w-full">
-              <Link href={"/course/652019e1200c377a6d6c31b5/146w9h"}>
-                <Button>طلب الدورة</Button>
-              </Link>
-            </div>
           </div>
+        </div>
+      </div>
+
+      <div className="px-1 container">
+        <div className="my-4 max-w-3xl mx-auto drop-shadow-xl flex relative flex-col bg-gradient-to-bl from-green-500 to-blue-500 gap-3 rounded-3xl p-4 pb-4  py-8">
+          <Stars
+            size={60}
+            className="fill-white absolute top-2 left-2 "
+            strokeWidth={1}
+            color="white"
+          />
+          <div className="w-16 h-16 bg-white flex shadow items-center justify-center rounded-full">
+            <FaWhatsapp className="text-4xl text-green-500" />
+          </div>
+          <h1 className="text-2xl text-white font-medium">
+            تواصل مع مدرب الدورة
+          </h1>
+          <p className="text-white">
+            تواصل عبر تطبيق واتساب مع مدرب الدورة للحصول على مزيد من المعلومات
+            أو لطرح الاستفسارات المتعلقة بالدورة.
+          </p>
+          <Button
+            className="py-4 text-xl max-w-md h-16 rounded-3xl "
+            variant={"outline"}
+            onClick={() => {
+              const getRandomNumber = () => {
+                return ["212654978006", "212610092651"][
+                  Math.floor(Math.random() * 2)
+                ];
+              };
+              window.open(`https://wa.me/${getRandomNumber()}`, "_blank");
+            }}
+          >
+            اتصل عبر واتساب
+          </Button>
         </div>
       </div>
 

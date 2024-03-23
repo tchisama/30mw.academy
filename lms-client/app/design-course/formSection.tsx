@@ -49,7 +49,7 @@ export default function FormSection({}: Props) {
       });
   };
   return (
-    <div className=" dark:bg-slate-950">
+    <div className=" dark:bg-slate-950 overflow-x-hidden">
       {/* 
         video section 
 
@@ -58,16 +58,16 @@ export default function FormSection({}: Props) {
         
         */}
       <div className="py-8 items-center  container flex md:flex-row-reverse flex-col gap-6">
-        <div className="w-screen md:w-fit">
+        <div className="w-[100vw] flex justify-center md:w-fit">
           <video
-            className="md:w-[700px] w-[100vw] md:rounded-2xl "
+            className="md:w-[700px] relative w-full md:rounded-2xl "
             controls
             src="https://d2rk6n1qqhht0d.cloudfront.net/G05_EP00_INTRO.mp4"
           ></video>
         </div>
         {!sendedRequest ? (
-          <div className="flex-1 w-screen px-3">
-            <h1 className="text-2xl  font-medium">دورة التصميم و المونتاج</h1>
+          <div className="flex-1 w-screen px-5">
+            <h1 className="text-4xl  font-medium">دورة التصميم و المونتاج</h1>
             <h3 className="text-xl opacity-70 mt-2">
               أطلب الدورة ، الأمر سياخذ منك دقيقة فقط من وقتك
             </h3>
@@ -79,16 +79,17 @@ export default function FormSection({}: Props) {
                   type="text"
                   name="fullName"
                   onInput={(e: any) => setFullName(e.target.value)}
-                  className="md:text-lg h-16 bg-slate-100 border"
+                  className="md:text-lg dark:bg-slate-800 h-16 bg-slate-100 border"
                   placeholder="الإسم الكامل"
                 ></Input>
                 <Input
+                  dir={"rtl"}
                   value={number}
                   type="tel"
                   name="number"
                   onInput={(e: any) => setNumber(e.target.value)}
                   placeholder="رقم الهاتف "
-                  className="md:text-lg h-16 bg-slate-100 border"
+                  className="md:text-lg  dark:bg-slate-800 h-16 bg-slate-100 border"
                 ></Input>
               </div>
               <Input
@@ -98,7 +99,7 @@ export default function FormSection({}: Props) {
                 onInput={(e: any) => {
                   setEmail(e.target.value);
                 }}
-                className="md:text-lg h-16 bg-slate-100  border"
+                className="md:text-lg h-16 bg-slate-100  dark:bg-slate-800 border"
                 placeholder="البريد الإلكتروني "
               ></Input>
             </div>

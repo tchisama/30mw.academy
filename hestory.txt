@@ -8,3 +8,13 @@ question:
 answer:  
     git remote -v
 
+
+
+---------------
+---------------
+
+question:
+    give me my ipv4
+answer:  
+    hostname -I | awk '{print $1}'
+
