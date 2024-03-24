@@ -50,10 +50,10 @@ function Page({}: Props) {
     });
   }, []);
   return (
-    <div className="container px-2 md:px-4 min-h-screen  mx-auto">
+    <div className="container px-2 md:px-4 min-h-screen  mx-auto w-screen">
       <DashboardNavBar />
       <h1 className="text-3xl my-8">Requests</h1>
-      <div className="grid gap-2 grid-cols-2">
+      <div className="grid gap-2 grid-cols-1 md:grid-cols-2">
         {requests.length > 0 &&
           requests.map((req, i) => {
             return (
@@ -71,7 +71,7 @@ function Page({}: Props) {
                     </div>
                   </div>
                 </CardHeader>
-                <CardFooter className="flex gap-2 justify-between">
+                <CardFooter className="flex flex-col md:flex-row w-full gap-2 items-start md:justify-between">
                   <div className="">
                     <div>{req.user_number}</div>
                     <div>{req.user_email}</div>
@@ -120,4 +120,3 @@ function Page({}: Props) {
 }
 
 export default Page;
-

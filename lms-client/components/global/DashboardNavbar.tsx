@@ -43,8 +43,8 @@ export default function DashboardNavBar() {
   const { user } = useUserStore();
   return (
     user?.rule == "admin" && (
-      <div className="py-3 border shadow-lg rounded-xl px-4 w-full flex justify-between">
-        <NavigationMenu className="flex-1 flex justify-center">
+      <div className="py-3 w-[calc(100vw-18px)] overflow-auto border shadow-lg rounded-xl px-4 w-full flex justify-between">
+        <NavigationMenu className="flex-1 flex-col md:flex-row justify-center">
           <NavigationMenuList>
             <NavigationMenuItem>
               <Link href="/dashboard" legacyBehavior passHref>
@@ -143,4 +143,3 @@ const ListItem = React.forwardRef<
   );
 });
 ListItem.displayName = "ListItem";
-
