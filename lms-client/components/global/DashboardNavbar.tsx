@@ -4,7 +4,6 @@ import * as React from "react";
 import Link from "next/link";
 
 import { cn } from "@/lib/utils";
-import { Icons } from "@/components/icons";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -15,10 +14,6 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import { Bell, PlusCircle } from "lucide-react";
-import { ModeToggle } from "./DarkModeButton";
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
-import { UserButton } from "@clerk/nextjs";
-import { Button } from "../ui/button";
 import useUserStore from "@/hooks/users-store";
 
 const components: { title: string; href: string; description: string }[] = [
@@ -43,8 +38,8 @@ export default function DashboardNavBar() {
   const { user } = useUserStore();
   return (
     user?.rule == "admin" && (
-      <div className="py-3 w-[calc(100vw-18px)] overflow-auto border shadow-lg rounded-xl px-4 w-full flex justify-between">
-        <NavigationMenu className="flex-1 flex-col md:flex-row justify-center">
+      <div className="py-3 md:w-full w-[calc(100vw-18px)] md:overflow-x-visible overflow-x-scroll  border shadow-lg rounded-xl px-4 w-full flex justify-between">
+        <NavigationMenu className="flex-1       flex-col md:flex-row justify-center">
           <NavigationMenuList>
             <NavigationMenuItem>
               <Link href="/dashboard" legacyBehavior passHref>
@@ -62,7 +57,21 @@ export default function DashboardNavBar() {
               </Link>
             </NavigationMenuItem>
 
-            <NavigationMenuItem>
+            <NavigationMenuItem 
+                className="md:hidden flex"
+            >
+              <Link
+                href="/dashboard/users"
+                legacyBehavior
+                passHref
+              >
+                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                  👥 Users
+                </NavigationMenuLink>
+              </Link>
+            </NavigationMenuItem>
+
+            <NavigationMenuItem className="md:flex hidden">
               <NavigationMenuTrigger>📚 Courses</NavigationMenuTrigger>
               <NavigationMenuContent>
                 <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
@@ -95,7 +104,8 @@ export default function DashboardNavBar() {
                 </ul>
               </NavigationMenuContent>
             </NavigationMenuItem>
-            <NavigationMenuItem>
+
+            <NavigationMenuItem className="md:flex hidden">
               <NavigationMenuTrigger>🚀 Control</NavigationMenuTrigger>
               <NavigationMenuContent>
                 <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
