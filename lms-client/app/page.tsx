@@ -63,9 +63,10 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   useFetchUser();
   useEffect(() => {
-    fetch(server + "config")
+    fetch("/api/config")
       .then((res) => res.json())
       .then((data) => {
+        console.log("data config:",data)
         setConfig(data);
         setLoading(false);
       });
@@ -81,15 +82,15 @@ export default function Home() {
     );
   }
 
-
-
-    
-
   return (
     <div className={cn("w-full  md:px-6   mx-auto")}>
       <GTMProvider />
       <div className="py-4 px-3 flex max-w-[1800px] mx-auto  flex-col">
-        <div className={cn( "rounded-3xl p-4  my-8  md:px-20 flex-1 flex  md:flex-row flex-col  md:py-0  gap-2 justify-between items-center" )}>
+        <div
+          className={cn(
+            "rounded-3xl p-4  my-8  md:px-20 flex-1 flex  md:flex-row flex-col  md:py-0  gap-2 justify-between items-center",
+          )}
+        >
           <Image
             src={heroIllstration}
             alt="logo"

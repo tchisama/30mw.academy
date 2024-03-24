@@ -1,20 +1,22 @@
-const mongoose = require('mongoose')
-
+import mongoose from "mongoose";
 const ConfigModel = new mongoose.Schema({
-    landing_page: {
-        Header:{
-            type: String,
-        },
-        Text:{
-            type: String,
-        },
-        learn:[{
-            type: String
-        }],
-        button:{
-            type: String
-        }
-    }
-})
+  landing_page: {
+    Header: {
+      type: String,
+    },
+    Text: {
+      type: String,
+    },
+    learn: [
+      {
+        type: String,
+      },
+    ],
+    button: {
+      type: String,
+    },
+  },
+});
 
-module.exports = mongoose.model('Config', ConfigModel)
+export default mongoose.models.Config || mongoose.model("Config", ConfigModel);
+

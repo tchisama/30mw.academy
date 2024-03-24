@@ -13,6 +13,7 @@ import {
   VideoIcon,
   Stars,
   Pointer,
+  Users,
 } from "lucide-react";
 import Link from "next/link";
 import React from "react";
@@ -129,8 +130,8 @@ function Page({}: Props) {
         </div>
       </div>
 
-      <div className="px-1 container">
-        <div className="my-4 max-w-3xl mx-auto drop-shadow-xl flex relative flex-col bg-gradient-to-bl from-green-500 to-blue-500 gap-3 rounded-3xl p-4 pb-4  py-8">
+      <div className="flex flex-col px-2 container md:flex-row gap-4">
+        <div className=" max-w-3xl drop-shadow-xl flex relative flex-col bg-gradient-to-bl from-green-500 to-blue-500 gap-3 rounded-3xl p-4 pb-4  py-8">
           <Stars
             size={60}
             className="fill-white absolute top-2 left-2 "
@@ -152,6 +153,34 @@ function Page({}: Props) {
             variant={"outline"}
             onClick={() => {
               const getRandomNumber = () => {
+                return ["212610092651"][
+                  Math.floor(Math.random() * 1)
+                ];
+              };
+              window.open(`https://wa.me/${getRandomNumber()}`, "_blank");
+            }}
+          >
+            اتصل عبر واتساب
+            <FaWhatsapp className=" mx-2" />
+          </Button>
+        </div>
+
+        <div className=" max-w-3xl  drop-shadow-xl flex relative flex-col bg-gradient-to-bl from-primary to-blue-500 gap-3 rounded-3xl p-4 pb-4  py-8">
+          <div className="w-16 h-16 bg-white flex shadow items-center justify-center rounded-full">
+            <Users size={30} className="text-4xl text-primary" />
+          </div>
+          <h1 className="text-2xl text-white font-medium">
+            تواصل مع طاقم المبيعات
+          </h1>
+          <p className="text-white">
+            تواصل عبر تطبيق واتساب مع مؤطرين الدورة للحصول على مزيد من المعلومات
+            أو لطرح الاستفسارات المتعلقة بالدورة.
+          </p>
+          <Button
+            className="py-4 text-xl max-w-md h-16 rounded-3xl "
+            variant={"outline"}
+            onClick={() => {
+              const getRandomNumber = () => {
                 return ["212654978006", "212610092651"][
                   Math.floor(Math.random() * 2)
                 ];
@@ -160,10 +189,10 @@ function Page({}: Props) {
             }}
           >
             اتصل عبر واتساب
+            <FaWhatsapp className=" mx-2" />
           </Button>
         </div>
       </div>
-
       <div className="bg-slate-100 dark:bg-slate-900 rounded-3xl md:rounded-none ">
         <div className="flex flex-col items-start max-w-7xl mx-auto px-4 gap-6 py-10 md:py-24">
           <h1 className="text-3xl font-medium dark:text-white">ماذا ستحتاج؟</h1>

@@ -1,22 +1,24 @@
+import mongoose from "mongoose";
 
-const mongoose = require('mongoose');
-
-const AccessModel = new mongoose.Schema({
-  id_user: {
-    type:String,
-    required: true,
+const AccessModel = new mongoose.Schema(
+  {
+    id_user: {
+      type: String,
+      required: true,
+    },
+    id_course: {
+      type: String,
+      required: true,
+    },
+    price_access: {
+      type: Number,
+      required: true,
+    },
   },
-  id_course:{
-    type: String,
-    required: true,
+  {
+    timestamps: true,
   },
-  price_access: {
-    type: Number,
-    required: true,
-  }
-},{
-  timestamps: true
-})
+);
 
+export default mongoose.models.Access || mongoose.model("Access", AccessModel);
 
-module.exports = mongoose.model('Access', AccessModel);

@@ -13,7 +13,7 @@ const useFetchUser = () => {
   
   useEffect(() => {
     if(userClerk.user?.id){
-      axios.post(server+"auth/create-user",{
+      axios.post("/api/auth",{
           fname: userClerk.user?.firstName||"",
           lname: userClerk.user?.lastName||"",
           email: userClerk.user?.emailAddresses[0].emailAddress||"",
