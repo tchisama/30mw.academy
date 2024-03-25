@@ -175,11 +175,10 @@ const page = ({ params }: Props) => {
         });
     }
   }, [user.user?.id]);
-
   const getViews = () => {
     if (!views?.includes(params.video_id)) {
       axios
-        .post(server + "auth/add-marked-view", {
+        .post(server + "views", {
           id_user: user?.user?.id,
           id_course: params.course_id,
           id_video: params.video_id,
@@ -193,7 +192,7 @@ const page = ({ params }: Props) => {
   const removeView = () => {
     if (views?.includes(params.video_id)) {
       axios
-        .post(server + "auth/remove-marked-view", {
+        .patch(server + "views", {
           id_user: user?.user?.id,
           id_course: params.course_id,
           id_video: params.video_id,
