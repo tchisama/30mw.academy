@@ -1,7 +1,7 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { VideoIcon } from "lucide-react";
+import { ArrowLeft, VideoIcon } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { FaWhatsapp } from "react-icons/fa";
@@ -129,8 +129,8 @@ export default function FormSection({}: Props) {
                     variant="ghost"
                     className=" rounded-3xl text-lg p-8 flex items-center gap-2"
                   >
-                    <VideoIcon />
-                    شاهد المقدمة
+                    محتوى الدورة
+                    <ArrowLeft size={16} />
                   </Button>
                 </Link>
               </div>
