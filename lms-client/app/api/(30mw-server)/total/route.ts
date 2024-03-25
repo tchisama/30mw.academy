@@ -7,9 +7,9 @@ import AccessModel from "@/models/Access";
 const Total = async () => {
   try {
     const countCourses = (await CourseModel.find({})).length;
-    const countUsers = await UserModel.countDocuments();
-    const countViews = await ViewModel.countDocuments();
-    const countAccess = await AccessModel.countDocuments();
+    const countUsers = (await UserModel.find({})).length;
+    const countViews = (await ViewModel.find({})).length;
+    const countAccess = (await AccessModel.find({})).length;
 
     const lastWeekUsersCount = await UserModel.aggregate([
       {
