@@ -27,6 +27,7 @@ function Courses({}: Props) {
     const {update}=useCategories()
     const router = useRouter()
     const [loading, setLoading] = React.useState(true)
+
     useEffect(() => {
         fetch("/api/courses").then(res => res.json()).then(data => {
             setCourses(data)

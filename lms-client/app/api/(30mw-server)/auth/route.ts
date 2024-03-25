@@ -11,6 +11,6 @@ export async function POST(request: Request) {
     return NextResponse.json({ id: savedUser._id });
   } catch (error) {
     console.error(error);
-    return NextResponse.json({ message: "Failed to create the course" });
+    return NextResponse.json({ message: "Failed to create the user" });
   }
 }
