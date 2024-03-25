@@ -1,12 +1,9 @@
 import AccessModel from "@/models/Access";
 import { NextResponse } from "next/server";
 
-
-
-
-export async function POST(request : Request){
+export async function POST(request: Request) {
   try {
-    const body = await request.json()
+    const body = await request.json();
     const newAccess = new AccessModel(body);
     newAccess.save();
     return NextResponse.json(newAccess);
@@ -15,4 +12,3 @@ export async function POST(request : Request){
     return NextResponse.error();
   }
 }
-
