@@ -131,13 +131,7 @@ const page = ({ params }: Props) => {
             })
             .then(() => {
               axios
-                .get(
-                  server +
-                    "auth/get-views/" +
-                    user.user?.id +
-                    "/" +
-                    params.course_id,
-                )
+                .get(server + "views/" + user.user?.id + "/" + params.course_id)
                 .then((data) => {
                   setViews(data.data);
                   setLoading(false);
@@ -172,7 +166,7 @@ const page = ({ params }: Props) => {
             })
             .then(() => {
               axios
-                .get(server + "auth/get-views/" + 1 + "/" + params.course_id)
+                .get(server + "views/" + 1 + "/" + params.course_id)
                 .then((data) => {
                   setViews(data.data);
                   setLoading(false);
@@ -519,4 +513,3 @@ const Sections = ({
 };
 
 export default page;
-
