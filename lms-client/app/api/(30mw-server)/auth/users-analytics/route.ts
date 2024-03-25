@@ -1,10 +1,12 @@
 import AccessModel from "@/models/Access";
 import { NextResponse } from "next/server";
 import UserModel from "@/models/User";
+import db from "@/lib/db";
 
 export async function GET(request: Request) {
+  await db();
   try {
-    const user = (await UserModel.find({})).length;
+    const user = await UserModel.find({});
 
     const Last7Days = await UserModel.aggregate([
       {
@@ -45,7 +47,7 @@ export async function GET(request: Request) {
     ]);
 
     return NextResponse.json({
-      user,
+      users:user.length,
       Last7Days: Last7Days[0]?.count || 0,
       today: today[0]?.count || 0,
       admins: admins?.length || 0,

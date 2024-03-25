@@ -6,10 +6,10 @@ import AccessModel from "@/models/Access";
 
 const Total = async () => {
   try {
-    const countCourses = (await CourseModel.find({})).length;
-    const countUsers = (await UserModel.find({})).length;
-    const countViews = (await ViewModel.find({})).length;
-    const countAccess = (await AccessModel.find({})).length;
+    const countCourses = await CourseModel.find({});
+    const countUsers = await UserModel.find({});
+    const countViews = await ViewModel.find({});
+    const countAccess = await AccessModel.find({});
 
     const lastWeekUsersCount = await UserModel.aggregate([
       {
@@ -30,10 +30,10 @@ const Total = async () => {
       },
     ]);
     return {
-      courses: countCourses,
-      users: countUsers,
-      views: countViews,
-      access: countAccess,
+      courses: countCourses.length,
+      users: countUsers.length,
+      views: countViews.length,
+      access: countAccess.length,
 
       lastWeekUsersCount: lastWeekUsersCount.length,
       lastWeekSalesCount: lastWeekAccessCount.length,
