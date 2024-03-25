@@ -5,6 +5,8 @@ const CourseModel = require("../models/Course");
 const AccessModel = require("../models/Access");
 const ViewModel = require("../models/View");
 
+
+// done
 router.post("/create-user", async (req, res) => {
   // add user to the database if the id_user is unique else return the user already exists
   const user = await UserModel.findOne({ id_user: req.body.id_user });
@@ -21,6 +23,8 @@ router.post("/create-user", async (req, res) => {
     }
   }
 });
+
+// done
 // get all users from the database
 router.get("/users", async (req, res) => {
   try {
@@ -32,6 +36,8 @@ router.get("/users", async (req, res) => {
     res.status(500).json({ message: "Failed to get the users" });
   }
 });
+
+// done
 // get user by id
 router.get("/user/:id", async (req, res) => {
   try {
@@ -43,6 +49,7 @@ router.get("/user/:id", async (req, res) => {
   }
 });
 
+// done
 // get user by id
 router.get("/change-rule/:id/:rule", async (req, res) => {
   try {
@@ -61,6 +68,7 @@ router.get("/change-rule/:id/:rule", async (req, res) => {
   }
 });
 
+// done
 // get user analytics
 router.get("/users-analytics", async (req, res) => {
   try {
@@ -112,6 +120,7 @@ router.get("/users-analytics", async (req, res) => {
   }
 });
 
+// done
 // make access
 router.post("/make-access", async (req, res) => {
   try {
@@ -124,6 +133,7 @@ router.post("/make-access", async (req, res) => {
   }
 });
 
+// done
 // remove access by id
 router.delete("/remove-access", async (req, res) => {
   try {
