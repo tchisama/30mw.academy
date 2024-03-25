@@ -14,3 +14,13 @@ export async function POST(request: Request) {
     return NextResponse.error();
   }
 }
+export async function DELETE(request: Request) {
+  try {
+    const body = await request.json();
+    const newAccess = await AccessModel.findByIdAndDelete(body.id_access);
+    return NextResponse.json(newAccess);
+  } catch (error) {
+    console.error(error);
+    return NextResponse.error();
+  }
+}
