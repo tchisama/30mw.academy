@@ -30,6 +30,7 @@ import FormSection from "./formSection";
 import ps from "@/public/Adobe_Photoshop_CC_icon.svg.png";
 import ai from "@/public/Adobe-Illustrator-Icon.png";
 import pr from "@/public/png-transparent-adobe-premiere-pro-cc-14-3-hd-logo-thumbnail.png";
+import { cn } from "@/lib/utils";
 
 type Props = {};
 const courseSections = [
@@ -70,11 +71,11 @@ function Page({}: Props) {
       <FormSection />
 
       <div className="flex  w-full overflow-x-hidden flex-col  items-start  max-w-7xl mx-auto gap-12 py-24">
-        <h1 className="text-3xl mr-2 ">عن الدورة</h1>
+        <h1 className="text-3xl mr-2 ">محتويات الدورة</h1>
         <div className="flex flex-col gap-3">
           {courseSections.map((sec, i) => (
             <div key={i} className="">
-              <div className="border-r-2 border-black/20">
+              <div className="border-r-2 border-t-2 border-t-white/0  border-black/20 rounded-t-3xl">
                 <div className="flex gap-4 items-start">
                   {sec?.image ? (
                     <Image
@@ -90,10 +91,22 @@ function Page({}: Props) {
                   <h1 className="text-xl mb-4  w-fit  ">{sec.title}</h1>
                 </div>
                 {sec.videos.map((vid) => (
-                  <div className="flex gap-3 items-center my-1" key={vid}>
-                    <div className="w-6 border-black/20 border-t-2"></div>
-                    <Video size={20} />
-                    <div className="text-sm opacity-70 my-1">{vid}</div>
+                  <div className="flex gap-3 items-center mb-2 mb-2" key={vid}>
+                    <div
+                      className={cn(
+                        "w-6 border-black/20 border-t-2",
+                        i == 0 && " text-green-400 ",
+                      )}
+                    ></div>
+                    <Video className={cn(" ", i == 0 && "")} size={20} />
+                    <div
+                      className={cn(
+                        "text-sm flex-1 opacity-70 my-1",
+                        i == 0 && "",
+                      )}
+                    >
+                      {vid}
+                    </div>
                   </div>
                 ))}
               </div>

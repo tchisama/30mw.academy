@@ -126,7 +126,7 @@ export default function FormSection({}: Props) {
               <div className="w-full md:w-fit">
                 <Link href={"/course/652019e1200c377a6d6c31b5/146w9h"}>
                   <Button
-                    variant="ghost"
+                    variant="secondary"
                     className=" rounded-3xl text-lg p-8 flex items-center gap-2"
                   >
                     محتوى الدورة
