@@ -74,9 +74,9 @@ function Page({}: Props) {
         <div className="flex flex-col gap-3">
           {courseSections.map((sec, i) => (
             <div key={i} className="">
-              <div className="border-r-2">
+              <div className="border-r-2 border-black/20">
                 <div className="flex gap-4 items-start">
-                  {sec?.image && (
+                  {sec?.image ? (
                     <Image
                       className="mr-2"
                       src={sec?.image ?? ""}
@@ -84,13 +84,14 @@ function Page({}: Props) {
                       height={30}
                       alt=""
                     ></Image>
+                  ) : (
+                    <div className="w-2"></div>
                   )}
-                  <h1 className="text-xl my-3 pt-2 w-fit pr-2 border-t">
-                    {sec.title}
-                  </h1>
+                  <h1 className="text-xl mb-4  w-fit  ">{sec.title}</h1>
                 </div>
                 {sec.videos.map((vid) => (
-                  <div className="mr-8 flex gap-3 items-center my-1" key={vid}>
+                  <div className="flex gap-3 items-center my-1" key={vid}>
+                    <div className="w-6 border-black/20 border-t-2"></div>
                     <Video size={20} />
                     <div className="text-sm opacity-70 my-1">{vid}</div>
                   </div>
