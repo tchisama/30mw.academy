@@ -14,6 +14,7 @@ import {
   Stars,
   Pointer,
   Users,
+  Video,
 } from "lucide-react";
 import Link from "next/link";
 import React from "react";
@@ -26,14 +27,79 @@ import GTMProvider from "@/components/providers/GoogleTagManager";
 import { Input } from "@/components/ui/input";
 import { FaWhatsapp } from "react-icons/fa";
 import FormSection from "./formSection";
+import ps from "@/public/Adobe_Photoshop_CC_icon.svg.png";
+import ai from "@/public/Adobe-Illustrator-Icon.png";
+import pr from "@/public/png-transparent-adobe-premiere-pro-cc-14-3-hd-logo-thumbnail.png";
 
 type Props = {};
+const courseSections = [
+  {
+    title: "مقدمة الدورة",
+    videos: ["حصة مجانية"],
+  },
+  {
+    title: "برنامج الفوطوشوب",
+    image: ps,
+    videos: [
+      "تعرف على واجهة برنامج الفوطوشوب",
+      "كيف تصمم كارط فيزيت احترافية باستعمال فوطوشوب",
+      "كيف تصمم افيش متقنة باستعمال برنامج فوطوشوب",
+    ],
+  },
+  {
+    title: "برنامج اليسطراتور",
+    image: ai,
+    videos: ["تعرف على واجهة برنامج illustrator"],
+  },
+  {
+    title: "برنامج البروميير برو",
+    image: pr,
+    videos: [
+      "الحصة الأولى في المونتاج تعرف على واجهة برنامج البروميير برو",
+      "الحصة الثانية في المونتاج مهارة التقطيع و فصل الصوت عن الصورة",
+      "الحصة الثالثة في المونتاج المؤثرات الإنتقالية و التأثيرات المختلفة",
+      "الحصة الرابعة في المونتاج, تحريك العناصر، الكتابة على الفيديو، إخفاء أحد العناصر، إستخراج الفيديو النهائي",
+    ],
+  },
+];
 
 function Page({}: Props) {
   return (
     <div dir="rtl" className="px-2 ">
       <GTMProvider />
       <FormSection />
+
+      <div className="flex  w-full overflow-x-hidden flex-col  items-start  max-w-7xl mx-auto gap-12 py-24">
+        <h1 className="text-3xl mr-2 ">عن الدورة</h1>
+        <div className="flex flex-col gap-3">
+          {courseSections.map((sec, i) => (
+            <div key={i} className="">
+              <div className="border-r-2">
+                <div className="flex gap-4 items-start">
+                  {sec?.image && (
+                    <Image
+                      className="mr-2"
+                      src={sec?.image ?? ""}
+                      width={30}
+                      height={30}
+                      alt=""
+                    ></Image>
+                  )}
+                  <h1 className="text-xl my-3 pt-2 w-fit pr-2 border-t">
+                    {sec.title}
+                  </h1>
+                </div>
+                {sec.videos.map((vid) => (
+                  <div className="mr-8 flex gap-3 items-center my-1" key={vid}>
+                    <Video size={20} />
+                    <div className="text-sm opacity-70 my-1">{vid}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
 
       <div className="flex w-full overflow-x-hidden flex-col-reverse md:flex-row  items-center  max-w-7xl mx-auto gap-12 py-24">
         <div className="flex flex-col gap-4 flex-1">
@@ -153,9 +219,7 @@ function Page({}: Props) {
             variant={"outline"}
             onClick={() => {
               const getRandomNumber = () => {
-                return ["212610092651"][
-                  Math.floor(Math.random() * 1)
-                ];
+                return ["212610092651"][Math.floor(Math.random() * 1)];
               };
               window.open(`https://wa.me/${getRandomNumber()}`, "_blank");
             }}
