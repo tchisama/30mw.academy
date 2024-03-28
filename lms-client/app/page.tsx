@@ -78,7 +78,7 @@ export default function Home() {
           <Loader className="animate-spin" />
           Loading...
         </h1>
-      </div> as any
+      </div> 
     );
   }
 
