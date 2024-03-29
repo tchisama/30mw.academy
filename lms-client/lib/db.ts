@@ -1,5 +1,11 @@
 import mongoose from "mongoose";
 
+import UserModel from "@/models/User"
+import AccessModel from "@/models/models"
+import CategoryModel from "@/models/Category"
+import Config from "@/models/Config"
+import Course from "@/models/Course"
+import RequestModel from "@/models/request"
 
 
 
@@ -12,6 +18,8 @@ async function dbConnect() {
   const db = await mongoose.connect(process.env.NEXT_PUBLIC_MONGO_URI!)
   connection.isConnected = db.connections[0].readyState;
 }
+
+
 
 
 
