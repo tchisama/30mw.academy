@@ -41,7 +41,7 @@ export default function Controllers({}: Props) {
                 structer[selectedSection?.type as keyof typeof structer].map(
                   (field, index) => {
                     return (
-                      <div>
+                      <div key={index}>
                         <h4 className="text-left text-sm">{field.name}</h4>
                         <Field
                           key={selectedSection.id + index}
@@ -202,6 +202,7 @@ const Field = ({
                     {["icon", "title", "subtitle"].map((f, i) => {
                       return (
                         <Input
+                          key={i}
                           value={c[f]}
                           onInput={(e: any) => {
                             updateSection({

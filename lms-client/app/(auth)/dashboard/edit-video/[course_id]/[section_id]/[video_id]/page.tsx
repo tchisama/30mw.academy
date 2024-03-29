@@ -49,11 +49,6 @@ const Page = ({params}: Props) => {
     }
   },[params.course_id,updateCourse])
 
-  if(loading){
-      return <div className='h-screen flex justify-center items-center '>
-                  <h1 className='flex gap-3'><Loader className='animate-spin'/>Loading...</h1>
-              </div>
-  }
 
     useEffect(()=>{
     if(loading) return
@@ -61,6 +56,12 @@ const Page = ({params}: Props) => {
     if(!course.sections) return
     publish()
   },[course])
+
+  if(loading){
+      return <div className='h-screen flex justify-center items-center '>
+                  <h1 className='flex gap-3'><Loader className='animate-spin'/>Loading...</h1>
+              </div>
+  }
 
   return (
     <div className=''>

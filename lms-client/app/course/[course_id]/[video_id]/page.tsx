@@ -12,26 +12,15 @@ import {
   HeartCrack,
   Loader,
   Lock,
-  Stars,
-  StickyNote,
-  Unlock,
   Video,
   XCircle,
 } from "lucide-react";
 import React, { useEffect, useState } from "react";
 
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
 import { Card, CardHeader } from "@/components/ui/card";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useClerk } from "@clerk/nextjs";
-import Notes from "@/components/global/Notes";
 import { server } from "@/server";
 import GetCourseAlert from "@/components/GetCourseAlert";
 import GetCourseForm from "@/components/global/GetCourseForm";
@@ -93,7 +82,7 @@ interface UserWatchedVideo {
   __v: number;
 }
 
-const page = ({ params }: Props) => {
+const Page = ({ params }: Props) => {
   const [course, setCourse] = React.useState<Course>();
   const [loading, setLoading] = React.useState(true);
   const [access, setAccess] = React.useState(false);
@@ -511,4 +500,4 @@ const Sections = ({
   );
 };
 
-export default page;
+export default Page;

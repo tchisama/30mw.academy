@@ -63,7 +63,7 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   useFetchUser();
   useEffect(() => {
-    fetch("/api/config")
+    fetch(server+"config")
       .then((res) => res.json())
       .then((data) => {
         console.log("data config:",data)

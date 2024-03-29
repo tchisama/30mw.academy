@@ -23,7 +23,7 @@ interface MyData {
   lastWeekProfits: number;
 }
 
-function page({}: Props) {
+function Page({}: Props) {
   const user = useClerk()
   const [data, setData] = React.useState<MyData>()
   const [loading, setLoading] = React.useState(true)
@@ -126,4 +126,4 @@ function page({}: Props) {
   )
 }
 
-export default page
+export default Page

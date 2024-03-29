@@ -239,8 +239,8 @@ const Page = ({params}: Props) => {
 
                       {
                         accesses &&
-                        accesses.map((access)=>(
-                          <div className='p-1 px-3 flex gap-2 items-center border-b'>
+                        accesses.map((access , i)=>(
+                          <div key={i} className='p-1 px-3 flex gap-2 items-center border-b'>
                                 <Avatar>
                                     <AvatarImage src={access?.user[0]?.photo}></AvatarImage>
                                 </Avatar>

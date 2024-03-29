@@ -5,7 +5,7 @@ import TypeWriter from '@/components/global/TypingWriter'
 import { ArrowRight, Edit } from 'lucide-react'
 import React from 'react'
 
-function page() {
+function Page() {
     const [Heading, setHeading] = React.useState("Welcome to 30MW Academy🎉");
     const [Text, setText] = React.useState("Your Learning Hub. Unlock new horizons today.");
     const [tolearn,setToLearn] = React.useState(["Design 🎨", "Video Editing 🎥", "3d Modelling 🏡"]);
@@ -55,4 +55,4 @@ function page() {
   )
 }
 
-export default page
+export default Page

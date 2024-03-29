@@ -57,7 +57,7 @@ function Page({}: Props) {
         {requests.length > 0 &&
           requests.map((req, i) => {
             return (
-              <Card className={cn("shadow border", statusColors[req.status])}>
+              <Card key={i} className={cn("shadow border", statusColors[req.status])}>
                 <CardHeader className="flex gap-2 justify-between">
                   <div className="flex gap-2 justify-between">
                     <div>

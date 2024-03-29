@@ -24,7 +24,7 @@ import useCategoriesStore from '@/hooks/categories-store'
 import { server } from '@/server'
 type Props = {}
 
-const page = (props: Props) => {
+const Page = (props: Props) => {
   const {update}=useCategories()
   const {categories}=useCategoriesStore()
   const [text,setText]=React.useState("")
@@ -89,7 +89,7 @@ const page = (props: Props) => {
                     </AlertDialogTrigger>
                 <AlertDialogContent>
                     <AlertDialogHeader>
-                    <AlertDialogTitle>yaay let's create new category,</AlertDialogTitle>
+                    <AlertDialogTitle>yaay let&apos;s create new category,</AlertDialogTitle>
                     <AlertDialogDescription>
                         choose a category name ,you can change it any time later
                     </AlertDialogDescription>
@@ -135,4 +135,4 @@ const page = (props: Props) => {
   )
 }
 
-export default page
+export default Page
