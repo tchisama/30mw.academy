@@ -1,27 +1,28 @@
+
 import mongoose from "mongoose";
 
-import UserModel from "@/models/User"
-import AccessModel from "@/models/models"
-import CategoryModel from "@/models/Category"
-import Config from "@/models/Config"
-import Course from "@/models/Course"
-import RequestModel from "@/models/request"
 
+const connect = async () => {
 
+  try {
 
-const connection : {isConnected?:number} = {};
+    if (!process.env.NEXT_PUBLIC_MONGO_URI) return;
 
-async function dbConnect() {
-  if(connection.isConnected){
-    return;
+    await mongoose.connect(process.env.NEXT_PUBLIC_MONGO_URI);
+
+    console.log("MongoDB connected");
+
+  } catch (error) {
+
+    console.log(error);
+
   }
-  const db = await mongoose.connect(process.env.NEXT_PUBLIC_MONGO_URI!)
-  connection.isConnected = db.connections[0].readyState;
-}
+
+};
+
+
+export default connect;
 
 
 
 
-
-
-export default dbConnect;
