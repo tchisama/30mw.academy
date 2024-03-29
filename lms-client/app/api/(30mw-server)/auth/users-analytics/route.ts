@@ -1,4 +1,3 @@
-import AccessModel from "@/models/Access";
 import { NextResponse } from "next/server";
 import UserModel from "@/models/User";
 import db from "@/lib/db";

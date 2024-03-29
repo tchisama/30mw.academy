@@ -4,7 +4,7 @@ import UserModel from "@/models/User";
 
 export async function POST(request: Request) {
   console.log("connecting to db")
-  await db().catch(err=>console.log(err))
+  await db().catch(err=>console.log("tchisama"+err))
   console.log("connected to db")
   const data = await request.json();
   const user = await UserModel.findOne({ id_user: data.id_user });
