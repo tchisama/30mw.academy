@@ -5,7 +5,7 @@ import { FaWhatsapp } from 'react-icons/fa';
 
 const Footer = () => {
   return (
-    <footer className="h-[100px] flex items-center justify-center gap-4">
+    <footer className="min-h-[100px] py-8 flex items-center justify-center flex-col md:flex-row gap-4">
       <Link className="p-3 bg-white flex gap-3 items-center border rounded-xl " href="https://www.instagram.com/30mwacademy">
         <Instagram strokeWidth={2} size={28} className="text-3xl" />
         30mwacademy
