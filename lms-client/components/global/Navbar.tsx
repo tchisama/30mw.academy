@@ -18,6 +18,7 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import Image from "next/image";
+import { cn } from "@/lib/utils";
 
 type Props = {};
 
@@ -58,8 +59,7 @@ const Navbar = (props: Props) => {
                   </NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>
-
-              <NavigationMenuItem>
+<NavigationMenuItem>
                 <Link href="/courses" legacyBehavior passHref>
                   <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                     الدورات
@@ -92,9 +92,9 @@ const Navbar = (props: Props) => {
                   <NavigationMenuItem>
                     <Link href="/dashboard" legacyBehavior passHref>
                       <NavigationMenuLink
-                        className={navigationMenuTriggerStyle()}
+                        className={cn(navigationMenuTriggerStyle(),"flex gap-2 bg-green-200 text-green-700")}
                       >
-                        Dashboard <Lock className="ml-2" size={18} />
+                        لوحة تحكم <Lock className="ml-2" size={18} />
                       </NavigationMenuLink>
                     </Link>
                   </NavigationMenuItem>
@@ -110,13 +110,14 @@ const Navbar = (props: Props) => {
               <UserButton afterSignOutUrl="/" />
             </div>
           ) : (
+
             <>
               <Link href={"/sign-up"}>
-                <Button variant={"ghost"}>sign up</Button>
+                <Button variant={"ghost"}>اشتراك</Button>
               </Link>
               <Link href={"/sign-in"}>
                 <Button className="flex gap-2">
-                  Sign in <LogIn size={18} />
+                  تسجيل الدخول <LogIn size={18} />
                 </Button>
               </Link>
             </>
@@ -225,7 +226,7 @@ const MobailNav = () => {
                       <NavigationMenuLink
                         className={"text-white my-2 flex gap-2"}
                       >
-                        Dashboard <Lock className="ml-2" size={18} />
+                        لوحة تحكم <Lock className="ml-2" size={18} />
                       </NavigationMenuLink>
                     </Link>
                   </NavigationMenuItem>
