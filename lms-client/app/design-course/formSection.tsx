@@ -59,11 +59,9 @@ export default function FormSection({}: Props) {
         */}
       <div className="py-8 items-center  container flex md:flex-row-reverse flex-col gap-6">
         <div className="w-[100vw] flex justify-center md:w-fit">
-          <video
-            className="md:w-[700px] relative w-full md:rounded-2xl "
-            controls
-            src="https://d2rk6n1qqhht0d.cloudfront.net/G05_EP00_INTRO.mp4"
-          ></video>
+        <iframe width="560"
+            className="md:w-[700px] aspect-video relative w-full md:rounded-2xl "
+            src="https://www.youtube.com/embed/THOzCd4MEyc?si=_jhOOVcwRvJn5CGr" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </div>
         {!sendedRequest ? (
           <div className="flex-1 w-screen px-5">

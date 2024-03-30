@@ -8,6 +8,7 @@ import CatsProvider from "@/components/CatsProvider";
 import { dev } from "@/server";
 import { Code } from "lucide-react";
 import Navbar from "@/components/global/Navbar";
+import Footer from "@/components/global/Footer";
 const inter = Rubik({ subsets: ["arabic"] });
 
 export const metadata: Metadata = {
@@ -51,6 +52,7 @@ export default function RootLayout({
               </CatsProvider>
             </EdgeStoreProvider>
           </ThemeProvider>
+          <Footer/>
         </body>
       </html>
     </ClerkProvider>

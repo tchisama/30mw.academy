@@ -1,5 +1,5 @@
 "use client";
-import { ArrowLeft, Loader } from "lucide-react";
+import { ArrowLeft, Loader, Loader2 } from "lucide-react";
 import _30mw from "@/public/30mw.png";
 import _s3d from "@/public/s3d.png";
 import Image from "next/image";
@@ -29,6 +29,8 @@ import {
 } from "@/components/ui/carousel";
 import GTMProvider from "@/components/providers/GoogleTagManager";
 import { cn } from "@/lib/utils";
+import useUserStore from "@/hooks/users-store";
+import { useClerk } from "@clerk/nextjs";
 
 interface LandingPage {
   landing_page: {
@@ -45,7 +47,8 @@ export default function Home() {
   const [api, setApi] = React.useState<CarouselApi>();
   const [current, setCurrent] = React.useState(0);
   const [count, setCount] = React.useState(0);
-
+  const user = useClerk();
+  
   React.useEffect(() => {
     if (!api) {
       return;
@@ -75,8 +78,7 @@ export default function Home() {
     return (
       <div className="h-screen flex justify-center items-center ">
         <h1 className="flex gap-3">
-          <Loader className="animate-spin" />
-          Loading...
+          <Loader2 className="animate-spin" />
         </h1>
       </div> 
     );
@@ -113,12 +115,16 @@ export default function Home() {
               <TypeWriter data={config?.landing_page?.learn||[]}></TypeWriter>
             </h2> */}
             <div className="pt-8">
+          {
+            !(user.user?.id)&&
               <Link
                 href="/sign-up"
-                className="md:px-8 px-8 shadow-2xl flex-row-reverse hover:scale-105 items-center duration-150 py-4 md:py-4 text-md md:text-lg bg-primary text-white uppercase rounded-full flex gap-2 "
+                className="md:px-8 w-fit px-8 shadow-2xl flex-row-reverse hover:scale-105 items-center duration-150 py-4 md:py-4 text-md md:text-lg bg-primary text-white uppercase rounded-full flex gap-2 "
               >
                 إشترك الآن بالمجان <ArrowLeft />
               </Link>
+          }
+
             </div>
           </div>
         </div>

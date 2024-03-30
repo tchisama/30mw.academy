@@ -98,6 +98,7 @@ function Page({}: Props) {
                         i == 0 && " text-green-400 ",
                       )}
                     ></div>
+
                     <Video className={cn(" ", i == 0 && "")} size={20} />
                     <div
                       className={cn(
@@ -174,6 +175,7 @@ function Page({}: Props) {
         </div>
       </div>
 
+
       <div className="">
         <div className="flex flex-col md:flex-row-reverse items-center max-w-7xl mx-auto px-2 gap-20 py-24">
           <div className="relative w-full md:w-fit">
@@ -210,7 +212,16 @@ function Page({}: Props) {
         </div>
       </div>
 
-      <div className="flex flex-col px-2 container md:flex-row gap-4">
+
+      <iframe className="w-full container aspect-video"
+        src="https://www.youtube.com/embed/qkeGU9Rohwo?si=1eRfLMZtP5cEDNJF" 
+        title="YouTube video player"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        ></iframe>
+
+
+
+      <div className="flex my-8 flex-col px-2 container md:flex-row gap-4">
         <div className=" max-w-3xl drop-shadow-xl flex relative flex-col bg-gradient-to-bl from-green-500 to-blue-500 gap-3 rounded-3xl p-4 pb-4  py-8">
           <Stars
             size={60}
@@ -238,7 +249,7 @@ function Page({}: Props) {
               window.open(`https://wa.me/${getRandomNumber()}`, "_blank");
             }}
           >
-            اتصل عبر واتساب
+تواصل معنا 
             <FaWhatsapp className=" mx-2" />
           </Button>
         </div>
@@ -266,7 +277,7 @@ function Page({}: Props) {
               window.open(`https://wa.me/${getRandomNumber()}`, "_blank");
             }}
           >
-            اتصل عبر واتساب
+تواصل معنا 
             <FaWhatsapp className=" mx-2" />
           </Button>
         </div>
