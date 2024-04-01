@@ -213,7 +213,7 @@ function Page({}: Props) {
       </div>
 
 
-      <iframe className="w-full container aspect-video"
+      <iframe className="w-full px-0 rounded-2xl container aspect-video"
         src="https://www.youtube.com/embed/qkeGU9Rohwo?si=1eRfLMZtP5cEDNJF" 
         title="YouTube video player"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

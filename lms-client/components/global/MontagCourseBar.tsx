@@ -37,22 +37,13 @@ function MontagCourse({home=false}: Props) {
               <FaWhatsapp />
               </Button>
           </ButtonLink> */}
-          <BuyNow>
+          <Link href={"/design-course"}>
               <Button variant={"outline"} className='bg-white w-full md:max-w-sm  rounded-full border-2 text-[#124972] text-2xl p-6 py-8 md:p-8 flex items-center gap-3'>
                   أطلب الدورة 
                   <ChevronLeft />
               </Button>
-          </BuyNow>
-          
-          {
-            home ?
-          <Link href={"/design-course"}>
-              <Button variant={"ghost"} className=' rounded-full hover:bg-transparent hover:text-white  text-white text-md  flex items-center gap-3'>
-                المزيد <ArrowLeft />
-              </Button>
           </Link>
-          :null
-          }
+          
             </div>
           </div>
         </div>

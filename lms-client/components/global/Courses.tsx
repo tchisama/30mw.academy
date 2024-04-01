@@ -27,6 +27,7 @@ function Courses({}: Props) {
     const {update}=useCategories()
     const router = useRouter()
     const [loading, setLoading] = React.useState(true)
+    const [access, setAccess] = React.useState(false)
 
     useEffect(() => {
         fetch("/api/courses").then(res => res.json()).then(data => {
@@ -35,6 +36,9 @@ function Courses({}: Props) {
             setLoading(false)
         })
     },[])
+
+
+
     if (loading) {
         return(
             <div className='h-screen flex justify-center items-center '>
@@ -43,7 +47,7 @@ function Courses({}: Props) {
         )
     }
   return (
-  <div className='grid grid-cols-1 md:grid-cols-3 gap-4 '>
+  <div className='grid grid-cols-1 md:grid-cols-3 gap-8 '>
       {
           courses.map(course => (
               
