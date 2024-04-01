@@ -45,7 +45,7 @@ function MyCourses({}: Props) {
         update((p) => p + 1);
         setLoading(false);
       });
-  }, []);
+  }, [user]);
 
   useEffect(() => {
     if (!user.id_user) return;

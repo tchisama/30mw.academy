@@ -9,6 +9,7 @@ import { ArrowLeft, Loader } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import React, { useEffect } from 'react'
 import { Button } from '../ui/button'
+import useUserStore from '@/hooks/users-store'
 
 type Props = {}
 type CourseClient={
@@ -28,6 +29,7 @@ function Courses({}: Props) {
     const router = useRouter()
     const [loading, setLoading] = React.useState(true)
     const [access, setAccess] = React.useState(false)
+    const {user} = useUserStore()
 
     useEffect(() => {
         fetch("/api/courses").then(res => res.json()).then(data => {
@@ -35,7 +37,7 @@ function Courses({}: Props) {
             update(p=>p+1)
             setLoading(false)
         })
-    },[])
+    },[user])
 
 
 

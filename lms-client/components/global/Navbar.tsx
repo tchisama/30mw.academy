@@ -75,6 +75,7 @@ const Navbar = (props: Props) => {
                 </NavigationMenuItem> */}
               <NavigationMenuItem>
                 <Link
+                  target="_blank"
                   href="https://wa.me/+212642680949?text=HELP"
                   legacyBehavior
                   passHref
