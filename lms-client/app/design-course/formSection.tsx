@@ -36,9 +36,9 @@ export default function FormSection({}: Props) {
       .post("/api/request", {
         _30mw_user_id: _30mw_user_id,
         id_course: designcourseid,
-        user_name: fullName,
+        user_name: fullName??"",
         user_number: number,
-        user_email: email,
+        user_email: email??"",
       })
       .then((res) => {
         console.log(res);
@@ -115,7 +115,7 @@ export default function FormSection({}: Props) {
 
             <div className="flex gap-2 mt-4 flex-col md:flex-row">
               <Button
-                disabled={!fullName || !number || !email}
+                disabled={!number}
                 onClick={requestCourse}
                 className="  border-white border-2  rounded-3xl  text-2xl p-8 flex items-center gap-3"
               >
