@@ -57,6 +57,14 @@ export default function DashboardNavBar() {
               </Link>
             </NavigationMenuItem>
 
+            <NavigationMenuItem>
+              <Link href="/dashboard/users" legacyBehavior passHref>
+                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                  👥 Users
+                </NavigationMenuLink>
+              </Link>
+            </NavigationMenuItem>
+
             <NavigationMenuItem 
                 className="md:hidden flex"
             >
