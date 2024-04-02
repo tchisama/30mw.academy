@@ -11,7 +11,9 @@ import React, { useEffect } from 'react'
 import { Button } from '../ui/button'
 import useUserStore from '@/hooks/users-store'
 
-type Props = {}
+type Props = {
+  showAll?: boolean
+}
 type CourseClient={
     _id:string,
     title:string,
@@ -22,13 +24,13 @@ type CourseClient={
 }
 
 
-function Courses({}: Props) {
+function Courses({showAll}: Props) {
     const[courses, setCourses] = React.useState<CourseClient[]>([])
     const {categories}=useCategoriesStore()
     const {update}=useCategories()
     const router = useRouter()
     const [loading, setLoading] = React.useState(true)
-    const [access, setAccess] = React.useState(false)
+    const [access, setAccess] = React.useState<string[]>([])
     const {user} = useUserStore()
 
     useEffect(() => {
@@ -37,8 +39,16 @@ function Courses({}: Props) {
             update(p=>p+1)
             setLoading(false)
         })
+    },[user,showAll])
+    
+    useEffect(() => {
+      if(!user.id_user) return 
+      fetch("/api/accesses-user/"+user?.id_user).then(res => res.json()).then(data => {
+        console.log(data)
+        setAccess(data.map((a:any)=>a.id_course))
+      }
+      )
     },[user])
-
 
 
     if (loading) {
@@ -52,9 +62,10 @@ function Courses({}: Props) {
   <div className='grid grid-cols-1 md:grid-cols-3 gap-8 '>
       {
           courses.map(course => (
-              
+              (showAll?[]:access).includes(course._id ) ? 
+              null :
               <Card dir='rtl' onClick={() => {
-                if(course._id=="652019e1200c377a6d6c31b5"){
+                if(course._id=="652019e1200c377a6d6c31b5"&&!access.includes(course._id)){
                     router.push("/design-course")
                 }else{
                     router.push(`/course/${course._id}/start`)

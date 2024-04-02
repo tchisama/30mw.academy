@@ -85,11 +85,7 @@ function MyCourses({}: Props) {
             <Card
               dir="rtl"
               onClick={() => {
-                if (course._id == "652019e1200c377a6d6c31b5") {
-                  router.push("/design-course");
-                } else {
                   router.push(`/course/${course._id}/start`);
-                }
               }}
               key={course._id}
               className="overflow-hidden drop-shadow-xl group cursor-pointer"
