@@ -37,6 +37,7 @@ const courseSections = [
   {
     title: "مقدمة الدورة",
     videos: ["حصة مجانية"],
+    durations: ["56:00"]
   },
   {
     title: "برنامج الفوطوشوب",
@@ -46,11 +47,13 @@ const courseSections = [
       "كيف تصمم كارط فيزيت احترافية باستعمال فوطوشوب",
       "كيف تصمم افيش متقنة باستعمال برنامج فوطوشوب",
     ],
+    durations: ["51:00","54:00","58:00"]
   },
   {
     title: "برنامج اليسطراتور",
     image: ai,
     videos: ["تعرف على واجهة برنامج illustrator"],
+    durations: ["44:00"]
   },
   {
     title: "برنامج البروميير برو",
@@ -61,6 +64,7 @@ const courseSections = [
       "الحصة الثالثة في المونتاج المؤثرات الإنتقالية و التأثيرات المختلفة",
       "الحصة الرابعة في المونتاج, تحريك العناصر، الكتابة على الفيديو، إخفاء أحد العناصر، إستخراج الفيديو النهائي",
     ],
+    durations: ["43:00","44:00","48:00","42:00"]
   },
 ];
 
@@ -91,7 +95,7 @@ function Page({}: Props) {
                   <h1 className="text-xl mb-4  w-fit  ">{sec.title}</h1>
                 </div>
                 {sec.videos.map((vid) => (
-                  <div className="flex gap-3 items-center mb-2 mb-2" key={vid}>
+                  <div className="flex gap-4 items-center mb-2  mb-2" key={vid}>
                     <div
                       className={cn(
                         "w-6 border-black/20 border-t-2",
@@ -107,6 +111,9 @@ function Page({}: Props) {
                       )}
                     >
                       {vid}
+                    </div>
+                    <div>
+                      {sec.durations[sec.videos.indexOf(vid)]}
                     </div>
                   </div>
                 ))}
@@ -128,10 +135,6 @@ function Page({}: Props) {
           </p>
         </div>
         <div className="relative px-8">
-          <Clapperboard
-            strokeWidth={2}
-            className="  absolute -top-8 drop-shadow-xl border -left-2 md:-left-10 z-10 text-[#2892df] p-4 md:p-6 rotate-12 md:w-24 w-16 h-16 md:h-24 dark:bg-slate-900/80 bg-white/70 backdrop-blur-md  rounded-3xl "
-          />
           <Wand2
             strokeWidth={2}
             className="  absolute -top-8 drop-shadow-xl border -right-2 z-10 text-[#2892df] p-6 -rotate-6 w-20 h-20 dark:bg-slate-900/80 bg-white/80 rounded-3xl backdrop-blur-md "
@@ -152,7 +155,7 @@ function Page({}: Props) {
           <div className="relative">
             <Medal
               strokeWidth={1}
-              className="  absolute -top-8 drop-shadow-xl border  md:-right-12 z-10 text-[#2892df] p-3 -rotate-6 w-20 h-20 dark:bg-slate-900/80 bg-white/80 rounded-3xl backdrop-blur-md "
+              className="  absolute -top-8 drop-shadow-xl border  md:right-12 z-10 text-[#2892df] p-3 -rotate-6 w-20 h-20 dark:bg-slate-900/80 bg-white/80 rounded-3xl backdrop-blur-md "
             />
             <Image
               src={timeline}
@@ -181,7 +184,7 @@ function Page({}: Props) {
           <div className="relative w-full md:w-fit">
             <PencilRuler
               strokeWidth={1}
-              className="  absolute -top-8 drop-shadow-xl border left-0 md:-left-12 z-10 text-[#2892df] p-3 -rotate-12 w-20 h-20 dark:bg-slate-900/80 bg-white/50 rounded-3xl backdrop-blur-md "
+              className="  absolute -top-8 drop-shadow-xl border left-0 md:left-12 z-10 text-[#2892df] p-3 -rotate-12 w-20 h-20 dark:bg-slate-900/80 bg-white/50 rounded-3xl backdrop-blur-md "
             />
             <Image
               src={Crazy}

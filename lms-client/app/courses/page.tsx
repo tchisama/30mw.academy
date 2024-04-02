@@ -18,7 +18,7 @@ const page = (props: Props) => {
         <div className="my-8">
           <Separator />
         </div>
-        <Courses />
+        <Courses showAll={false} />
       </div>
     </div>
   );

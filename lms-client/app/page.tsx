@@ -165,7 +165,7 @@ export default function Home() {
       </Carousel>
       <div dir="rtl" className="md:container px-3 space-y-4 mx-auto my-8">
         <h1 className="text-4xl  font-medium py-8">دورات مسجلة </h1>
-        <Courses />
+        <Courses showAll={true} />
         
         {/* <PhotoshopCourse home /> */}
       </div>
