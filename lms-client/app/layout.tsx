@@ -29,7 +29,7 @@ export default function RootLayout({
         </head>
 
 
-        <body className={inter.className}>
+        <body className={inter.className + " overflow-x-hidden"}>
           {dev && (
             <div className="absolute flex gap-2 top-2 left-2 bg-primary text-white p-2 rounded-md w-fit">
               <Code /> Mode
