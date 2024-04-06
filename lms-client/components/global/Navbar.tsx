@@ -61,6 +61,7 @@ const Navbar = (props: Props) => {
               </NavigationMenuItem>
 <NavigationMenuItem>
                 <Link href="/courses" legacyBehavior passHref>
+                  passHref
                   <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                     الدورات
                   </NavigationMenuLink>
@@ -74,16 +75,14 @@ const Navbar = (props: Props) => {
                     </Link>
                 </NavigationMenuItem> */}
               <NavigationMenuItem>
-                <Link
+                <a
                   target="_blank"
                   href="https://wa.me/+212642680949?text=HELP"
-                  legacyBehavior
-                  passHref
                 >
                   <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                     تواصل معنا
                   </NavigationMenuLink>
-                </Link>
+                </a>
               </NavigationMenuItem>
 
               {(user?.rule === "admin" ||

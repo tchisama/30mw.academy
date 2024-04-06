@@ -21,7 +21,9 @@ const requestModel = new mongoose.Schema({
     type: String,
     required: true,
   },
-});
+},{
+  timestamps: true,
+  });
 
 export default mongoose.models.Request ||
   mongoose.model("Request", requestModel);
