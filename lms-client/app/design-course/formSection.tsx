@@ -61,7 +61,7 @@ export default function FormSection({}: Props) {
         <div className="w-[100vw] flex justify-center md:w-fit">
         <iframe width="560"
             className="md:w-[700px] aspect-video relative w-full md:rounded-2xl "
-            src="https://www.youtube.com/embed/THOzCd4MEyc?si=_jhOOVcwRvJn5CGr" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            src="https://www.youtube.com/embed/THOzCd4MEyc?si=_jhOOVcwRvJn5CGr" title="YouTube video player"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"  ></iframe>
         </div>
         {!sendedRequest ? (
           <div className="flex-1 w-screen px-5">
