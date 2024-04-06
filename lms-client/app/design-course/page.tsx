@@ -29,7 +29,7 @@ import { FaWhatsapp } from "react-icons/fa";
 import FormSection from "./formSection";
 import ps from "@/public/Adobe_Photoshop_CC_icon.svg.png";
 import ai from "@/public/Adobe-Illustrator-Icon.png";
-import pr from "@/public/png-transparent-adobe-premiere-pro-cc-14-3-hd-logo-thumbnail.png";
+import pr from "@/public/Adobe_Premiere_Pro_CC_icon.svg.png"
 import { cn } from "@/lib/utils";
 
 type Props = {};
@@ -83,7 +83,7 @@ function Page({}: Props) {
                 <div className="flex gap-4 items-start">
                   {sec?.image ? (
                     <Image
-                      className="mr-2"
+                      className="mr-2 border-2 border-white/40 rounded"
                       src={sec?.image ?? ""}
                       width={30}
                       height={30}
