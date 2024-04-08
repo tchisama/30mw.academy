@@ -3,9 +3,10 @@ import UserModel from "@/models/User";
 import { NextResponse } from "next/server";
 
 
-export default async function POST(request: Request) {
+export async function POST(request: Request) {
   await dbConnect()
   const body = await request.json();
+  console.log(body)
   const user = await UserModel.findOne({ id_user: body.id_user });
 
   if (user) {
@@ -15,8 +16,8 @@ export default async function POST(request: Request) {
       const newUser = new UserModel(body);
       const savedUser = await newUser.save();
       return NextResponse.json(savedUser);
-    } catch {
-      return NextResponse.error()
+    } catch(err:any) {
+      return NextResponse.json({err:err.message})
     }
   }
 };
