@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "../ui/button";
 import { Loader, Lock, LogIn, Menu, X } from "lucide-react";
 import Link from "next/link";
@@ -19,13 +19,29 @@ import {
 } from "@/components/ui/navigation-menu";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
+import axios from "axios";
+import { server } from "@/server";
 
 type Props = {};
 
 const Navbar = (props: Props) => {
   useFetchUser();
-  const { user } = useUserStore();
+  const { user, updateUser  } = useUserStore();
   const u = useClerk();
+  
+  useEffect(() => {
+    if(!u.user?.id) return;
+    axios.post(server +"auth/create-user" , {
+      "id_user":u.user?.id,
+      lname:u.user.lastName,
+      fname:u.user.firstName,
+      email:u.user.emailAddresses[0].emailAddress,
+      photo:u.user.imageUrl,
+      rule:"user",
+    } ).then((res)=>{
+      updateUser(res.data)
+    })
+  },[u.user?.id])
 
   return (
     <div>
