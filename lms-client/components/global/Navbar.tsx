@@ -40,6 +40,8 @@ const Navbar = (props: Props) => {
       rule:"user",
     } ).then((res)=>{
       updateUser(res.data)
+      console.log("regestred")
+      console.log(res.data)
     })
   },[u.user?.id])
 
