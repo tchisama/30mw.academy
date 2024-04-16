@@ -71,6 +71,9 @@ function MyCourses({}: Props) {
   }
   return (
     access.length  > 0 && 
+    courses
+      .filter((c) => access.includes(c._id)).length >0
+      && 
     <>
       <div className="pt-20">
         <h1 className="text-3xl font-bold">الدورات المشترية</h1>
@@ -82,41 +85,35 @@ function MyCourses({}: Props) {
         {courses
           .filter((c) => access.includes(c._id))
           .map((course) => (
-            <Card
-              dir="rtl"
-              onClick={() => {
-                  router.push(`/course/${course._id}/start`);
-              }}
-              key={course._id}
-              className="overflow-hidden drop-shadow-xl group cursor-pointer"
-            >
-              <div className="relative aspect-video w-full overflow-hidden">
-                {course.image ? (
-                  <img
-                    className="object-cover group-hover:scale-105 duration-300 w-full aspect-video"
-                    alt=""
-                    src={course.image}
-                  ></img>
-                ) : (
-                  <div className="aspect-video bg-secondary"></div>
-                )}
-              </div>
-              <CardHeader>
-                <CardTitle className="text-lg">{course.title}</CardTitle>
-                <div className="flex items-center justify-between">
-                  <div>
-                    {categories.find((c) => c._id === course.category)?.name}
+              <Card dir='rtl' onClick={() => {
+                if(course._id=="652019e1200c377a6d6c31b5"&&!access.includes(course._id)){
+                    router.push("/design-course")
+                }else{
+                    router.push(`/course/${course._id}/start`)
+                }
+              }} key={course._id} className='overflow-hidden drop-shadow-xl group cursor-pointer'>
+                  <div className='relative aspect-square w-full overflow-hidden'>
+                      <div className=' absolute  font-bold p-4 bottom-0 text-3xl '>{course.title}</div>
+                  {
+
+                      course.image ? <img className='object-cover  duration-300 w-full aspect-square' alt='' src={course.image}></img> 
+                      : <div className='aspect-video bg-secondary'></div>
+                  }
                   </div>
-                  <h3 className="text-2xl font-medium">
-                    {course.price == 0 ? "Free" : course.price + " Dh"}{" "}
-                  </h3>
-                </div>
-                <CardDescription className="h-10 overflow-hidden">
-                  {course.description}
-                </CardDescription>
-                {/* <Button className='mt-auto flex gap-3'>المزيد من التفاصيل <ArrowLeft size={18}/></Button> */}
-              </CardHeader>
-            </Card>
+                  <CardHeader>
+                      {/* <CardTitle className='text-lg'>{course.title}</CardTitle> */}
+                      <div className='flex items-center justify-between'>
+                        {/*   <div > */}
+                        {/* {categories */}
+                        {/*   .find(c=>c._id===course.category)?.name} */}
+                        {/*   </div> */}
+                        <Button className="px-6 text-lg">شراء الآن </Button>
+                        <h3 className='text-2xl font-medium'>{course.price==0?"Free":course.price+" Dh"} </h3>
+                      </div>
+                      {/* <CardDescription className='h-10 overflow-hidden'>{course.description}</CardDescription> */}
+                      {/* <Button className='mt-auto flex gap-3'>المزيد من التفاصيل <ArrowLeft size={18}/></Button> */}
+                  </CardHeader>
+              </Card>
           ))}
       </div>
     </>
