@@ -1,7 +1,9 @@
 import AccessModel from "@/models/Access";
 import { NextResponse } from "next/server";
+import db from "@/lib/db";
 
 export async function POST(request: Request) {
+  await db()
   try {
     const body = await request.json();
     const newAccess = await AccessModel.findOne({

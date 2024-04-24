@@ -3,8 +3,10 @@ import CourseModel from "@/models/Course";
 import ViewModel from "@/models/View";
 import UserModel from "@/models/User";
 import AccessModel from "@/models/Access";
+import db from "@/lib/db";
 
 const Total = async () => {
+  await db()
   try {
     const countCourses = await CourseModel.find({});
     const countUsers = await UserModel.find({});

@@ -1,8 +1,11 @@
 import { NextResponse } from "next/server";
 import AccessModel from "@/models/Access";
 import CourseModel from "@/models/Course";
+import db from "@/lib/db";
 
 export async function POST(request: Request) {
+
+  await db()
   try {
     const body = await request.json();
     const access = await AccessModel.findOne({

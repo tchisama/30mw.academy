@@ -103,6 +103,8 @@ function Page({}: Props) {
                       )}
                     ></div>
 
+                    
+                    <div className="flex gap-4 p-4 px-6 items-center bg-white border rounded-xl ">
                     <Video className={cn(" ", i == 0 && "")} size={20} />
                     <div
                       className={cn(
@@ -112,7 +114,8 @@ function Page({}: Props) {
                     >
                       {vid}
                     </div>
-                    <div>
+                    </div>
+                    <div className="ml-auto flex-1 text-left">
                       {sec.durations[sec.videos.indexOf(vid)]}
                     </div>
                   </div>

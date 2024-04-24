@@ -10,6 +10,7 @@ import { useRouter } from 'next/navigation'
 import React, { useEffect } from 'react'
 import { Button } from '../ui/button'
 import useUserStore from '@/hooks/users-store'
+import { useClerk } from '@clerk/nextjs'
 
 type Props = {
   showAll?: boolean
@@ -32,23 +33,27 @@ function Courses({showAll}: Props) {
     const [loading, setLoading] = React.useState(true)
     const [access, setAccess] = React.useState<string[]>([])
     const {user} = useUserStore()
+    const u = useClerk();
 
     useEffect(() => {
+        setCourses([])
         fetch("/api/courses").then(res => res.json()).then(data => {
             setCourses(data)
             update(p=>p+1)
             setLoading(false)
         })
-    },[user,showAll])
+    },[user,showAll,u.user?.id])
     
     useEffect(() => {
+      setAccess([])
+      if(!u.user?.id) return 
       if(!user.id_user) return 
       fetch("/api/accesses-user/"+user?.id_user).then(res => res.json()).then(data => {
         console.log(data)
         setAccess(data.map((a:any)=>a.id_course))
       }
       )
-    },[user])
+    },[user,u.user?.id])
 
 
     if (loading) {
@@ -72,7 +77,7 @@ function Courses({showAll}: Props) {
                 }
               }} key={course._id} className='overflow-hidden drop-shadow-xl group cursor-pointer'>
                   <div className='relative aspect-square w-full overflow-hidden'>
-                      <div className=' absolute  font-bold p-4 bottom-0 text-3xl '>{course.title}</div>
+                      <div className=' absolute text-black font-bold p-4 bottom-0 text-3xl '>{course.title}</div>
                   {
 
                       course.image ? <img className='object-cover  duration-300 w-full aspect-square' alt='' src={course.image}></img> 

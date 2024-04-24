@@ -17,6 +17,7 @@ import React, { useEffect } from "react";
 import { Button } from "../ui/button";
 import useUserStore from "@/hooks/users-store";
 import { Separator } from "@radix-ui/react-dropdown-menu";
+import { useClerk } from "@clerk/nextjs";
 
 type Props = {};
 type CourseClient = {
@@ -36,8 +37,10 @@ function MyCourses({}: Props) {
   const [loading, setLoading] = React.useState(true);
   const [access, setAccesses] = React.useState<any[]>([]);
   const { user } = useUserStore();
+  const u = useClerk();
 
   useEffect(() => {
+    setCourses([])
     fetch("/api/courses")
       .then((res) => res.json())
       .then((data) => {
@@ -45,9 +48,10 @@ function MyCourses({}: Props) {
         update((p) => p + 1);
         setLoading(false);
       });
-  }, [user]);
+  }, [user,u.user?.id]);
 
   useEffect(() => {
+    setAccesses([])
     if (!user.id_user) return;
     fetch("/api/accesses-user/" + user.id_user)
       .then((res) => res.json())
@@ -57,7 +61,7 @@ function MyCourses({}: Props) {
         update((p) => p + 1);
         setLoading(false);
       });
-  }, [user.id_user]);
+  }, [user.id_user,u.user?.id]);
 
   if (loading) {
     return (
@@ -93,7 +97,7 @@ function MyCourses({}: Props) {
                 }
               }} key={course._id} className='overflow-hidden drop-shadow-xl group cursor-pointer'>
                   <div className='relative aspect-square w-full overflow-hidden'>
-                      <div className=' absolute  font-bold p-4 bottom-0 text-3xl '>{course.title}</div>
+                      <div className=' absolute  text-black font-bold p-4 bottom-0 text-3xl '>{course.title}</div>
                   {
 
                       course.image ? <img className='object-cover  duration-300 w-full aspect-square' alt='' src={course.image}></img> 
