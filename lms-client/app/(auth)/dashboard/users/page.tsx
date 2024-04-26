@@ -5,8 +5,11 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { User } from "@/hooks/users-store";
 import {
+    ArrowLeft,
+  ArrowRight,
   Ban,
   Car,
+  EyeIcon,
   LineChart,
   Loader,
   MoreHorizontal,
@@ -33,6 +36,7 @@ import { Separator } from "@/components/ui/separator";
 import { server } from "@/server";
 import UsersTable from "@/components/global/UsersTable";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@radix-ui/react-accordion";
 
 type Props = {};
 
@@ -135,7 +139,7 @@ function Page({}: Props) {
         </div>
         <div className="my-4">
           <div className="flex gap-4 justify-between flex-col md:flex-row">
-            <h1 className="text-3xl">Users</h1>
+            <h1 className="text-3xl"></h1>
             <Input
               type="text"
               value={search}
@@ -147,11 +151,31 @@ function Page({}: Props) {
         </div>
         <div className="grid my-6 gap-2 grid-cols-1">
           <ScrollArea>
+            <Accordion type="single" className="bg-gray-50 border px-6 rounded-xl" collapsible>
+              <AccordionItem value="item-1">
+                <AccordionTrigger className="flex justify-between w-full items-center">
+                  <h1 className="text-3xl  py-3">Admins</h1>
+                  <EyeIcon  size={24}/>
+                </AccordionTrigger>
+                <AccordionContent>
+                    <UsersTable
+                      search={search}
+                      setUsers={setUsers}
+                      fetchUser={fetchUser}
+                      users={users.filter(_u=>_u.rule!=="user")}
+                    />
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+
+
+
+            <h1 className="text-3xl py-3">Users</h1>
             <UsersTable
               search={search}
               setUsers={setUsers}
               fetchUser={fetchUser}
-              users={users}
+              users={users.filter(_u=>_u.rule==="user")}
             />
             <ScrollBar orientation="horizontal" />
           </ScrollArea>

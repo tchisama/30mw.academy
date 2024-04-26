@@ -83,7 +83,9 @@ function UsersTable({users:_users,search,fetchUser,setUsers:_setUsers}: Props) {
       </TableHeader>
       <TableBody>
         {
-          users.filter(_user => (_user.email.toLowerCase()+" "+_user.fname.toLowerCase()+" "+_user.lname.toLowerCase()).includes(search.toLowerCase())).map((user, index) => (
+          users
+          .filter(_user => (_user.email.toLowerCase()+" "+_user.fname.toLowerCase()+" "+_user.lname.toLowerCase()).includes(search.toLowerCase()))
+          .map((user, index) => (
             <TableRow key={user._id}>
               <TableCell className='text-left flex md:hidden'>
                 <GiveAccess courses={courses} id={user.id_user} >
