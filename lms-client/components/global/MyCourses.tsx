@@ -111,8 +111,8 @@ function MyCourses({}: Props) {
                         {/* {categories */}
                         {/*   .find(c=>c._id===course.category)?.name} */}
                         {/*   </div> */}
-                        <Button className="px-6 text-lg">شراء الآن </Button>
-                        <h3 className='text-2xl font-medium'>{course.price==0?"Free":course.price+" Dh"} </h3>
+                        <Button className="px-6 text-lg">إفتح الدورة </Button>
+                        {/* <h3 className='text-2xl font-medium'></h3> */}
                       </div>
                       {/* <CardDescription className='h-10 overflow-hidden'>{course.description}</CardDescription> */}
                       {/* <Button className='mt-auto flex gap-3'>المزيد من التفاصيل <ArrowLeft size={18}/></Button> */}
