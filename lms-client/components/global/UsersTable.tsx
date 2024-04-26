@@ -19,6 +19,7 @@ import { Badge } from '../ui/badge';
 import GiveAccess from './GiveAccess';
 import { Course } from '@/hooks/course-store';
 import useUserStore from '@/hooks/users-store';
+import axios from 'axios';
 
 
 type Props = {
@@ -217,7 +218,13 @@ const MakeAdmin = ({_user,fetchUser,setUsers}:{  _user: User,fetchUser: ()=>void
                                     }
                                     
                                 <DropdownMenuItem className='flex gap-2 items-center'><Ban size={16}/>Block user</DropdownMenuItem>
-                                <DropdownMenuItem className='flex gap-2 items-center dark:text-red-400 text-red-600'><Trash2 size={16}/>Delete user</DropdownMenuItem>
+                                <DropdownMenuItem className='flex gap-2 items-center dark:text-red-400 text-red-600' onClick={()=>{
+            axios.delete(server+'auth/user/'+_user.id_user).then(res => {
+              setUsers((users:User[]) => {
+                return users.filter(user => user.id_user !== _user.id_user);
+              })
+            })
+          }}><Trash2 size={16}/>Delete user</DropdownMenuItem>
                             </DropdownMenuContent>
                             </DropdownMenu>
  ) 

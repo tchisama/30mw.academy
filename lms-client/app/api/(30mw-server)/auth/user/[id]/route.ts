@@ -13,3 +13,17 @@ export async function GET(request: Request, context: any) {
     return NextResponse.json({ message: "Failed to get the user" });
   }
 }
+
+
+
+export async function DELETE (request: Request, context: any) {
+  await dbConnect()
+  try {
+    const { id } = context.params;
+    const user = await UserModel.findOneAndDelete({ id_user: id });
+    return NextResponse.json(user);
+  } catch (error) {
+    console.error(error);
+    return NextResponse.json({ message: "Failed to delete the user" });
+  }
+}
