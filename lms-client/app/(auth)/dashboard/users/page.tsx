@@ -19,7 +19,7 @@ import {
   Trash2,
   Users,
 } from "lucide-react";
-import React from "react";
+import React, { memo, useEffect } from "react";
 
 import {
   DropdownMenu,
@@ -37,6 +37,7 @@ import { server } from "@/server";
 import UsersTable from "@/components/global/UsersTable";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@radix-ui/react-accordion";
+import axios from "axios";
 
 type Props = {};
 
@@ -51,15 +52,41 @@ function Page({}: Props) {
   }>();
   const [search, setSearch] = React.useState("");
   const user = useClerk();
+  const [page,setPage] = React.useState(0)
+  const [admins,setAdmins] = React.useState<User[]>([]);
+  // const [access,setAccess] = React.useState<any[]>([])
+
+
+
+
+
   // fetch usrs from the server
   const fetchUser = () => {
-    fetch(server + "auth/users")
-      .then((res) => res.json())
-      .then((data) => {
-        setUsers(data);
-        setLoading(false);
-      });
+    // fetch(server + "auth/users")
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     setUsers(data);
+    //     setLoading(false);
+    //   });
+    axios.post(server + "auth/users", { page }).then((res) => {
+      let resData = res.data;
+      // resData.forEach(async(user:any,i:number) => {
+      //   resData[i].access = await axios.get(server + "auth/access-user/" + user.id_user).then((res) => res.data);
+      // })
 
+
+
+      setUsers([...users, ...resData]);
+      setLoading(false);
+      console.log(resData);
+    });
+
+
+    
+
+    axios.get (server + "auth/admins").then((res) => {
+      setAdmins(res.data);
+    })
     fetch(server + "auth/users-analytics")
       .then((res) => res.json())
       .then((data) => {
@@ -67,6 +94,9 @@ function Page({}: Props) {
         setLoading(false);
       });
   };
+
+
+
   React.useEffect(() => {
     fetchUser();
   }, []);
@@ -160,9 +190,9 @@ function Page({}: Props) {
                 <AccordionContent>
                     <UsersTable
                       search={search}
-                      setUsers={setUsers}
+                      setUsers={setAdmins}
                       fetchUser={fetchUser}
-                      users={users.filter(_u=>_u.rule!=="user")}
+                      users={admins}
                     />
                 </AccordionContent>
               </AccordionItem>
@@ -177,6 +207,19 @@ function Page({}: Props) {
               fetchUser={fetchUser}
               users={users.filter(_u=>_u.rule==="user")}
             />
+            <div className="flex py-8 justify-center items-center">
+              <Button
+                onClick={() => {
+                  setPage(page + 1);
+                  fetchUser();
+                }}
+                variant="secondary"
+                className="flex gap-2 items-center"
+              >
+                <ArrowRight size={16} />
+                Load more
+              </Button>
+            </div>
             <ScrollBar orientation="horizontal" />
           </ScrollArea>
           {users
