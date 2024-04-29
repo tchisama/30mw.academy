@@ -7,6 +7,9 @@ const userSchema = new mongoose.Schema(
       type: String,
       default: "",
     },
+    access: [{
+      type: String,
+    }],
     fname: {
       type: String,
       default: "",

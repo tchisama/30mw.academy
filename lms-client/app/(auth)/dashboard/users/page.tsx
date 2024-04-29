@@ -97,6 +97,22 @@ function Page({}: Props) {
 
 
 
+  const add_access_to_users = async () => {
+    const allUsers = await axios.get(server + "auth/users").then((res) => res.data);
+    console.log("all users",allUsers);
+    [allUsers[0]].forEach(async (user: any) => {
+      const userAccess = await axios.get(server + "accesses-user/" + user.id_user).then((res) => res.data);
+      console.log("user",user.fname,userAccess);
+      if (userAccess.length === 0) {
+        await axios.put(server + "user/" + user.id_user, {
+          access: userAccess.map((access: any) => access.id_access),
+        })
+      }
+    });
+  }
+
+
+
   React.useEffect(() => {
     fetchUser();
   }, []);
@@ -115,6 +131,7 @@ function Page({}: Props) {
     <div className="">
       <div className="container px-2 md:px-4 min-h-screen  mx-auto">
         <DashboardNavBar />
+        <Button className="mt-8" onClick={add_access_to_users}>add access to users</Button>
         <div className="my-4">
           <div>
             <h1 className="text-3xl">Analytics</h1>

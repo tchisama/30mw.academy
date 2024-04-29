@@ -15,6 +15,21 @@ export async function GET(request: Request, context: any) {
 }
 
 
+export async function PUT(request: Request, context: any) {
+  await dbConnect()
+  try {
+    const { id } = context.params;
+    const body = await request.json();
+    const user = await UserModel.findOneAndUpdate({ id_user: id }, body, {})
+    return NextResponse.json(user);
+  }
+  catch (error) {
+    console.error(error);
+    return NextResponse.json({ message: "Failed to update the user" });
+  }
+}
+
+
 
 export async function DELETE (request: Request, context: any) {
   await dbConnect()

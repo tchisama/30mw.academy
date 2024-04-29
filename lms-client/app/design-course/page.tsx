@@ -74,7 +74,7 @@ function Page({}: Props) {
       <GTMProvider />
       <FormSection />
 
-      <div className="flex  w-full overflow-x-hidden flex-col  items-start  max-w-7xl mx-auto gap-12 py-24">
+      <div className="flex  w-full overflow-x-hidden flex-col  items-start  max-w-7xl mx-auto gap-12 py-12">
         <h1 className="text-3xl mr-2 ">محتويات الدورة</h1>
         <div className="flex flex-col gap-3">
           {courseSections.map((sec, i) => (
@@ -95,7 +95,7 @@ function Page({}: Props) {
                   <h1 className="text-xl mb-4  w-fit  ">{sec.title}</h1>
                 </div>
                 {sec.videos.map((vid) => (
-                  <div className="flex gap-4 items-center mb-2  mb-2" key={vid}>
+                  <Link href="/course/652019e1200c377a6d6c31b5/146w9h" className="flex w-full gap-4 items-center mb-2  " key={vid}>
                     <div
                       className={cn(
                         "w-6 border-black/20 border-t-2",
@@ -104,21 +104,22 @@ function Page({}: Props) {
                     ></div>
 
                     
-                    <div className="flex gap-4 p-4 px-6 items-center bg-white border rounded-xl ">
+                    <div className="flex gap-4 p-4 px-4 pl-3 items-start  border rounded-xl ">
                     <Video className={cn(" ", i == 0 && "")} size={20} />
                     <div
                       className={cn(
-                        "text-sm flex-1 opacity-70 my-1",
+                        "text-xs md:text-sm flex-1 opacity-70 ",
                         i == 0 && "",
                       )}
                     >
                       {vid}
                     </div>
-                    </div>
-                    <div className="ml-auto flex-1 text-left">
+
+                    <div className=" text-xs md:text-sm  text-left">
                       {sec.durations[sec.videos.indexOf(vid)]}
                     </div>
-                  </div>
+                    </div>
+                  </Link>
                 ))}
               </div>
             </div>
