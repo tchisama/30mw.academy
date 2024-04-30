@@ -68,7 +68,7 @@ function Page({}: Props) {
     //     setUsers(data);
     //     setLoading(false);
     //   });
-    axios.post(server + "auth/users", { page }).then((res) => {
+    axios.post(server + "auth/users", { page,search }).then((res) => {
       let resData = res.data;
       // resData.forEach(async(user:any,i:number) => {
       //   resData[i].access = await axios.get(server + "auth/access-user/" + user.id_user).then((res) => res.data);
@@ -114,8 +114,10 @@ function Page({}: Props) {
 
 
   React.useEffect(() => {
+    setUsers([]);
     fetchUser();
-  }, []);
+  }, [search]);
+
   if (loading) {
     return (
       <div className="h-screen flex justify-center items-center ">

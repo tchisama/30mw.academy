@@ -20,11 +20,17 @@ export async function GET(request: Request) {
 export async function POST(request: Request) {
   await db()
   try {
-    const { page } = await request.json();
+    const { page,search } = await request.json();
     // i want to get users by order or time
     const users = await UserModel.find({
       // only users 
-      rule: 'user'
+      rule: 'user',
+      // search by name and email
+      $or: [
+        { fname: { $regex: search, $options: 'i' } },
+        { lname: { $regex: search, $options: 'i' } },
+        { email: { $regex: search, $options: 'i' } }
+      ]
     }).sort({ createdAt: -1 }).skip(page * 10).limit(10);
     
 
