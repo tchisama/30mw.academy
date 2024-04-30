@@ -20,6 +20,7 @@ import GiveAccess from './GiveAccess';
 import { Course } from '@/hooks/course-store';
 import useUserStore from '@/hooks/users-store';
 import axios from 'axios';
+import { cn } from '@/lib/utils';
 
 
 type Props = {
@@ -86,21 +87,45 @@ function UsersTable({users:_users,search,fetchUser,setUsers:_setUsers}: Props) {
           users
           .filter(_user => (_user.email.toLowerCase()+" "+_user.fname.toLowerCase()+" "+_user.lname.toLowerCase()).includes(search.toLowerCase()))
           .map((user, index) => (
-            <TableRow key={user._id}>
+          <UserRow key={index} user={user} courses={courses} fields={fields} _setUsers={_setUsers} fetchUser={fetchUser}/>
+          ))
+        }
+      </TableBody>
+    </Table>
+  )
+}
+
+
+
+
+
+
+const UserRow = ({user,courses,fields,_setUsers,fetchUser}:any)=>{
+  const [access,setAccess] = React.useState([])
+  useEffect(() => {
+    fetch(server+'accesses-user/'+user.id_user)
+    .then(res => res.json()).then(data =>{
+      setAccess(data)
+    })
+  },[])
+  return (
+            <TableRow key={user._id} style={{background:access.length>0?"#3f31":"#0000"}}>
               <TableCell className='text-left flex md:hidden'>
                 <GiveAccess courses={courses} id={user.id_user} >
                   <Button variant={"outline"} size={"icon"}><BookCopy size={16}/></Button>
                 </GiveAccess>
               </TableCell>
               {
-                fields.map((field)=>(
+                fields.map((field:any)=>(
                   <TableCell key={field.key}>
                     {
                       field.name === "avatar" ?
-                      <Avatar>
+                      <div className={cn("",access.length>0&&"border-[3px] border-green-500 w-fit rounded-full")}>
+                      <Avatar className={"border-2 border-white outline-2"}>
                         <AvatarImage src={user[field.key as keyof User] as string} />
                         <AvatarFallback>{user.fname[0]}  {user.lname[0]}</AvatarFallback>
                       </Avatar>
+                      </div>
                       :
                       field.name === "sign in date" ?
                       new Date(user[field.key as keyof User]).toLocaleDateString() + " - " + new Date(user[field.key as keyof User]).toLocaleTimeString()
@@ -120,18 +145,8 @@ function UsersTable({users:_users,search,fetchUser,setUsers:_setUsers}: Props) {
                 <MakeAdmin setUsers={_setUsers} _user={user} fetchUser={fetchUser}/>
               </TableCell>
             </TableRow>
-          ))
-        }
-      </TableBody>
-    </Table>
   )
 }
-
-
-
-
-
-
 
 
 
