@@ -61,7 +61,7 @@ function Page({}: Props) {
 
 
   // fetch usrs from the server
-  const fetchUser = () => {
+  const fetchUser = (_users: any) => {
     // fetch(server + "auth/users")
     //   .then((res) => res.json())
     //   .then((data) => {
@@ -76,7 +76,7 @@ function Page({}: Props) {
 
 
 
-      setUsers([...users, ...resData]);
+      setUsers([..._users, ...resData]);
       setLoading(false);
       console.log(resData);
     });
@@ -115,7 +115,7 @@ function Page({}: Props) {
 
   React.useEffect(() => {
     setUsers([]);
-    fetchUser();
+    fetchUser([]);
   }, [search]);
 
   if (loading) {
@@ -210,7 +210,7 @@ function Page({}: Props) {
                     <UsersTable
                       search={search}
                       setUsers={setAdmins}
-                      fetchUser={fetchUser}
+                      fetchUser={()=>fetchUser(users)}
                       users={admins}
                     />
                 </AccordionContent>
@@ -223,14 +223,14 @@ function Page({}: Props) {
             <UsersTable
               search={search}
               setUsers={setUsers}
-              fetchUser={fetchUser}
+              fetchUser={()=>fetchUser(users)}
               users={users.filter(_u=>_u.rule==="user")}
             />
             <div className="flex py-8 justify-center items-center">
               <Button
                 onClick={() => {
                   setPage(page + 1);
-                  fetchUser();
+                  fetchUser(users);
                 }}
                 variant="secondary"
                 className="flex gap-2 items-center"
