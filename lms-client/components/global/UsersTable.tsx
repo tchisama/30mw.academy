@@ -109,7 +109,7 @@ const UserRow = ({user,courses,fields,_setUsers,fetchUser}:any)=>{
     })
   },[])
   return (
-            <TableRow key={user._id} style={{background:access.length>0?"#3f31":"#0000"}}>
+            <TableRow key={user._id} className={`${access.length>0?"bg-green-100 dark:bg-green-900":"bg-[#0000]"}`}>
               <TableCell className='text-left flex md:hidden'>
                 <GiveAccess courses={courses} id={user.id_user} >
                   <Button variant={"outline"} size={"icon"}><BookCopy size={16}/></Button>

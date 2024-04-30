@@ -198,7 +198,7 @@ function Page({}: Props) {
         </div>
         <div className="grid my-6 gap-2 grid-cols-1">
           <ScrollArea>
-            <Accordion type="single" className="bg-gray-50 border px-6 rounded-xl" collapsible>
+            <Accordion type="single" className="bg-[#0003] border px-6 rounded-xl" collapsible>
               <AccordionItem value="item-1">
                 <AccordionTrigger className="flex justify-between w-full items-center">
                   <h1 className="text-3xl  py-3">Admins</h1>
