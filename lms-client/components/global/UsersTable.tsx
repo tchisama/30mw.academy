@@ -31,8 +31,8 @@ type Props = {
 }
 interface User {
     _id: string;
-    lname: string;
-    fname: string;
+    lname?: string;
+    fname?: string;
     email: string;
     id_user: string;
     photo: string;
@@ -67,7 +67,11 @@ function UsersTable({users:_users,search,fetchUser,setUsers:_setUsers}: Props) {
 
 
   useEffect(() => {
-    setUsers(_users)
+    setUsers(_users.map((user:any)=>({
+      ...user,
+      fname: user?.fname || "N/A",
+      lname: user?.lname || "N/A"
+    })))
   },[_users])
   return (
     <Table className='w-max md:w-full'>
@@ -76,7 +80,7 @@ function UsersTable({users:_users,search,fetchUser,setUsers:_setUsers}: Props) {
               <TableHead  className='capitalize md:hidden'>Access</TableHead>
           {
             fields.map((field)=>(
-              <TableHead  key={field.key} className='capitalize min-w-[100px]'>{field.name}</TableHead>
+              <TableHead  key={field.key} className='capitalize min-w-[100px]'>{field?.name}</TableHead>
             ))
           }
               <TableHead  className='capitalize text-left'>actions</TableHead>
@@ -85,7 +89,7 @@ function UsersTable({users:_users,search,fetchUser,setUsers:_setUsers}: Props) {
       <TableBody>
         {
           users
-          .filter(_user => (_user.email.toLowerCase()+" "+_user.fname.toLowerCase()+" "+_user.lname.toLowerCase()).includes(search.toLowerCase()))
+          .filter(_user => (JSON.stringify(_user).toLowerCase()).includes(search.toLowerCase()))
           .map((user, index) => (
           <UserRow key={index} user={user} courses={courses} fields={fields} _setUsers={_setUsers} fetchUser={fetchUser}/>
           ))
@@ -103,43 +107,43 @@ function UsersTable({users:_users,search,fetchUser,setUsers:_setUsers}: Props) {
 const UserRow = ({user,courses,fields,_setUsers,fetchUser}:any)=>{
   const [access,setAccess] = React.useState([])
   useEffect(() => {
-    fetch(server+'accesses-user/'+user.id_user)
+    fetch(server+'accesses-user/'+user?.id_user)
     .then(res => res.json()).then(data =>{
       setAccess(data)
     })
   },[])
   return (
-            <TableRow key={user._id} className={`${access.length>0?"bg-green-100 dark:bg-green-900":"bg-[#0000]"}`}>
+            <TableRow key={user?._id} className={`${access.length>0?"bg-green-100 dark:bg-green-900":"bg-[#0000]"}`}>
               <TableCell className='text-left flex md:hidden'>
-                <GiveAccess courses={courses} id={user.id_user} >
+                <GiveAccess courses={courses} id={user?.id_user} >
                   <Button variant={"outline"} size={"icon"}><BookCopy size={16}/></Button>
                 </GiveAccess>
               </TableCell>
               {
                 fields.map((field:any)=>(
-                  <TableCell key={field.key}>
+                  <TableCell key={field?.key}>
                     {
-                      field.name === "avatar" ?
+                      field?.name === "avatar" ?
                       <div className={cn("",access.length>0&&"border-[3px] border-green-500 w-fit rounded-full")}>
                       <Avatar className={"border-2 border-white outline-2"}>
-                        <AvatarImage src={user[field.key as keyof User] as string} />
-                        <AvatarFallback>{user.fname[0]}  {user.lname[0]}</AvatarFallback>
+                        <AvatarImage src={user[field?.key as keyof User] as string} />
+                        <AvatarFallback>{user?.fname[0]}  {user?.lname[0]}</AvatarFallback>
                       </Avatar>
                       </div>
                       :
-                      field.name === "sign in date" ?
-                      new Date(user[field.key as keyof User]).toLocaleDateString() + " - " + new Date(user[field.key as keyof User]).toLocaleTimeString()
+                      field?.name === "sign in date" ?
+                      new Date(user[field?.key as keyof User]).toLocaleDateString() + " - " + new Date(user[field.key as keyof User]).toLocaleTimeString()
                       :
-                      field.name === "rule" ?
-                      <Badge variant={user[field.key as keyof User] === "user"?"secondary":"default"}>{user[field.key as keyof User]}</Badge>
+                      field?.name === "rule" ?
+                      <Badge variant={user[field?.key as keyof User] === "user"?"secondary":"default"}>{user[field.key as keyof User]}</Badge>
                       :
-                      user[field.key as keyof User]
+                      user[field?.key as keyof User]
                     }
                   </TableCell>
                 ))
               }
               <TableCell className='text-left'>
-                <GiveAccess courses={courses} id={user.id_user} >
+                <GiveAccess courses={courses} id={user?.id_user} >
                   <Button variant={"outline"} size={"icon"}><BookCopy size={16}/></Button>
                 </GiveAccess>
                 <MakeAdmin setUsers={_setUsers} _user={user} fetchUser={fetchUser}/>
