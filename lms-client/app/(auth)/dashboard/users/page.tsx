@@ -244,11 +244,11 @@ function Page({}: Props) {
           {users
             .filter((_user) =>
               (
-                _user.email.toLowerCase() +
+                _user?.email.toLowerCase() +
                 " " +
-                _user.fname.toLowerCase() +
+                (_user?.fname??" ").toLowerCase() +
                 " " +
-                _user.lname.toLowerCase()
+                (_user?.lname??" ").toLowerCase()
               ).includes(search.toLowerCase()),
             )
             .map((_user, index) => {

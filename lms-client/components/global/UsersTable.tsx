@@ -127,7 +127,7 @@ const UserRow = ({user,courses,fields,_setUsers,fetchUser}:any)=>{
                       <div className={cn("",access.length>0&&"border-[3px] border-green-500 w-fit rounded-full")}>
                       <Avatar className={"border-2 border-white outline-2"}>
                         <AvatarImage src={user[field?.key as keyof User] as string} />
-                        <AvatarFallback>{user?.fname[0]}  {user?.lname[0]}</AvatarFallback>
+                        <AvatarFallback>{}  {}</AvatarFallback>
                       </Avatar>
                       </div>
                       :
